@@ -153,9 +153,9 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   float 
-        test_x= 10, step_x= 10,
-        test_y= 5,  step_y= 5,
-        test_z= 3,  step_z=5,
+        test_x= 6,   step_x= 10,
+        test_y= 6,   step_y= 5,
+        test_z= 4.5,  step_z=5,
         
         default_x=8,
         default_y=8,
@@ -174,6 +174,18 @@ void loop() {
   RightMid(default_x,default_y,default_z,speed,10);
   RightBack(default_x,default_y,default_z,speed,10);
   display.display();
+
+  delay(5000);
+  display.clearDisplay();
+  LeftFront(test_x,test_y,test_z,speed,10);
+  LeftMid(test_x,test_y,test_z,speed,10);
+  LeftBack(test_x,test_y,test_z,speed,10);
+  RightFront(test_x,test_y,test_z,speed,10);
+  RightMid(test_x,test_y,test_z,speed,10);
+  RightBack(test_x,test_y,test_z,speed,10);
+  display.display();
+  delay(3000);
+  display.clearDisplay();
   /**
   delay(5000);
   while(true){
@@ -227,9 +239,9 @@ void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
   display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
   delay(servo_delay);
 
-  Dynamixel.moveSpeed(1, dynamixelBeta(x_val,y_val,z_val,1,0), speed);
+  Dynamixel.moveSpeed(1, dynamixelBeta(x_val,y_val,z_val,1,1), speed);
   display.setCursor(80,24);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
+  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
   delay(servo_delay);
 }
 void LeftMid(float x_val, float y_val,float z_val, int speed,int servo_delay){
@@ -246,9 +258,9 @@ void LeftMid(float x_val, float y_val,float z_val, int speed,int servo_delay){
   display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
   delay(servo_delay);
   
-  Dynamixel.moveSpeed(7, dynamixelBeta(x_val,y_val,z_val,1,0), speed);
+  Dynamixel.moveSpeed(7, dynamixelBeta(x_val,y_val,z_val,1,1), speed);
   display.setCursor(40,24);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
+  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
   delay(servo_delay);
 }
 void LeftBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
@@ -265,9 +277,9 @@ void LeftBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
   delay(servo_delay);
   
-  Dynamixel.moveSpeed(13, dynamixelBeta(x_val,y_val,z_val,1,0), speed);
+  Dynamixel.moveSpeed(13, dynamixelBeta(x_val,y_val,z_val,1,1), speed);
   display.setCursor(0,24);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
+  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
   delay(servo_delay);
 }
 
