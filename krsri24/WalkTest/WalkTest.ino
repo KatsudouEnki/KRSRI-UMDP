@@ -155,7 +155,7 @@ void loop() {
   float 
         test_x= 6,   step_x= 10,
         test_y= 6,   step_y= 5,
-        test_z= 4.5,  step_z=5,
+        test_z= 3,  step_z=5,
         
         default_x=8,
         default_y=8,
