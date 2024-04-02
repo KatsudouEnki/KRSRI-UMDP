@@ -150,81 +150,6 @@ void setup() {
 //  Serial.print(AngleCalc(150,0));
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  float 
-        test_x= 6,   step_x= 10,
-        test_y= 6,   step_y= 5,
-        test_z= 3,  step_z=5,
-        
-        default_x=8,
-        default_y=8,
-        default_z=4.5;
-
-        
-  int speed=300,Servo_delay=5;
-  display.setCursor(110,12);
-  display.print("Ki");
-  display.setCursor(110,47);
-  display.print("Ka");
-  LeftFront(default_x,default_y,default_z,speed,10);
-  LeftMid(default_x,default_y,default_z,speed,10);
-  LeftBack(default_x,default_y,default_z,speed,10);
-  RightFront(default_x,default_y,default_z,speed,10);
-  RightMid(default_x,default_y,default_z,speed,10);
-  RightBack(default_x,default_y,default_z,speed,10);
-  display.display();
-
-  delay(5000);
-  display.clearDisplay();
-  LeftFront(test_x,test_y,test_z,speed,10);
-  LeftMid(test_x,test_y,test_z,speed,10);
-  LeftBack(test_x,test_y,test_z,speed,10);
-  RightFront(test_x,test_y,test_z,speed,10);
-  RightMid(test_x,test_y,test_z,speed,10);
-  RightBack(test_x,test_y,test_z,speed,10);
-  display.display();
-  delay(3000);
-  display.clearDisplay();
-  /**
-  delay(5000);
-  while(true){
-    LeftFront(test_x,test_y,test_z,speed,10);
-    LeftBack(test_x,test_y,test_z,speed,10);
-    RightMid(test_x,test_y,test_z,speed,10);
-    delay(100);
-    LeftFront(step_x,step_y,step_z,speed,10);
-    LeftBack(step_x,step_y,step_z,speed,10);
-    RightMid(step_x,step_y,step_z,speed,10);
-    delay(100);
-    LeftFront(default_x,default_y,default_z,speed,10);
-    LeftMid(test_x,test_y,test_z,speed,10);
-    LeftBack(default_x,default_y,default_z,speed,10);
-    RightFront(test_x,test_y,test_z,speed,10);
-    RightMid(default_x,default_y,default_z,speed,10);
-    RightBack(test_x,test_y,test_z,speed,10);
-    delay(100);
-    
-    RightFront(test_x,test_y,test_z,speed,10);
-    RightBack(test_x,test_y,test_z,speed,10);
-    LeftMid(test_x,test_y,test_z,speed,10);
-    delay(100);
-    RightFront(step_x,step_y,step_z,speed,10);
-    RightBack(step_x,step_y,step_z,speed,10);
-    LeftMid(step_x,step_y,step_z,speed,10);
-    delay(100);
-    RightFront(default_x,default_y,default_z,speed,10);
-    RightMid(test_x,test_y,test_z,speed,10);
-    RightBack(default_x,default_y,default_z,speed,10);
-    LeftFront(test_x,test_y,test_z,speed,10);
-    LeftMid(default_x,default_y,default_z,speed,10);
-    LeftBack(test_x,test_y,test_z,speed,10);
-    delay(100);
-  }
-  /**/
-}
-
-
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
   display.setCursor(80,0);
   display.print("Depan");
@@ -330,4 +255,663 @@ void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   display.setCursor(0,51);
   display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
   delay(servo_delay);
+}
+
+int speed=400, servo_delay=1;
+
+void default_state(){
+  LeftFront(8,8,4.5,speed,servo_delay);
+  LeftMid(8,8,4.5,speed,servo_delay);
+  LeftBack(8,8,4.5,speed,servo_delay);
+
+  RightFront(8,8,4.5,speed,servo_delay);
+  RightMid(8,8,4.5,speed,servo_delay);
+  RightBack(8,8,4.5,speed,servo_delay);
+}
+
+void walk(){
+  //1
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+
+  delay(3);
+
+  LeftFront(8,8,3,speed,servo_delay);
+  RightMid(8,8,3,speed,servo_delay);
+  LeftBack(8,8,3,speed,servo_delay);
+
+  delay(12);
+
+  //2
+  LeftFront(5,10,3,speed,servo_delay);
+  RightMid(5,10,3,speed,servo_delay);
+  LeftBack(5,10,3,speed,servo_delay);
+
+  RightFront(8,8,4.5,speed,servo_delay);
+  LeftMid(8,8,4.5,speed,servo_delay);
+  RightBack(8,8,4.5,speed,servo_delay);
+  
+  delay(15);
+
+  //3
+  LeftFront(5,10,4.5,speed,servo_delay);
+  RightMid(5,10,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  delay(3);
+
+  RightFront(8,8,3,speed,servo_delay);
+  LeftMid(8,8,3,speed,servo_delay);
+  RightBack(8,8,3,speed,servo_delay);
+  
+  delay(12);
+
+  //4
+  LeftFront(8,8,4.5,speed,servo_delay);
+  RightMid(8,8,4.5,speed,servo_delay);
+  LeftBack(8,8,4.5,speed,servo_delay);
+
+  RightFront(5,10,3,speed,servo_delay);
+  LeftMid(5,10,3,speed,servo_delay);
+  RightBack(5,10,3,speed,servo_delay);
+  
+  delay(15);
+}
+
+void walk_fast(){
+  //1
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(10,5,3,speed,servo_delay);
+  RightMid(10,5,3,speed,servo_delay);
+  LeftBack(10,5,3,speed,servo_delay);
+
+  // delay(25);
+
+  //2
+  LeftFront(5,10,3,speed,servo_delay);
+  RightMid(5,10,3,speed,servo_delay);
+  LeftBack(5,10,3,speed,servo_delay);
+
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(10,5,4.5,speed,servo_delay);
+  RightBack(10,5,4.5,speed,servo_delay);
+  
+  // delay(30);
+
+  //3
+  LeftFront(5,10,4.5,speed,servo_delay);
+  RightMid(5,10,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(10,5,3,speed,servo_delay);
+  LeftMid(10,5,3,speed,servo_delay);
+  RightBack(10,5,3,speed,servo_delay);
+  
+  // delay(25);
+
+  //4
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(10,5,4.5,speed,servo_delay);
+  LeftBack(10,5,4.5,speed,servo_delay);
+
+  RightFront(5,10,3,speed,servo_delay);
+  LeftMid(5,10,3,speed,servo_delay);
+  RightBack(5,10,3,speed,servo_delay);
+  
+  // delay(30);
+}
+
+void walk_fast_obstacle(){
+  //1
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+
+  delay(40);
+
+  LeftFront(10,5,0.5,speed,servo_delay);
+  RightMid(10,5,0.5,speed,servo_delay);
+  LeftBack(10,5,0.5,speed,servo_delay);
+
+  delay(80);
+
+  //2
+  LeftFront(5,10,0.5,speed,servo_delay);
+  RightMid(5,10,0.5,speed,servo_delay);
+  LeftBack(5,10,0.5,speed,servo_delay);
+
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(10,5,4.5,speed,servo_delay);
+  RightBack(10,5,4.5,speed,servo_delay);
+  
+  delay(120);
+
+  //3
+  LeftFront(5,10,4.5,speed,servo_delay);
+  RightMid(5,10,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  delay(40);
+
+  RightFront(10,5,0.5,speed,servo_delay);
+  LeftMid(10,5,0.5,speed,servo_delay);
+  RightBack(10,5,0.5,speed,servo_delay);
+  
+  delay(80);
+
+  //4
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(10,5,4.5,speed,servo_delay);
+  LeftBack(10,5,4.5,speed,servo_delay);
+
+  RightFront(5,10,0.5,speed,servo_delay);
+  LeftMid(5,10,0.5,speed,servo_delay);
+  RightBack(5,10,0.5,speed,servo_delay);
+  
+  delay(120);
+}
+
+void reverse(){
+  //1
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(10,5,4.5,speed,servo_delay);
+  RightBack(10,5,4.5,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(8,8,3,speed,servo_delay);
+  RightMid(8,8,3,speed,servo_delay);
+  LeftBack(8,8,3,speed,servo_delay);
+
+  delay(25);
+
+  //2
+  LeftFront(10,5,3,speed,servo_delay);
+  RightMid(10,5,3,speed,servo_delay);
+  LeftBack(10,5,3,speed,servo_delay);
+
+  RightFront(8,8,4.5,speed,servo_delay);
+  LeftMid(8,8,4.5,speed,servo_delay);
+  RightBack(8,8,4.5,speed,servo_delay);
+  
+  delay(30);
+
+  //3
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(10,5,4.5,speed,servo_delay);
+  LeftBack(10,5,4.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(8,8,3,speed,servo_delay);
+  LeftMid(8,8,3,speed,servo_delay);
+  RightBack(8,8,3,speed,servo_delay);
+  
+  delay(25);
+
+  //4
+  LeftFront(8,8,4.5,speed,servo_delay);
+  RightMid(8,8,4.5,speed,servo_delay);
+  LeftBack(8,8,4.5,speed,servo_delay);
+
+  RightFront(10,5,3,speed,servo_delay);
+  LeftMid(10,5,3,speed,servo_delay);
+  RightBack(10,5,3,speed,servo_delay);
+  
+  delay(30);
+}
+
+void reverse_fast(){
+  //1
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(10,5,4.5,speed,servo_delay);
+  RightBack(10,5,4.5,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(5,10,3,speed,servo_delay);
+  RightMid(5,10,3,speed,servo_delay);
+  LeftBack(5,10,3,speed,servo_delay);
+
+  // delay(25);
+
+  //2
+  LeftFront(10,5,3,speed,servo_delay);
+  RightMid(10,5,3,speed,servo_delay);
+  LeftBack(10,5,3,speed,servo_delay);
+
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+  
+  // delay(30);
+
+  //3
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(10,5,4.5,speed,servo_delay);
+  LeftBack(10,5,4.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(5,10,3,speed,servo_delay);
+  LeftMid(5,10,3,speed,servo_delay);
+  RightBack(5,10,3,speed,servo_delay);
+  
+  // delay(25);
+
+  //4
+  LeftFront(5,10,4.5,speed,servo_delay);
+  RightMid(5,10,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  RightFront(10,5,3,speed,servo_delay);
+  LeftMid(10,5,3,speed,servo_delay);
+  RightBack(10,5,3,speed,servo_delay);
+  
+  // delay(30);
+}
+
+void turn_left(){
+  //1
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(10,5,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(8,8,3,speed,servo_delay);
+  RightMid(8,8,3,speed,servo_delay);
+  LeftBack(8,8,3,speed,servo_delay);
+
+  delay(25);
+
+  //2
+  LeftFront(10,5,3,speed,servo_delay);
+  RightMid(5,10,3,speed,servo_delay);
+  LeftBack(10,5,3,speed,servo_delay);
+
+  RightFront(8,8,4.5,speed,servo_delay);
+  LeftMid(8,8,4.5,speed,servo_delay);
+  RightBack(8,8,4.5,speed,servo_delay);
+  
+  delay(30);
+
+  //3
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(5,10,4.5,speed,servo_delay);
+  LeftBack(10,5,4.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(8,8,3,speed,servo_delay);
+  LeftMid(8,8,3,speed,servo_delay);
+  RightBack(8,8,3,speed,servo_delay);
+  
+  delay(25);
+
+  //4
+  LeftFront(8,8,4.5,speed,servo_delay);
+  RightMid(8,8,4.5,speed,servo_delay);
+  LeftBack(8,8,4.5,speed,servo_delay);
+
+  RightFront(5,10,3,speed,servo_delay);
+  LeftMid(10,5,3,speed,servo_delay);
+  RightBack(5,10,3,speed,servo_delay);
+  
+  delay(30);
+}
+
+void turn_left_fast(){
+  //1
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(10,5,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(5,10,3,speed,servo_delay);
+  RightMid(10,5,3,speed,servo_delay);
+  LeftBack(5,10,3,speed,servo_delay);
+
+  // delay(25);
+
+  //2
+  LeftFront(10,5,3,speed,servo_delay);
+  RightMid(5,10,3,speed,servo_delay);
+  LeftBack(10,5,3,speed,servo_delay);
+
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(10,5,4.5,speed,servo_delay);
+  
+  // delay(30);
+
+  //3
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(5,10,4.5,speed,servo_delay);
+  LeftBack(10,5,4.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(10,5,3,speed,servo_delay);
+  LeftMid(5,10,3,speed,servo_delay);
+  RightBack(10,5,3,speed,servo_delay);
+  
+  // delay(25);
+
+  //4
+  LeftFront(5,10,4.5,speed,servo_delay);
+  RightMid(10,5,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  RightFront(5,10,3,speed,servo_delay);
+  LeftMid(10,5,3,speed,servo_delay);
+  RightBack(5,10,3,speed,servo_delay);
+  
+  // delay(30);
+}
+
+void turn_right(){
+  //1
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(10,5,4.5,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(8,8,3,speed,servo_delay);
+  RightMid(8,8,3,speed,servo_delay);
+  LeftBack(8,8,3,speed,servo_delay);
+
+  delay(25);
+
+  //2
+  LeftFront(5,10,3,speed,servo_delay);
+  RightMid(10,5,3,speed,servo_delay);
+  LeftBack(5,10,3,speed,servo_delay);
+
+  RightFront(8,8,4.5,speed,servo_delay);
+  LeftMid(8,8,4.5,speed,servo_delay);
+  RightBack(8,8,4.5,speed,servo_delay);
+  
+  delay(30);
+
+  //3
+  LeftFront(5,10,4.5,speed,servo_delay);
+  RightMid(10,5,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(8,8,3,speed,servo_delay);
+  LeftMid(8,8,3,speed,servo_delay);
+  RightBack(8,8,3,speed,servo_delay);
+  
+  delay(25);
+
+  //4
+  LeftFront(8,8,4.5,speed,servo_delay);
+  RightMid(8,8,4.5,speed,servo_delay);
+  LeftBack(8,8,4.5,speed,servo_delay);
+
+  RightFront(10,5,3,speed,servo_delay);
+  LeftMid(5,10,3,speed,servo_delay);
+  RightBack(10,5,3,speed,servo_delay);
+  
+  delay(30);
+}
+
+void turn_right_fast(){
+  //1
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(10,5,4.5,speed,servo_delay);
+
+  delay(10);
+
+  LeftFront(10,5,3,speed,servo_delay);
+  RightMid(5,10,3,speed,servo_delay);
+  LeftBack(10,5,3,speed,servo_delay);
+
+  // delay(25);
+
+  //2
+  LeftFront(5,10,3,speed,servo_delay);
+  RightMid(10,5,3,speed,servo_delay);
+  LeftBack(5,10,3,speed,servo_delay);
+
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(10,5,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+  
+  // delay(30);
+
+  //3
+  LeftFront(5,10,4.5,speed,servo_delay);
+  RightMid(10,5,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(5,10,3,speed,servo_delay);
+  LeftMid(10,5,3,speed,servo_delay);
+  RightBack(5,10,3,speed,servo_delay);
+  
+  // delay(25);
+
+  //4
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(5,10,4.5,speed,servo_delay);
+  LeftBack(10,5,4.5,speed,servo_delay);
+
+  RightFront(10,5,3,speed,servo_delay);
+  LeftMid(5,10,3,speed,servo_delay);
+  RightBack(10,5,3,speed,servo_delay);
+  
+  // delay(30);
+}
+
+void crabwalk_left(){
+  //1
+  RightFront(8,5,4.5,speed,servo_delay);
+  LeftMid(9.4,9.4,4.5,speed,servo_delay);
+  RightBack(5,8,4.5,speed,servo_delay);
+
+  delay(10);
+
+  LeftFront(8,5,3.5,speed,servo_delay);
+  RightMid(9.4,9.4,3.5,speed,servo_delay);
+  LeftBack(5,8,3.5,speed,servo_delay);
+  
+  // delay(10);
+
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(8,8,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+
+  //2
+  LeftFront(12,5,3.5,speed,servo_delay);
+  RightMid(6.6,6.6,3.5,speed,servo_delay);
+  LeftBack(5,12,3.5,speed,servo_delay);
+
+  RightFront(12,5,4.5,speed,servo_delay);
+  LeftMid(6.6,6.6,4.5,speed,servo_delay);
+  RightBack(5,12,4.5,speed,servo_delay);
+
+  // delay(20);
+
+  //3
+  LeftFront(12,5,4.5,speed,servo_delay);
+  RightMid(6.6,6.6,4.5,speed,servo_delay);
+  LeftBack(5,12,4.5,speed,servo_delay);
+
+  delay(10);
+
+  RightFront(12,5,3.5,speed,servo_delay);
+  LeftMid(6.6,6.6,3.5,speed,servo_delay);
+  RightBack(5,12,3.5,speed,servo_delay);
+  
+  // delay(10);
+
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(8,8,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  //4
+  RightFront(8,5,3.5,speed,servo_delay);
+  LeftMid(9.4,9.4,3.5,speed,servo_delay);
+  RightBack(5,8,3.5,speed,servo_delay);
+
+  LeftFront(8,5,4.5,speed,servo_delay);
+  RightMid(9.4,9.4,4.5,speed,servo_delay);
+  LeftBack(5,8,4.5,speed,servo_delay);
+  
+  // delay(20);
+}
+
+// void crabwalk_left_altslow(){
+//   //1
+//   RightFront(8,5,4.5,speed,servo_delay);
+//   LeftMid(9.4,9.4,4.5,speed,servo_delay);
+//   RightBack(5,8,4.5,speed,servo_delay);
+
+//   delay(5);
+
+//   LeftFront(8,5,3.5,speed,servo_delay);
+//   RightMid(9.4,9.4,3.5,speed,servo_delay);
+//   LeftBack(5,8,3.5,speed,servo_delay);
+  
+//   // delay(10);
+
+//   //2
+//   LeftFront(10,5,3.5,speed,servo_delay);
+//   RightMid(8,8,3.5,speed,servo_delay);
+//   LeftBack(5,10,3.5,speed,servo_delay);
+
+//   RightFront(10,5,4.5,speed,servo_delay);
+//   LeftMid(8,8,4.5,speed,servo_delay);
+//   RightBack(5,10,4.5,speed,servo_delay);
+
+//   // delay(20);
+
+//   //3
+//   LeftFront(10,5,4.5,speed,servo_delay);
+//   RightMid(8,8,4.5,speed,servo_delay);
+//   LeftBack(5,10,4.5,speed,servo_delay);
+
+//   delay(10);
+
+//   RightFront(10,5,3.5,speed,servo_delay);
+//   LeftMid(8,8,3.5,speed,servo_delay);
+//   RightBack(5,10,3.5,speed,servo_delay);
+  
+//   // delay(10);
+
+//   //4
+//   RightFront(8,5,3.5,speed,servo_delay);
+//   LeftMid(9.4,9.4,3.5,speed,servo_delay);
+//   RightBack(5,8,3.5,speed,servo_delay);
+
+//   LeftFront(8,5,4.5,speed,servo_delay);
+//   RightMid(9.4,9.4,4.5,speed,servo_delay);
+//   LeftBack(5,8,4.5,speed,servo_delay);
+  
+//   // delay(20);
+// }
+
+void crabwalk_right(){
+  //1
+  RightFront(12,5,4.5,speed,servo_delay);
+  LeftMid(6.6,6.6,4.5,speed,servo_delay);
+  RightBack(5,12,4.5,speed,servo_delay);
+
+  delay(10);
+
+  LeftFront(12,5,3.5,speed,servo_delay);
+  RightMid(6.6,6.6,3.5,speed,servo_delay);
+  LeftBack(5,12,3.5,speed,servo_delay);
+  
+  // delay(10);
+
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(8,8,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+
+  //2
+  LeftFront(8,5,3.5,speed,servo_delay);
+  RightMid(9.4,9.4,3.5,speed,servo_delay);
+  LeftBack(5,8,3.5,speed,servo_delay);
+
+  RightFront(8,5,4.5,speed,servo_delay);
+  LeftMid(9.4,9.4,4.5,speed,servo_delay);
+  RightBack(5,8,4.5,speed,servo_delay);
+
+  // delay(20);
+
+  //3
+  LeftFront(8,5,4.5,speed,servo_delay);
+  RightMid(9.4,9.4,4.5,speed,servo_delay);
+  LeftBack(5,8,4.5,speed,servo_delay);
+
+  delay(10);
+
+  RightFront(8,5,3.5,speed,servo_delay);
+  LeftMid(9.4,9.4,3.5,speed,servo_delay);
+  RightBack(5,8,3.5,speed,servo_delay);
+  
+  // delay(10);
+
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(8,8,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  //4
+  RightFront(12,5,3.5,speed,servo_delay);
+  LeftMid(6.6,6.6,3.5,speed,servo_delay);
+  RightBack(5,12,3.5,speed,servo_delay);
+
+  LeftFront(12,5,4.5,speed,servo_delay);
+  RightMid(6.6,6.6,4.5,speed,servo_delay);
+  LeftBack(5,12,4.5,speed,servo_delay);
+  
+  // delay(20);
+}
+
+void loop() {
+  // default_state();
+  // delay(300);
+
+  walk_fast_obstacle();
+
+  // for(int i=0;i<2;i++){
+  // turn_right_fast();
+  // }
+
+  // default_state();
+  // delay(300);
+
+
+  // for(int i=0;i<2;i++){
+  // turn_left_fast();
+  // }
+
+  // default_state();
+  // delay(300);
+
+  // for(int i=0;i<5;i++){
+  // crabwalk_right();
+  // }
+  
+  // for(int i=0;i<5;i++){
+  // crabwalk_left();
+  // }
+
 }
