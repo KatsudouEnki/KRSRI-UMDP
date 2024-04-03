@@ -10,6 +10,8 @@ float x_limit=11.5, y_limit=11.5, z_limit=3;
 
 float beta_offset=50, alpha_offset=50;
 
+int speed=300;
+  int servo_delay=3;
 double gamma_cal(double x, double y, double z){
   double gamma=degrees(atan(x/y));
   return gamma;
@@ -157,10 +159,10 @@ void setup() {
   delay(2000);
 
 }
-
-int speed=300;
-int servo_delay=3;
-
+void loop(){
+  
+  walk();
+}
 void walk(){
   //1
   LeftFront(8,8,3,speed,servo_delay);
