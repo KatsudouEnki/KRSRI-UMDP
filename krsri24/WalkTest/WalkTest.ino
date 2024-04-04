@@ -3,6 +3,8 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <NewPing.h>
+#include <Servo.h>
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
@@ -16,12 +18,31 @@
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+#define SONAR_NUM 4      // Number of sensors.
+#define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
 
+NewPing sonar[SONAR_NUM] = {   // Sensor object array.
+  NewPing(42, 42, MAX_DISTANCE),  // Depan
+  NewPing(34, 34, MAX_DISTANCE),  // Belakang
+  NewPing(32, 32, MAX_DISTANCE),  // Kiri
+  NewPing(36, 36, MAX_DISTANCE)   // Kanan
+};
+
+
+int left_dis,
+    right_dis,
+    front_dis,
+    back_dis;
+
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  Dynamixel.setSerial(&Serial);
+  Serial.begin(115200);
+  Dynamixel.setSerial(&Serial3);
   Dynamixel.begin(1000000, 2);
   Serial.println("test");
   float test_x= 8,
@@ -46,22 +67,8 @@ void setup() {
   display.clearDisplay();
   display.setTextSize(1);      // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE); // Draw white text
-//
-//  Serial.print("gamma:");
-//  Serial.print(gamma_cal(7,7,3));
-//  Serial.print("\t beta:");
-//  Serial.print(beta_cal(7,7,3));
-//  Serial.print("\t Alpha:");
-//  Serial.println(alpha_sum(7,7,3));
-//
-//  Serial.print("gamma:");
-//  Serial.print(AngleCalc(gamma_cal(7,7,3),0));
-//  Serial.print("\t beta:");
-//  Serial.print(beta_cal(7,7,3));
-//  Serial.print("\t Alpha:");
-//  Serial.println(alpha_sum(7,7,3));
-//  
-//  Serial.print(AngleCalc(150,0));
+
+  myservo.attach(31);
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
