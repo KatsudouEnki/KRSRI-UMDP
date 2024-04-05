@@ -21,12 +21,14 @@ void loop(){
   default_state();
   delay(1000);
   int tes=0;
-  while(tes==0){
+  while(true){
 //    default_state();
 //  crabwalk_right_obstacle();
 //    low_walk();
-    
-    compass();
+    distance_detection();
+    data_display();
+    delay(50);
+    // compass();
 //    if(angle8<100){
 //      
 //    }

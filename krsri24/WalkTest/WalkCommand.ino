@@ -17,22 +17,22 @@
 */
 
 void loop(){
-
-  // for(int i=0;i<5;i++){
-  //   low_walk();
-  //   distance_detection();
-  //   data_display();
-  //   delay(20);
-  // }
-  // for (pos = 45; pos <= 135; pos += 1) { // goes from 0 degrees to 180 degrees
-  //   // in steps of 1 degree
-  //   myservo.write(pos);              // tell servo to go to position in variable 'pos'
-  //   delay(15);                       // waits 15 ms for the servo to reach the position
-  // }
-  // for (pos = 135; pos >= 45; pos -= 1) { // goes from 180 degrees to 0 degrees
-  //   myservo.write(pos);              // tell servo to go to position in variable 'pos'
-  //   delay(15);                       // waits 15 ms for the servo to reach the position
-  // }
+  servoAngkat.write(90);
+  for(int i=0;i<5;i++){
+    low_walk();
+    distance_detection();
+    data_display();
+    delay(20);
+  }
+  for (pos = 45; pos <= 135; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15 ms for the servo to reach the position
+  }
+  for (pos = 135; pos >= 45; pos -= 1) { // goes from 180 degrees to 0 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15 ms for the servo to reach the position
+  }
 
   //cek ultrasonik
   // for(float i=4.5;i>=2;i-=0.5){

@@ -51,8 +51,9 @@ int pos = 0;
 
 unsigned char high_byte, low_byte, angle8;
 char pitch, roll;
-unsigned int angle16;
+unsigned int angle16;4
 
+int speed=300, servo_delay=1;
 
 void setup() {
   // put your setup code here, to run once:
@@ -198,13 +199,10 @@ void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   delay(servo_delay);
 }
 
-int speed=600, servo_delay=0;
-
 void default_state(){
   LeftFront(8,8,4.5,speed,servo_delay);
   LeftMid(8,8,4.5,speed,servo_delay);
   LeftBack(8,8,4.5,speed,servo_delay);
-
   RightFront(8,8,4.5,speed,servo_delay);
   RightMid(8,8,4.5,speed,servo_delay);
   RightBack(8,8,4.5,speed,servo_delay);

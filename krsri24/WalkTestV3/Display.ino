@@ -4,6 +4,7 @@ void data_display(){
   display.setCursor(50,0);
   display.print("F=");
   display.print(front_dis);
+  Serial.print("F=");
   Serial.print(front_dis);
   Serial.print("\t");
   lcd.setCursor(0,0);
@@ -13,6 +14,7 @@ void data_display(){
   display.setCursor(0,32);
   display.print("L=");
   display.print(left_dis);
+  Serial.print("L=");
   Serial.print(left_dis);
   Serial.print("\t");
   lcd.setCursor(0,1);
@@ -22,6 +24,7 @@ void data_display(){
   display.setCursor(80,32);
   display.print("R=");
   display.print(right_dis);
+  Serial.print("R=");
   Serial.print(right_dis);
   Serial.print("\t");
   lcd.setCursor(8,0);
@@ -31,6 +34,7 @@ void data_display(){
   display.setCursor(50,50);
   display.print("B=");
   display.print(back_dis);
+  Serial.print("b=");
   Serial.println(back_dis);
   lcd.setCursor(8,1);
   lcd.write("B=");
