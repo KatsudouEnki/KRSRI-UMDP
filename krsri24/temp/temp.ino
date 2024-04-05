@@ -3,15 +3,6 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <NewPing.h>
-#include <Servo.h>
-
-#define CMPS12_ADDRESS 0x60  // Address of CMPS12 shifted right one bit for arduino wire library
-#define ANGLE_8  1           // Register to read 8bit angle from
-
-unsigned char high_byte, low_byte, angle8;
-char pitch, roll;
-unsigned int angle16;
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
@@ -25,34 +16,97 @@ unsigned int angle16;
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-#define SONAR_NUM 4      // Number of sensors.
-#define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
 
-NewPing sonar[SONAR_NUM] = {   // Sensor object array.
-  NewPing(42, 42, MAX_DISTANCE),  // Depan
-  NewPing(34, 34, MAX_DISTANCE),  // Belakang
-  NewPing(32, 32, MAX_DISTANCE),  // Kiri
-  NewPing(36, 36, MAX_DISTANCE)   // Kanan
-};
+#define ID_coxa 1
+#define ID_femur 5
+#define ID_tibia 18
 
+float coxa=6.5, femur=5, tibia=7;
+//float coxa=4.5, femur=5, tibia=7;
 
-int left_dis,
-    right_dis,
-    front_dis,
-    back_dis;
+float x_limit=11.5, y_limit=11.5, z_limit=3;
 
-Servo myservo;  // create servo object to control a servo
-// twelve servo objects can be created on most boards
+float beta_offset=50, alpha_offset=50;
 
-int pos = 0;
+double gamma_cal(double x, double y, double z){
+  double gamma=degrees(atan(x/y));
+  gamma=round(gamma);
+  return gamma;
+}
 
+double beta_cal(double x, double y, double z){
+  double L1=sqrt(pow(x,2)+pow(y,2));
+  double L=sqrt(pow(L1-coxa,2)+pow(z,2));
+  double beta=degrees(acos((pow(tibia,2)+pow(femur,2)-pow(L,2))/(2*tibia*femur)));
+  beta=round(beta);
+  return beta;
+} 
+double alpha_sum(double x, double y, double z){
+  double L1=sqrt(pow(x,2)+pow(y,2));
+  double L=sqrt(pow(L1-coxa,2)+pow(z,2));
+  double alpha1=degrees(acos(z/L)); //L mestinya L1?  
+  double alpha2=degrees(acos((pow(femur,2)+pow(L,2)-pow(tibia,2))/(2*femur*L)));//B
+  double alpha_total= alpha2+alpha1;
+  alpha_total=round(alpha_total);
+  return alpha_total;
+  }
+
+int AngleCalc(float angle, int mirror)
+{
+  float angle_calc = (angle/300)*1023;
+  if(mirror == 1){
+    int mirror_angle = (angle_calc - 511)*-1;
+    mirror_angle += 511;
+    return mirror_angle;
+  }
+  else{
+    return angle_calc;  
+  }
+}
+int dynamixelGamma(double x_val,double y_val,double z_val,int mirror_inverse,int mirror_dynamixel)
+{
+  int dynamixel_gamma = gamma_cal(x_limit,y_limit,z_limit)-gamma_cal(x_val,y_val,z_val);
+  if(mirror_inverse == 1){
+    return AngleCalc(30+(dynamixel_gamma*-1),mirror_dynamixel);
+  }
+  else{
+    return AngleCalc(30+dynamixel_gamma,mirror_dynamixel);
+  }
+}
+int dynamixelGammaMid(double x_val,double y_val,double z_val,int mirror_inverse,int mirror_dynamixel)
+{
+  int dynamixel_gamma = gamma_cal(x_limit,y_limit,z_limit)-gamma_cal(x_val,y_val,z_val);
+  if(mirror_inverse == 1){
+    return AngleCalc(25+(dynamixel_gamma*-1),mirror_dynamixel);
+  }
+  else{
+    return AngleCalc(25+dynamixel_gamma,mirror_dynamixel);
+  }
+}
+int dynamixelAlpha(double x_val,double y_val,double z_val,int mirror_inverse,int mirror_dynamixel)
+{
+  int dynamixel_alpha = alpha_sum(x_limit,y_limit,z_limit) - alpha_sum(x_val,y_val,z_val);
+  if(mirror_inverse == 1){
+    return AngleCalc(150+(dynamixel_alpha*-1), mirror_dynamixel);
+  }
+  else{
+    return AngleCalc(150+dynamixel_alpha, mirror_dynamixel);
+  }
+}
+
+int dynamixelBeta(double x_val,double y_val,double z_val,int mirror_inverse,int mirror_dynamixel)
+{
+  int dynamixel_beta = beta_cal(x_limit,y_limit,z_limit) - beta_cal(x_val,y_val,z_val);
+  if(mirror_inverse == 1){
+     return AngleCalc(235+(dynamixel_beta*-1), mirror_dynamixel);
+  }
+  else{
+    return AngleCalc(235+dynamixel_beta, mirror_dynamixel);
+  }
+}
 void setup() {
   // put your setup code here, to run once:
-<<<<<<< Updated upstream
-  Serial.begin(115200);
-=======
   Serial.begin(9600);
->>>>>>> Stashed changes
   Dynamixel.setSerial(&Serial3);
   Dynamixel.begin(1000000, 2);
   Serial.println("test");
@@ -78,9 +132,22 @@ void setup() {
   display.clearDisplay();
   display.setTextSize(1);      // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE); // Draw white text
-
-  myservo.attach(31);
-  Wire.begin();
+//
+//  Serial.print("gamma:");
+//  Serial.print(gamma_cal(7,7,3));
+//  Serial.print("\t beta:");
+//  Serial.print(beta_cal(7,7,3));
+//  Serial.print("\t Alpha:");
+//  Serial.println(alpha_sum(7,7,3));
+//
+//  Serial.print("gamma:");
+//  Serial.print(AngleCalc(gamma_cal(7,7,3),0));
+//  Serial.print("\t beta:");
+//  Serial.print(beta_cal(7,7,3));
+//  Serial.print("\t Alpha:");
+//  Serial.println(alpha_sum(7,7,3));
+//  
+//  Serial.print(AngleCalc(150,0));
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
@@ -190,11 +257,7 @@ void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   delay(servo_delay);
 }
 
-<<<<<<< Updated upstream
-int speed=800, servo_delay=0;
-=======
 int speed=700, servo_delay=0;
->>>>>>> Stashed changes
 
 void default_state(){
   LeftFront(8,8,4.5,speed,servo_delay);
@@ -838,88 +901,6 @@ void crabwalk_left_fast(){
   // delay(20);
 }
 
-void crabwalk_left_fast(){
-  //1
-  RightFront(8,5,4,speed,servo_delay);
-  LeftMid(9.4,9.4,4,speed,servo_delay);
-  RightBack(5,8,4,speed,servo_delay);
-
-  delay(5);
-
-  LeftFront(8,5,3,speed,servo_delay);
-  RightMid(9.4,9.4,3,speed,servo_delay);
-  LeftBack(5,8,3,speed,servo_delay);
-  
-  // delay(10);
-
-  RightFront(9,5,4,speed,servo_delay);
-  LeftMid(8.7,8.7,4,speed,servo_delay);
-  RightBack(5,9,4,speed,servo_delay);
-
-  LeftFront(12,5,3,speed,servo_delay);
-  RightMid(6.6,6.6,3,speed,servo_delay);
-  LeftBack(5,12,3,speed,servo_delay);
-
-  RightFront(10,5,4,speed,servo_delay);
-  LeftMid(8,8,4,speed,servo_delay);
-  RightBack(5,10,4,speed,servo_delay);
-
-  RightFront(11,5,4,speed,servo_delay);
-  LeftMid(7.3,7.3,4,speed,servo_delay);
-  RightBack(5,11,4,speed,servo_delay);
-
-  //2
-  // LeftFront(12,5,3,speed,servo_delay);
-  // RightMid(6.6,6.6,3,speed,servo_delay);
-  // LeftBack(5,12,3,speed,servo_delay);
-
-  RightFront(12,5,4,speed,servo_delay);
-  LeftMid(6.6,6.6,4,speed,servo_delay);
-  RightBack(5,12,4,speed,servo_delay);
-
-  // delay(20);
-
-  //3
-  LeftFront(12,5,4,speed,servo_delay);
-  RightMid(6.6,6.6,4,speed,servo_delay);
-  LeftBack(5,12,4,speed,servo_delay);
-
-  delay(5);
-
-  RightFront(12,5,3,speed,servo_delay);
-  LeftMid(6.6,6.6,3,speed,servo_delay);
-  RightBack(5,12,3,speed,servo_delay);
-  
-  // delay(10);
-
-  LeftFront(11,5,4,speed,servo_delay);
-  RightMid(7.3,7.3,4,speed,servo_delay);
-  LeftBack(5,11,4,speed,servo_delay);
-
-  RightFront(8,5,3,speed,servo_delay);
-  LeftMid(9.4,9.4,3,speed,servo_delay);
-  RightBack(5,8,3,speed,servo_delay);
-
-  LeftFront(10,5,4,speed,servo_delay);
-  RightMid(8,8,4,speed,servo_delay);
-  LeftBack(5,10,4,speed,servo_delay);
-
-  LeftFront(9,5,4,speed,servo_delay);
-  RightMid(8.7,8.7,4,speed,servo_delay);
-  LeftBack(5,9,4,speed,servo_delay);
-
-  //4
-  // RightFront(8,5,3,speed,servo_delay);
-  // LeftMid(9.4,9.4,3,speed,servo_delay);
-  // RightBack(5,8,3,speed,servo_delay);
-
-  LeftFront(8,5,4,speed,servo_delay);
-  RightMid(9.4,9.4,4,speed,servo_delay);
-  LeftBack(5,8,4,speed,servo_delay);
-  
-  // delay(20);
-}
-
 void crabwalk_right(){
   //1
   RightFront(12,5,4.5,speed,servo_delay);
@@ -980,135 +961,16 @@ void crabwalk_right(){
 
 void crabwalk_right_fast(){
   //1
-<<<<<<< Updated upstream
-  RightFront(12,5,4,speed,servo_delay);
-  LeftMid(6.6,6.6,4,speed,servo_delay);
-  RightBack(5,12,4,speed,servo_delay);
-
-  delay(5);
-
-  LeftFront(12,5,3,speed,servo_delay);
-  RightMid(6.6,6.6,3,speed,servo_delay);
-  LeftBack(5,12,3,speed,servo_delay);
-  
-  // delay(10);
-
-  RightFront(11,5,4,speed,servo_delay);
-  LeftMid(7.3,7.3,4,speed,servo_delay);
-  RightBack(5,11,4,speed,servo_delay);
-
-  LeftFront(8,5,3,speed,servo_delay);
-  RightMid(9.4,9.4,3,speed,servo_delay);
-  LeftBack(5,8,3,speed,servo_delay);
-
-  RightFront(10,5,4,speed,servo_delay);
-  LeftMid(8,8,4,speed,servo_delay);
-  RightBack(5,10,4,speed,servo_delay);
-
-  RightFront(9,5,4,speed,servo_delay);
-  LeftMid(8.7,8.7,4,speed,servo_delay);
-  RightBack(5,9,4,speed,servo_delay);
-
-  //2
-  // LeftFront(8,5,3,speed,servo_delay);
-  // RightMid(9.4,9.4,3,speed,servo_delay);
-  // LeftBack(5,8,3,speed,servo_delay);
-
-  RightFront(8,5,4,speed,servo_delay);
-  LeftMid(9.4,9.4,4,speed,servo_delay);
-  RightBack(5,8,4,speed,servo_delay);
-
-  // delay(20);
-
-  //3
-  LeftFront(8,5,4,speed,servo_delay);
-  RightMid(9.4,9.4,4,speed,servo_delay);
-  LeftBack(5,8,4,speed,servo_delay);
-
-  delay(5);
-
-  RightFront(8,5,3,speed,servo_delay);
-  LeftMid(9.4,9.4,3,speed,servo_delay);
-  RightBack(5,8,3,speed,servo_delay);
-  
-  // delay(10);
-
-  LeftFront(9,5,4,speed,servo_delay);
-  RightMid(8.7,8.7,4,speed,servo_delay);
-  LeftBack(5,9,4,speed,servo_delay);
-
-  RightFront(12,5,3,speed,servo_delay);
-  LeftMid(6.6,6.6,3,speed,servo_delay);
-  RightBack(5,12,3,speed,servo_delay);
-
-  LeftFront(10,5,4,speed,servo_delay);
-  RightMid(8,8,4,speed,servo_delay);
-  LeftBack(5,10,4,speed,servo_delay);
-
-  LeftFront(11,5,4,speed,servo_delay);
-  RightMid(7.3,7.3,4,speed,servo_delay);
-  LeftBack(5,11,4,speed,servo_delay);
-
-  //4
-  // RightFront(12,5,3,speed,servo_delay);
-  // LeftMid(6.6,6.6,3,speed,servo_delay);
-  // RightBack(5,12,3,speed,servo_delay);
-
-=======
   RightFront(12,5,4.5,speed,servo_delay);
   LeftMid(6.6,6.6,4.5,speed,servo_delay);
   RightBack(5,12,4.5,speed,servo_delay);
 
   delay(5);
 
->>>>>>> Stashed changes
   LeftFront(12,5,4,speed,servo_delay);
   RightMid(6.6,6.6,4,speed,servo_delay);
   LeftBack(5,12,4,speed,servo_delay);
   
-<<<<<<< Updated upstream
-  // delay(20);
-}
-
-void crabwalk_right_obstacle(){
-  //1
-  RightFront(12,5,6,speed,servo_delay);
-  LeftMid(6.6,6.6,6,speed,servo_delay);
-  RightBack(5,12,6,speed,servo_delay);
-
-  delay(5);
-
-  LeftFront(12,5,3,speed,servo_delay);
-  RightMid(6.6,6.6,3,speed,servo_delay);
-  LeftBack(5,12,3,speed,servo_delay);
-  
-  // delay(10);
-
-  RightFront(11,5,6,speed,servo_delay);
-  LeftMid(7.3,7.3,6,speed,servo_delay);
-  RightBack(5,11,6,speed,servo_delay);
-
-  LeftFront(8,5,3,speed,servo_delay);
-  RightMid(9.4,9.4,3,speed,servo_delay);
-  LeftBack(5,8,3,speed,servo_delay);
-
-  RightFront(10,5,6,speed,servo_delay);
-  LeftMid(8,8,6,speed,servo_delay);
-  RightBack(5,10,6,speed,servo_delay);
-
-  RightFront(9,5,6,speed,servo_delay);
-  LeftMid(8.7,8.7,6,speed,servo_delay);
-  RightBack(5,9,6,speed,servo_delay);
-
-  //2
-  // LeftFront(8,5,3,speed,servo_delay);
-  // RightMid(9.4,9.4,3,speed,servo_delay);
-  // LeftBack(5,8,3,speed,servo_delay);
-
-  RightFront(8,5,6,speed,servo_delay);
-  LeftMid(9.4,9.4,6,speed,servo_delay);
-  RightBack(5,8,6,speed,servo_delay);
-=======
   // delay(10);
 
   RightFront(11,5,4.5,speed,servo_delay);
@@ -1131,52 +993,10 @@ void crabwalk_right_obstacle(){
   RightFront(8,5,4.5,speed,servo_delay);
   LeftMid(9.4,9.4,4.5,speed,servo_delay);
   RightBack(5,8,4.5,speed,servo_delay);
->>>>>>> Stashed changes
 
   // delay(20);
 
   //3
-<<<<<<< Updated upstream
-  LeftFront(8,5,6,speed,servo_delay);
-  RightMid(9.4,9.4,6,speed,servo_delay);
-  LeftBack(5,8,6,speed,servo_delay);
-
-  delay(5);
-
-  RightFront(8,5,3,speed,servo_delay);
-  LeftMid(9.4,9.4,3,speed,servo_delay);
-  RightBack(5,8,3,speed,servo_delay);
-  
-  // delay(10);
-
-  LeftFront(9,5,6,speed,servo_delay);
-  RightMid(8.7,8.7,6,speed,servo_delay);
-  LeftBack(5,9,6,speed,servo_delay);
-
-  RightFront(12,5,3,speed,servo_delay);
-  LeftMid(6.6,6.6,3,speed,servo_delay);
-  RightBack(5,12,3,speed,servo_delay);
-
-  LeftFront(10,5,6,speed,servo_delay);
-  RightMid(8,8,6,speed,servo_delay);
-  LeftBack(5,10,6,speed,servo_delay);
-
-  LeftFront(11,5,6,speed,servo_delay);
-  RightMid(7.3,7.3,6,speed,servo_delay);
-  LeftBack(5,11,6,speed,servo_delay);
-
-  //4
-  // RightFront(12,5,3,speed,servo_delay);
-  // LeftMid(6.6,6.6,3,speed,servo_delay);
-  // RightBack(5,12,3,speed,servo_delay);
-
-  LeftFront(12,5,6,speed,servo_delay);
-  RightMid(6.6,6.6,6,speed,servo_delay);
-  LeftBack(5,12,6,speed,servo_delay);
-  
-  // delay(20);
-}
-=======
   LeftFront(8,5,4.5,speed,servo_delay);
   RightMid(9.4,9.4,4.5,speed,servo_delay);
   LeftBack(5,8,4.5,speed,servo_delay);
@@ -1212,4 +1032,21 @@ void crabwalk_right_obstacle(){
   
   // delay(20);
 }
->>>>>>> Stashed changes
+
+/* COMMANDS LIST
+1. default_state()
+2. walk()
+3. walk_fast()
+4. walk_fast_obstacle()
+5. walk_fast_balls()
+6. reverse()
+7. reverse_fast()
+8. turn_left_obstacle()
+9. turn_left_fast()
+10. turn_right_obstacle()
+11. turn_right_fast()
+12. crabwalk_left()
+13. crabwalk_left_fast()
+14. crabwalk_right()
+15. crabwalk_right_fast()
+*/
