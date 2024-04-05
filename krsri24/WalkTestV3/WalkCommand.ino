@@ -1,17 +1,19 @@
 /* COMMANDS LIST
-1. default_state()
+1. default_state()                    //kembali ke posisi semula
 2. walk()
-3. walk_fast()
-4. walk_fast_obstacle()
-5. walk_fast_balls()
-5. reverse()
-6. reverse_fast()
-7. turn_left()
-8. turn_left_fast()
-9. turn_right()
-10. turn_right_fast()
-11. crabwalk_left()
-12. crabwalk_right()
+3. walk_fast()                        //dipakai untuk jalan cepat biasa
+4. walk_fast_obstacle()               //dipakai untuk jalan di reruntuhan
+5. walk_fast_balls()                  //dipakai untuk jalan di kelereng
+6. reverse()
+7. reverse_fast()                     //dipakai untuk balik biasa
+8. turn_left_obstacle()               //dipakai untuk putar kiri di reruntuhan
+9. turn_left_fast()                   //dipakai untuk putar kiri cepat
+10. turn_right_obstacle()             //dipakai untuk putar kanan di reruntuhan
+11. turn_right_fast()                 //dipakai untuk putar kanan cepat
+12. crabwalk_left()
+13. crabwalk_left_fast()              //dipakai untuk geser kiri
+14. crabwalk_right()
+15. crabwalk_right_fast()             //dipakai untuk geser kanan
 */
 
 void loop(){
@@ -19,20 +21,41 @@ void loop(){
   myservo.write(90);
   servoAngkat.write(90);
   default_state();
-  delay(1000);
+//  delay(1000);
   int tes=0;
-  while(true){
-//    default_state();
-//  crabwalk_right_obstacle();
-//    low_walk();
-    distance_detection();
-    data_display();
-    delay(50);
-    // compass();
-//    if(angle8<100){
-//      
-//    }
+//  while(true);
+  distance_detection();
+//  data_display();
+  if(front_dis>0 && front_dis<35){
+    tes=1;
   }
+  else{
+    tes=0;
+  }
+  
+  while(tes==0){
+    walk_fast_obstacle();
+    distance_detection();
+//    data_display();
+    if(front_dis>0 && front_dis<35){
+      tes=1;
+    }
+    else{
+      tes=0;
+    }
+
+//    if(left_dis>0 &&left_dis<=15){
+//      crabwalk_right();
+//    }
+//
+//    if(right_dis>0 && right_dis<=15){
+//      crabwalk_left();
+//    }
+
+  }
+  default_state();
+//  }
+  
 //  for (pos = 90; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
 //    // in steps of 1 degree
 //    myservo.write(pos);              // tell servo to go to position in variable 'pos'

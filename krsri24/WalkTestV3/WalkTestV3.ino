@@ -27,7 +27,7 @@ LiquidCrystal_I2C lcd(0x27,16,2);
 NewPing sonar[SONAR_NUM] = {   // Sensor object array.
   NewPing(42, 42, MAX_DISTANCE),  // Depan
   NewPing(34, 34, MAX_DISTANCE),  // Belakang
-  NewPing(32, 32, MAX_DISTANCE),  // Kiri
+  NewPing(40, 40, MAX_DISTANCE),  // Kiri
   NewPing(36, 36, MAX_DISTANCE)   // Kanan
 };
 
@@ -51,9 +51,8 @@ int pos = 0;
 
 unsigned char high_byte, low_byte, angle8;
 char pitch, roll;
-unsigned int angle16;4
+unsigned int angle16;
 
-int speed=300, servo_delay=1;
 
 void setup() {
   // put your setup code here, to run once:
@@ -68,10 +67,10 @@ void setup() {
         default_x=8,
         default_y=8,
         default_z=4.5;
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-    Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
-  }
+//  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+//    Serial.println(F("SSD1306 allocation failed"));
+//    for(;;); // Don't proceed, loop forever
+//  }
   Serial.println(dynamixelGammaMid(test_x,test_y,test_z,0,0));
   Serial.println(dynamixelAlpha(test_x,test_y,test_z,0,0));
   Serial.println(dynamixelBeta(test_x,test_y,test_z,0,0));
@@ -199,10 +198,13 @@ void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   delay(servo_delay);
 }
 
+int speed=600, servo_delay=0;
+
 void default_state(){
   LeftFront(8,8,4.5,speed,servo_delay);
   LeftMid(8,8,4.5,speed,servo_delay);
   LeftBack(8,8,4.5,speed,servo_delay);
+
   RightFront(8,8,4.5,speed,servo_delay);
   RightMid(8,8,4.5,speed,servo_delay);
   RightBack(8,8,4.5,speed,servo_delay);
