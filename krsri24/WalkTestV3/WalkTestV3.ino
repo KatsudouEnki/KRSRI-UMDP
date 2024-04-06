@@ -71,17 +71,17 @@ void setup() {
 //    Serial.println(F("SSD1306 allocation failed"));
 //    for(;;); // Don't proceed, loop forever
 //  }
-  Serial.println(dynamixelGammaMid(test_x,test_y,test_z,0,0));
-  Serial.println(dynamixelAlpha(test_x,test_y,test_z,0,0));
-  Serial.println(dynamixelBeta(test_x,test_y,test_z,0,0));
-  
-  Serial.println(dynamixelGammaMid(default_x,default_y,default_z,0,0));
-  Serial.println(dynamixelAlpha(default_x,default_y,default_z,0,0));
-  Serial.println(dynamixelBeta(default_x,default_y,default_z,0,0));
+//  Serial.println(dynamixelGammaMid(test_x,test_y,test_z,0,0));
+//  Serial.println(dynamixelAlpha(test_x,test_y,test_z,0,0));
+//  Serial.println(dynamixelBeta(test_x,test_y,test_z,0,0));
+//  
+//  Serial.println(dynamixelGammaMid(default_x,default_y,default_z,0,0));
+//  Serial.println(dynamixelAlpha(default_x,default_y,default_z,0,0));
+//  Serial.println(dynamixelBeta(default_x,default_y,default_z,0,0));
   delay(2000);
-  display.clearDisplay();
-  display.setTextSize(1);      // Normal 1:1 pixel scale
-  display.setTextColor(SSD1306_WHITE); // Draw white text
+//  display.clearDisplay();
+//  display.setTextSize(1);      // Normal 1:1 pixel scale
+//  display.setTextColor(SSD1306_WHITE); // Draw white text
 
   myservo.attach(31);
   servoAngkat.attach(29);

@@ -23,39 +23,81 @@ void loop(){
   default_state();
 //  delay(1000);
   int tes=0;
-//  while(true);
-  distance_detection();
-//  data_display();
-  if(front_dis>0 && front_dis<35){
-    tes=1;
-  }
-  else{
-    tes=0;
-  }
-  
-  while(tes==0){
-    walk_fast_obstacle();
+  while(true){
     distance_detection();
-//    data_display();
-    if(front_dis>0 && front_dis<35){
-      tes=1;
+    data_display();
+    if(front_dis>0 && front_dis<20){
+      tes=1; //stop
     }
     else{
-      tes=0;
+      tes=0; //jalan
+    }
+    
+    while(tes==0){
+      
+      distance_detection();
+      data_display();
+      
+      if(front_dis>0 && front_dis<20 && (left_dis>20 || left_dis==0) && (right_dis>20 || right_dis==0)){
+        tes=1;
+      }
+      else{
+        walk_fast();
+        tes=0;
+      }
+  
+      if(left_dis>0 && left_dis<=20){
+        crabwalk_right();
+      }
+  
+      if(right_dis>0 && right_dis<=20){
+        crabwalk_left();
+      }
+    }
+  
+    distance_detection();
+    data_display();
+    if((front_dis>0 && front_dis<=15) && (right_dis>0 && right_dis<=15)){
+      for(int i=0;i<5;i++){
+        turn_left_fast();
+      }
     }
 
-//    if(left_dis>0 &&left_dis<=15){
-//      crabwalk_right();
-//    }
-//
-//    if(right_dis>0 && right_dis<=15){
-//      crabwalk_left();
-//    }
+    distance_detection();
+    data_display();
+    if((front_dis>0 && front_dis<=15) && (left_dis>0 && left_dis<=15)){
+      for(int i=0;i<4;i++){
+        turn_right_fast();
+      }
+    }
+    distance_detection();
+    data_display();
+    if((front_dis>0 && front_dis<=15) && (right_dis>0 && right_dis<=15)){
+      for(int i=0;i<4;i++){
+        turn_left_fast();
+      }
+    }
 
+    distance_detection();
+    data_display();
+    
+    if(front_dis>0 && front_dis<20){
+      reverse_fast();
+    }
+    
+    distance_detection();
+    data_display();
+    if(front_dis>0 && front_dis<20){
+      tes=5;
+    }
+    if(tes==5){
+      default_state();
+      delay(10000);
+    }
+      distance_detection();
+      data_display();
+    
   }
-  default_state();
-//  }
-  
 //  for (pos = 90; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
 //    // in steps of 1 degree
 //    myservo.write(pos);              // tell servo to go to position in variable 'pos'
@@ -81,9 +123,4 @@ void loop(){
 //    delay(15);                       // waits 15 ms for the servo to reach the position
 //  }
 
-  //cek ultrasonik
-  // for(float i=4.5;i>=2;i-=0.5){
-  //  RightMid(8,8,i,speed,servo_delay);
-  //  delay(2000);
-  // }
 }
