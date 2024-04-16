@@ -1,19 +1,19 @@
 /* COMMANDS LIST
-1. default_state()                    //kembali ke posisi semula
-2. walk()
-3. walk_fast()                        //dipakai untuk jalan cepat biasa
-4. walk_fast_obstacle()               //dipakai untuk jalan di reruntuhan
-5. walk_fast_balls()                  //dipakai untuk jalan di kelereng
-6. reverse()
-7. reverse_fast()                     //dipakai untuk balik biasa
-8. turn_left_obstacle()               //dipakai untuk putar kiri di reruntuhan
-9. turn_left_fast()                   //dipakai untuk putar kiri cepat
-10. turn_right_obstacle()             //dipakai untuk putar kanan di reruntuhan
-11. turn_right_fast()                 //dipakai untuk putar kanan cepat
+1.  default_state()
+2.  walk_fast()
+3.  walk_fast_obstacle()
+4.  walk_fast_balls()
+5.  reverse_fast()
+6.  turn_left_slow()
+7.  turn_left_fast()
+8.  turn_left_obstacle()
+9.  turn_right_slow()
+10. turn_right_fast()
+11. turn_right_obstacle()
 12. crabwalk_left()
-13. crabwalk_left_fast()              //dipakai untuk geser kiri
+13. crabwalk_left_obstacle()
 14. crabwalk_right()
-15. crabwalk_right_fast()             //dipakai untuk geser kanan
+15. crabwalk_right_obstacle()
 */
 
 void loop(){
@@ -23,6 +23,41 @@ void loop(){
   default_state();
 //  delay(1000);
   int tes=0;
+  while(true){
+    compass();
+    if(angle8<55){
+      turn_right_fast();
+    }
+    else if(angle8>=55 && angle8<117){
+      turn_right_slow();
+    }
+    else if(angle8>137 && angle8<=200){
+      turn_left_slow();
+    }
+    else if(angle8>200){
+      turn_left_fast();
+    }
+    else{
+      distance_detection();
+      if(back_dis<=50 && back_dis>0){
+        walk_fast();
+      }
+      else{
+        walk_fast_obstacle();
+      }
+
+      
+      if(front_dis<=20&& front_dis>0){
+        delay(2000);
+        
+      }
+      if(right_dis>20 || right_dis==0){
+        crabwalk_right();
+      }
+    }
+    
+    
+  }
   while(true){
     distance_detection();
     data_display();
@@ -96,7 +131,6 @@ void loop(){
     }
       distance_detection();
       data_display();
-    
   }
 //  for (pos = 90; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
 //    // in steps of 1 degree
