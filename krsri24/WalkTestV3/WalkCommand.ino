@@ -20,9 +20,22 @@ void loop(){
   //tugas utk rabu, bikin crabwalk cepet
   myservo.write(90);
   servoAngkat.write(90);
+  servoBuka.write(15);
+//  while(true){
+//    
+//    servoBuka.write(90);
+//    delay(1000);
+//    servoBuka.write(15);
+//    delay(2000);
+//    servoAngkat.write(80);
+//    delay(3000);
+//    servoAngkat.write(0);
+//    delay(2000);
+//  }
   default_state();
 //  delay(1000);
   int tes=0;
+  
   while(true){
     compass();
     if(angle8<55){
@@ -42,15 +55,15 @@ void loop(){
       if(back_dis<=50 && back_dis>0){
         walk_fast();
       }
-      else{
+      else if(back_dis>50 || back_dis==0){
         walk_fast_obstacle();
       }
 
-      
+      distance_detection();
       if(front_dis<=20&& front_dis>0){
         delay(2000);
-        
       }
+      distance_detection();
       if(right_dis>20 || right_dis==0){
         crabwalk_right();
       }
