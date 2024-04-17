@@ -51,7 +51,7 @@ int pos = 0;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  Serial.begin(9600);
+  
   Dynamixel.setSerial(&Serial3);
   Dynamixel.begin(1000000, 2);
   Serial.println("test");
@@ -88,9 +88,9 @@ void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
   display.setCursor(80,0);
   display.print("Depan");
   
-  Dynamixel.moveSpeed(3, dynamixelGammaMid(x_val,y_val,z_val,0,0),speed);
+  Dynamixel.moveSpeed(3, dynamixelGammaLFRB(x_val,y_val,z_val,0,0),speed);
   display.setCursor(80,8);
-  display.print(dynamixelGammaMid(x_val,y_val,z_val,0,0));
+  display.print(dynamixelGammaLFRB(x_val,y_val,z_val,0,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(2, dynamixelAlpha(x_val,y_val,z_val,0,1), speed);
@@ -175,9 +175,9 @@ void RightMid(float x_val, float y_val,float z_val, int speed,int servo_delay){
   delay(servo_delay);
 }
 void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
-  Dynamixel.moveSpeed(16, dynamixelGammaMid(x_val,y_val,z_val,1,0),speed);
+  Dynamixel.moveSpeed(16, dynamixelGammaLFRB(x_val,y_val,z_val,1,0),speed);
   display.setCursor(0,35);
-  display.print(dynamixelGammaMid(x_val,y_val,z_val,1,0));
+  display.print(dynamixelGammaLFRB(x_val,y_val,z_val,1,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(17, dynamixelAlpha(x_val,y_val,z_val,0,0), speed);

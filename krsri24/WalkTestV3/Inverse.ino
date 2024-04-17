@@ -64,6 +64,16 @@ int dynamixelGammaMid(double x_val,double y_val,double z_val,int mirror_inverse,
     return AngleCalc(25+dynamixel_gamma,mirror_dynamixel);
   }
 }
+int dynamixelGammaLFRB(double x_val,double y_val,double z_val,int mirror_inverse,int mirror_dynamixel)
+{
+  int dynamixel_gamma = gamma_cal(x_limit,y_limit,z_limit)-gamma_cal(x_val,y_val,z_val);
+  if(mirror_inverse == 1){
+    return AngleCalc(20+(dynamixel_gamma*-1),mirror_dynamixel);
+  }
+  else{
+    return AngleCalc(15+dynamixel_gamma,mirror_dynamixel);
+  }
+}
 int dynamixelAlpha(double x_val,double y_val,double z_val,int mirror_inverse,int mirror_dynamixel)
 {
   int dynamixel_alpha = alpha_sum(x_limit,y_limit,z_limit) - alpha_sum(x_val,y_val,z_val);
