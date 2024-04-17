@@ -47,6 +47,50 @@ void home(){
 }
 
 void korban1(){
+  pos=90;
+  //<60 == putar kiri
+  //>120 == putar kanan
+  int state=0;
+  servoAngkat.write(0);
+  cam_state();
+  while(state==0){
+    dummy_detection();
+    Serial.print(dummy_state);
+    Serial.print(';');
+    Serial.print(dummy_x_coor);
+    Serial.print(';');
+    Serial.println(dummy_y_coor);
+    
+//    if(dummy_x_coor <= -70 && dummy_state==1){
+//      digitalWrite(LED_BUILTIN,LOW);
+//      pos=pos-1;
+//      myservo.write(pos);
+//    }
+//    else if(dummy_x_coor >= 70 && dummy_state==1){
+//      digitalWrite(LED_BUILTIN,LOW);
+//      pos=pos+1;
+//      myservo.write(pos);
+//    }
+//    else if(dummy_state==0){
+//      digitalWrite(LED_BUILTIN,HIGH);
+//      pos=pos+1;
+//      if(pos>=180){
+//        pos=0;
+//      }
+//      myservo.write(pos);
+//    }
+
+    if(dummy_x_coor >= -70 && dummy_x_coor <= 70 && dummy_state==1){
+      digitalWrite(LED_BUILTIN,LOW);
+      servoBuka.write(90);
+      delay(2000);
+      servoBuka.write(15);
+      delay(2000);
+//      state=1;
+      pos=pos;
+    }
+    delay(100);
+  }
   
 }
 
@@ -55,7 +99,7 @@ void obstacle_puing1(){
   while(state==0){
     compass();
     distance_detection();
-    if (right_dis>25||right_dis==0){
+    if (right_dis>20||right_dis==0){
       crabwalk_right();
     }
     else{
@@ -87,7 +131,7 @@ void obstacle_puing1(){
 
     compass();
     distance_detection();
-    if(roll<-3 || (front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of -8 when default position
+    if(roll<-7 || (front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of -8 when default position
       state=1;
       default_state();
     }

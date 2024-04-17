@@ -14,15 +14,20 @@
 13. crabwalk_left_obstacle()
 14. crabwalk_right()
 15. crabwalk_right_obstacle()
+16. cam_state()
 */
 
 void loop(){
   
   preparation();
   delay(5000);
-  home();
-  delay(2000);
-  obstacle_puing1();
+
+  korban1();
+//  home();
+//  delay(2000);
+//  obstacle_puing1();
+
+
   while(true);
   default_state();
 //  delay(1000);

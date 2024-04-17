@@ -5,6 +5,9 @@
 #include <Adafruit_SSD1306.h>
 #include <NewPing.h>
 #include <Servo.h>
+#define STX '\x02'
+#define ETX '\x03'
+
 
 #define CMPS12_ADDRESS 0x60  // Address of CMPS12 shifted right one bit for arduino wire library
 #define ANGLE_8  1           // Register to read 8bit angle from
@@ -48,9 +51,16 @@ Servo servoBuka;
 
 int pos = 0;
 
-void setup() {
+//Camera Comm
+int dummy_x_coor,
+    dummy_y_coor,
+    dummy_state;
+String buff_serial;
+    
+void setup(){
   // put your setup code here, to run once:
   Serial.begin(115200);
+  Serial2.begin(115200);
   
   Dynamixel.setSerial(&Serial3);
   Dynamixel.begin(1000000, 2);
@@ -82,6 +92,9 @@ void setup() {
   servoAngkat.attach(29);
   servoBuka.attach(27);
   Wire.begin();
+
+  buff_serial = "";
+  pinMode(LED_BUILTIN,OUTPUT);
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
@@ -202,6 +215,17 @@ void default_state(){
   RightMid(8,8,4.5,speed,servo_delay);
   RightBack(8,8,4.5,speed,servo_delay);
 }
+
+void cam_state(){
+  LeftFront(8,8,6,speed,servo_delay);
+  LeftMid(8,8,6,speed,servo_delay);
+  LeftBack(8,8,6,speed,servo_delay);
+
+  RightFront(8,8,6,speed,servo_delay);
+  RightMid(8,8,6,speed,servo_delay);
+  RightBack(8,8,6,speed,servo_delay);
+}
+
 
 void walk_fast(){
   //1
