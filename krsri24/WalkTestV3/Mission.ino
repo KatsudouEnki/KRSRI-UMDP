@@ -3,6 +3,7 @@
 2. home()
 3. korban1()
 4. obstacle_puing1()
+5. obstacle_miring()
 */
 
 void preparation(){
@@ -37,11 +38,12 @@ void home(){
     compass();
     distance_detection();
 
-    if(back_dis>50 || back_dis==0){
+    if(back_dis>55 || back_dis==0){
       state=1;
       default_state();
     }
   }
+  
 }
 
 void korban1(){
@@ -53,9 +55,22 @@ void obstacle_puing1(){
   while(state==0){
     compass();
     distance_detection();
+    if (right_dis>25||right_dis==0){
+      crabwalk_right();
+    }
+    else{
+      state=1;
+    }
+  }
 
-    if(angle8<100){
-      turn_right_obstacle();
+  
+  state=0;
+  while(state==0){
+    compass();
+    distance_detection();
+
+    if(angle8<=150 && angle8>50){
+      turn_left_obstacle();
     }
 //    else if(angle8>=90 && angle8<122){
 //      turn_right_slow();
@@ -63,8 +78,8 @@ void obstacle_puing1(){
 //    else if(angle8>132 && angle8<=165){
 //      turn_left_slow();
 //    }
-    else if(angle8>155){
-      turn_left_obstacle();
+    else if(angle8>150 || angle8<15){
+      turn_right_obstacle();
     }
     else{
       walk_fast_obstacle();
@@ -72,8 +87,9 @@ void obstacle_puing1(){
 
     compass();
     distance_detection();
-    if(pitch>10){
+    if(roll<-3 || (front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of -8 when default position
       state=1;
+      default_state();
     }
   }
 }
@@ -103,6 +119,7 @@ void obstacle_miring(){
     distance_detection();
     if(front_dis<30 &&front_dis>0){
       state=1;
+      default_state();
     }
   }
 }

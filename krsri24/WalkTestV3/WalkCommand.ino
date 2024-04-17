@@ -17,21 +17,13 @@
 */
 
 void loop(){
-  //tugas utk rabu, bikin crabwalk cepet
-  myservo.write(90);
-  servoAngkat.write(90);
-  servoBuka.write(15);
-//  while(true){
-//    
-//    servoBuka.write(90);
-//    delay(1000);
-//    servoBuka.write(15);
-//    delay(2000);
-//    servoAngkat.write(80);
-//    delay(3000);
-//    servoAngkat.write(0);
-//    delay(2000);
-//  }
+  
+  preparation();
+  delay(5000);
+  home();
+  delay(2000);
+  obstacle_puing1();
+  while(true);
   default_state();
 //  delay(1000);
   int tes=0;
