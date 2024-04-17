@@ -22,13 +22,17 @@ void loop(){
   preparation();
   delay(5000);
 
-  korban1();
+  
 //  home();
 //  delay(2000);
 //  obstacle_puing1();
 
-
-  while(true);
+  cam_state();
+  while(true){
+    servoAngkat.write(0);
+    dummy_detection();
+    delay(1);
+  }
   default_state();
 //  delay(1000);
   int tes=0;

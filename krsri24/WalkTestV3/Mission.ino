@@ -53,13 +53,13 @@ void korban1(){
   int state=0;
   servoAngkat.write(0);
   cam_state();
-  while(state==0){
+  while(true){
     dummy_detection();
-    Serial.print(dummy_state);
-    Serial.print(';');
-    Serial.print(dummy_x_coor);
-    Serial.print(';');
-    Serial.println(dummy_y_coor);
+//    Serial.print(dummy_state);
+//    Serial.print(';');
+//    Serial.print(dummy_x_coor);
+//    Serial.print(';');
+//    Serial.println(dummy_y_coor);
     
 //    if(dummy_x_coor <= -70 && dummy_state==1){
 //      digitalWrite(LED_BUILTIN,LOW);
@@ -79,16 +79,24 @@ void korban1(){
 //      }
 //      myservo.write(pos);
 //    }
-
-    if(dummy_x_coor >= -70 && dummy_x_coor <= 70 && dummy_state==1){
-      digitalWrite(LED_BUILTIN,LOW);
-      servoBuka.write(90);
-      delay(2000);
-      servoBuka.write(15);
-      delay(2000);
-//      state=1;
-      pos=pos;
-    }
+//    else{
+//      digitalWrite(LED_BUILTIN,LOW);
+//      servoBuka.write(90);
+//      delay(2000);
+//      servoBuka.write(15);
+//      delay(2000);
+////      state=1;
+//      pos=pos;
+//    }
+//    if(dummy_x_coor >= -70 && dummy_x_coor <= 70 && dummy_state==1){
+//      digitalWrite(LED_BUILTIN,LOW);
+//      servoBuka.write(90);
+//      delay(2000);
+//      servoBuka.write(15);
+//      delay(2000);
+////      state=1;
+//      pos=pos;
+//    }
     delay(100);
   }
   

@@ -28,7 +28,7 @@ String get_value(String data, char separator, int index) {
 
 void setup(){
   Serial.begin(115200);
-  Serial2.begin(115200);
+  Serial2.begin(19200);
 
   buff_serial = "";
 
@@ -37,8 +37,12 @@ void loop(){
 //  if(Serial2.available()){
 //    Serial.write(Serial2.read());
 //  }
+  test();
 
-if (Serial2.available()) {
+}
+
+void test(){
+  if (Serial2.available()) {
     if (buff_serial.length() > 16) {
       buff_serial = "";
     }
@@ -66,13 +70,14 @@ char chrx_in = Serial2.read();
         Serial.println(rx_in);
 
         dtx = get_value(rx_in,',',0);
-        Serial.print("Status = "); Serial.println(dtx);
+        
+        Serial.print("Status = "); Serial.println(dtx.toInt());
 
         dtx = get_value(rx_in,',',1);
-        Serial.print("dx = "); Serial.println(dtx);
+        Serial.print("dx = "); Serial.println(dtx.toInt());
 
         dtx = get_value(rx_in,',',2);
-        Serial.print("dy = "); Serial.println(dtx);
+        Serial.print("dy = "); Serial.println(dtx.toInt());
         
         buff_serial = "";
    }

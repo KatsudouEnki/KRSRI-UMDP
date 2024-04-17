@@ -49,18 +49,21 @@ Servo servoAngkat;
 Servo servoBuka;
 // twelve servo objects can be created on most boards
 
-int pos = 0;
+int pos =90;
 
 //Camera Comm
 int dummy_x_coor,
     dummy_y_coor,
     dummy_state;
+#define STX '\x02'
+#define ETX '\x03'
+
 String buff_serial;
     
 void setup(){
   // put your setup code here, to run once:
   Serial.begin(115200);
-  Serial2.begin(115200);
+  Serial2.begin(19200);
   
   Dynamixel.setSerial(&Serial3);
   Dynamixel.begin(1000000, 2);
