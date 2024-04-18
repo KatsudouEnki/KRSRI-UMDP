@@ -15,6 +15,7 @@
 14. crabwalk_right()
 15. crabwalk_right_obstacle()
 16. cam_state()
+17. walk_to_victim()
 */
 
 void loop(){
