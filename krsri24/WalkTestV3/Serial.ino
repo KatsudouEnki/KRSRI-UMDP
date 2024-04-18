@@ -25,6 +25,7 @@ void dummy_detection(){
     if (buff_serial.length() > 16) {
       buff_serial = "";
     }
+    
     String rx_in, dtx,dstate;
     char chrx_in = Serial2.read();
     buff_serial += String(chrx_in);
@@ -43,14 +44,16 @@ void dummy_detection(){
 //        Serial.print("Status = "); Serial.println(dtx.toInt());
 
         dtx = get_value(rx_in,',',1);
-        Serial.print("dx = "); Serial.println(dtx.toInt());
+        // Serial.print("dx = "); Serial.println(dtx.toInt());
 
         if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
-//          servoBuka.write(90);
-//          delay(1000);
-//          servoBuka.write(0);
-//          delay(1000);
+          servoBuka.write(90);
+          delay(1000);
+          servoBuka.write(0);
+          delay(1000);
+        
           myservo.write(pos);
+          Serial.print("pos = "); Serial.println(pos);
         }
         else if(dtx.toInt()<=-70 && dstate.toInt()==1){
           pos=pos-1;
@@ -69,7 +72,7 @@ void dummy_detection(){
         }
         
         buff_serial = "";
-       }
+      }
     }
   }
 }

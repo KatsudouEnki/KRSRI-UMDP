@@ -98,6 +98,7 @@ void setup(){
 
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
+  pinMode(7,OUTPUT);
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
@@ -207,7 +208,7 @@ void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   delay(servo_delay);
 }
 
-int speed=800, servo_delay=0;
+int speed=600, servo_delay=0;
 
 void default_state(){
   LeftFront(8,8,4.5,speed,servo_delay);
