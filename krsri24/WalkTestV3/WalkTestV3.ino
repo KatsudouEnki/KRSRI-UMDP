@@ -37,7 +37,7 @@ NewPing sonar[SONAR_NUM] = {   // Sensor object array.
   NewPing(32, 32, MAX_DISTANCE),  // Kiri
   NewPing(36, 36, MAX_DISTANCE)   // Kanan
 };
-
+ 
 
 int left_dis,
     right_dis,

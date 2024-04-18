@@ -190,11 +190,7 @@ void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   delay(servo_delay);
 }
 
-<<<<<<< Updated upstream
 int speed=800, servo_delay=0;
-=======
-int speed=700, servo_delay=0;
->>>>>>> Stashed changes
 
 void default_state(){
   LeftFront(8,8,4.5,speed,servo_delay);

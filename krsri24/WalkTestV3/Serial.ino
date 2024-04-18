@@ -26,7 +26,7 @@ void dummy_detection(){
       buff_serial = "";
     }
     
-    String rx_in, dtx,dstate;
+    String rx_in, dtx, dstate;
     char chrx_in = Serial2.read();
     buff_serial += String(chrx_in);
     // check header
