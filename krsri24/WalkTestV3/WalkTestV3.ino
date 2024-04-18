@@ -1175,3 +1175,53 @@ void crabwalk_right_obstacle(){
   
   // delay(20);
 }
+
+void walk_to_victim(){
+  //1
+  RightFront(7.25,8.75,6,speed,servo_delay);
+  LeftMid(7.25,8.75,6,speed,servo_delay);
+  RightBack(7.25,8.75,6,speed,servo_delay);
+
+  delay(50);
+
+  LeftFront(8.75,7.25,4.5,speed,servo_delay);
+  RightMid(8.75,7.25,4.5,speed,servo_delay);
+  LeftBack(8.75,7.25,4.5,speed,servo_delay);
+
+  delay(50);
+
+  //2
+  LeftFront(7.25,8.75,4.5,speed,servo_delay);
+  RightMid(7.25,8.75,4.5,speed,servo_delay);
+  LeftBack(7.25,8.75,4.5,speed,servo_delay);
+
+  RightFront(8.75,7.25,6,speed,servo_delay);
+  LeftMid(8.75,7.25,6,speed,servo_delay);
+  RightBack(8.75,7.25,6,speed,servo_delay);
+  
+  delay(100);
+
+  //4
+  LeftFront(7.25,8.75,6,speed,servo_delay);
+  RightMid(7.25,8.75,6,speed,servo_delay);
+  LeftBack(7.25,8.75,6,speed,servo_delay);
+
+  delay(50);
+
+  RightFront(8.75,7.25,4.5,speed,servo_delay);
+  LeftMid(8.75,7.25,4.5,speed,servo_delay);
+  RightBack(8.75,7.25,4.5,speed,servo_delay);
+  
+  delay(50);
+
+  //4
+  LeftFront(8.75,7.25,6,speed,servo_delay);
+  RightMid(8.75,7.25,6,speed,servo_delay);
+  LeftBack(8.75,7.25,6,speed,servo_delay);
+
+  RightFront(7.25,8.75,4.5,speed,servo_delay);
+  LeftMid(7.25,8.75,4.5,speed,servo_delay);
+  RightBack(7.25,8.75,4.5,speed,servo_delay);
+  
+  delay(100);
+}
