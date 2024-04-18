@@ -1,5 +1,3 @@
-
-
 void distance_detection(){
   left_dis=sonar[2].ping_cm();
   right_dis=sonar[3].ping_cm();

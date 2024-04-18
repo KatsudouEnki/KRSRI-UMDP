@@ -23,18 +23,11 @@ String get_value(String data, char separator, int index) {
 void dummy_detection(){
   if (Serial2.available()) {
     if (buff_serial.length() > 16) {
-    buff_serial = "";
+      buff_serial = "";
     }
-  
-    //    Serial.println("Got data");
-    
-    //    String rx_in = Serial2.readString();
     String rx_in, dtx,dstate;
     char chrx_in = Serial2.read();
     buff_serial += String(chrx_in);
-    
-    //    Serial.println(buff_serial);
-    
     // check header
     int pos_head = buff_serial.indexOf(STX);
     int pos_tail = buff_serial.indexOf(ETX);
@@ -42,32 +35,41 @@ void dummy_detection(){
     if ((pos_head > -1) && (pos_tail > -1)) {
       if (pos_head < pos_tail) {
         rx_in = buff_serial.substring(pos_head + 1, pos_tail);
-      //        if (rx_in.equals("1")) {
-      //          Serial.print(buff_serial);
-      //          relay_open();
-      //        }
         Serial.println(rx_in);
-      
+
+//        dtx = get_value(rx_in,',',0);
         dstate = get_value(rx_in,',',0);
-        Serial.print("Status = "); Serial.println(dstate.toInt());
-      
+        Serial.print("Status = "); Serial.println(dstate);
+//        Serial.print("Status = "); Serial.println(dtx.toInt());
+
         dtx = get_value(rx_in,',',1);
         Serial.print("dx = "); Serial.println(dtx.toInt());
+
         if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
-          servoBuka.write(90);delay(1000);servoBuka.write(15);delay(1000);
-        }else{
+//          servoBuka.write(90);
+//          delay(1000);
+//          servoBuka.write(0);
+//          delay(1000);
+          myservo.write(pos);
+        }
+        else if(dtx.toInt()<=-70 && dstate.toInt()==1){
+          pos=pos-1;
+          myservo.write(pos);
+        }
+        else if(dtx.toInt()>=70 && dstate.toInt()==1){
+          pos=pos+1;
+          myservo.write(pos);
+        }
+        else{
           pos=pos+1;
           if(pos>=180){
             pos=0;
           }
           myservo.write(pos);
         }
-      
-//        dtx = get_value(rx_in,',',2);
-//        Serial.print("dy = "); Serial.println(dtx.toInt());
         
         buff_serial = "";
-      }
+       }
     }
   }
 }

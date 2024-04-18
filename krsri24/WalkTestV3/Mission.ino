@@ -51,7 +51,7 @@ void korban1(){
   //<60 == putar kiri
   //>120 == putar kanan
   int state=0;
-  servoAngkat.write(0);
+  servoAngkat.write(5);
   cam_state();
   while(true){
     dummy_detection();
@@ -83,7 +83,7 @@ void korban1(){
 //      digitalWrite(LED_BUILTIN,LOW);
 //      servoBuka.write(90);
 //      delay(2000);
-//      servoBuka.write(15);
+//      servoBuka.write(0);
 //      delay(2000);
 ////      state=1;
 //      pos=pos;
@@ -173,5 +173,34 @@ void obstacle_miring(){
       state=1;
       default_state();
     }
+  }
+}
+
+void obstacle_kelereng(){
+  int state=0;
+  while(state==0){
+    compass();
+    distance_detection();
+    
+    if(angle8>=35 && angle8<70){
+      turn_right_slow();
+    }
+    else if(angle8<=70 && angle8<127){
+      turn_right_fast();
+    }
+    else if(angle8>=185 && angle8<=220){
+      turn_left_slow();
+    }
+    else if(angle8>=127 && angle8<=185){
+      turn_left_fast();
+    }
+    else{
+      walk_fast_balls();
+    }
+
+
+    compass();
+    distance_detection();
+//    if(back_dis
   }
 }
