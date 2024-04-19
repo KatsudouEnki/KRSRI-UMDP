@@ -33,7 +33,7 @@ void loop(){
   while(true){
     cam_state();
     servoAngkat.write(10);
-    dummy_detection();
+//    dummy_detection();
     delay(1);
   }
   digitalWrite(7, LOW);

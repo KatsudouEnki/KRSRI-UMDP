@@ -63,9 +63,9 @@ String buff_serial;
 void setup(){
   // put your setup code here, to run once:
   Serial.begin(115200);
-  Serial2.begin(19200);
+//  Serial2.begin(19200);
   
-  Dynamixel.setSerial(&Serial3);
+  Dynamixel.setSerial(&Serial);
   Dynamixel.begin(1000000, 2);
   Serial.println("test");
   float test_x= 8,
