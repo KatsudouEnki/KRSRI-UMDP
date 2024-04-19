@@ -33,6 +33,14 @@ void loop(){
   while(true){
     cam_state();
     servoAngkat.write(10);
+    for(int i=90;i>45;i=i-5){
+      myservo.write(i);
+      delay(400);
+    }
+    servoBuka.write(90);
+    delay(1000);
+    servoBuka.write(0);
+    while(true);
 //    dummy_detection();
     delay(1);
   }
