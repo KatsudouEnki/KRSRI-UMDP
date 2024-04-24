@@ -23,21 +23,31 @@ void loop(){
   preparation();
   display.clearDisplay();
   delay(5000);
+//  while(true){
+//    Serial.println(digitalRead(11));
+//  }
   
   
 //  home();
 //  delay(2000);
 //  obstacle_puing1();
 
-  cam_state();
-  digitalWrite(7, HIGH);
+//  cam_state();
   Serial.print("TEst");
   Serial.print(Dynamixel.readPosition(17));
   Serial.println(Dynamixel.readPosition(18));
 //  home();
+//  cam_state();
+//  obstacle_puing1();  
+//  for(int i=0; i<5;i++){
+//    walk_fast_obstacle();
+//  }
+//  obstacle_kelereng();
   while(true){
-    display.clearDisplay();
-    dummy_detection();
+  servoBuka.write(0);
+  delay(5000);
+  servoBuka.write(90);
+  delay(5000);
   }
   digitalWrite(7, LOW);
   default_state();

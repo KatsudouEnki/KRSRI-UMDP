@@ -6,6 +6,11 @@
 5. obstacle_miring()
 */
 
+/*Heading setting
+ * 230 gripper hadap korban
+ */
+
+
 void preparation(){
   myservo.write(90);
   servoAngkat.write(90);
@@ -18,27 +23,28 @@ void home(){
   while(state==0){
     compass();
     distance_detection();
-  
-    if(angle8>182){
+    data_display();
+    if(azimuth<=190 && azimuth>=60){
       turn_right_fast();
     }
-    else if(angle8<40){
+    else if(azimuth<230 && azimuth > 190){
       turn_right_slow();
     }
-    else if(angle8>70 && angle8<=110){
+    else if(azimuth>250 && azimuth<=290){
       turn_left_slow();
     }
-    else if(angle8>110 && angle8<=182){
+    else if(azimuth>290 || azimuth<60){
       turn_left_fast();
     }
-    else{//55
-      crabwalk_right();
+    else{//240
+      crabwalk_right_test();
     }
     
     compass();
     distance_detection();
+    data_display();
 
-    if(left_dis>40 || left_dis==0){
+    if(left_dis>45 || left_dis==0){
       state=1;
       default_state();
     }
@@ -107,39 +113,42 @@ void obstacle_puing1(){
   while(state==0){
     compass();
     distance_detection();
-    if (right_dis>20||right_dis==0){
-      crabwalk_right();
+    if(azimuth<300 && azimuth > 165){
+      turn_right_slow();
+    }
+    else if(azimuth>320 || azimuth<165){
+      turn_left_slow();
     }
     else{
       state=1;
     }
   }
 
-  
+
   state=0;
-  while(state==0){
+  while(state==0){//310
     compass();
     distance_detection();
 
-    if(angle8<=150 && angle8>50){
-      turn_left_obstacle();
-    }
-//    else if(angle8>=90 && angle8<122){
-//      turn_right_slow();
-//    }
-//    else if(angle8>132 && angle8<=165){
-//      turn_left_slow();
-//    }
-    else if(angle8>150 || angle8<15){
+    if(azimuth<=290 && azimuth>=145){
       turn_right_obstacle();
     }
-    else{
+//    else if(azimuth<320 && azimuth > 280){
+//      turn_right_slow();
+//    }
+//    else if(azimuth>340 || azimuth<20){
+//      turn_left_slow();
+//    }
+    else if(azimuth>330 || azimuth<145){
+      turn_left_obstacle();
+    }
+    else{//330
       walk_fast_obstacle();
     }
 
     compass();
     distance_detection();
-    if(roll<-7 || (front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of -8 when default position
+    if((front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of -8 when default position
       state=1;
       default_state();
     }
@@ -181,20 +190,20 @@ void obstacle_kelereng(){
   while(state==0){
     compass();
     distance_detection();
-    
-    if(angle8>=35 && angle8<70){
-      turn_right_slow();
-    }
-    else if(angle8<=70 && angle8<127){
+    data_display();
+    if(azimuth<=190 && azimuth>=60){
       turn_right_fast();
     }
-    else if(angle8>=185 && angle8<=220){
+    else if(azimuth<230 && azimuth > 190){
+      turn_right_slow();
+    }
+    else if(azimuth>250 && azimuth<=290){
       turn_left_slow();
     }
-    else if(angle8>=127 && angle8<=185){
+    else if(azimuth>290 || azimuth<60){
       turn_left_fast();
     }
-    else{
+    else{//240
       walk_fast_balls();
     }
 

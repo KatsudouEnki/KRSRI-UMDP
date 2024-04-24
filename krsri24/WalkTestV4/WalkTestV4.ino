@@ -99,7 +99,7 @@ void setup(){
   display.clearDisplay();
   display.setTextSize(4);      // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE); // Draw white text
-
+  qmc.init();
   myservo.attach(31);
   servoAngkat.attach(29);
   servoBuka.attach(27);
@@ -108,6 +108,7 @@ void setup(){
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(7,OUTPUT);
+  pinMode(11,INPUT);
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
@@ -217,7 +218,7 @@ void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   delay(servo_delay);
 }
 
-int speed=600, servo_delay=0;
+int speed=800, servo_delay=0;
 
 void default_state(){
   LeftFront(8,8,4.5,speed,servo_delay);
@@ -238,6 +239,7 @@ void cam_state(){
   RightMid(8,8,6,speed,servo_delay);
   RightBack(8,8,6,speed,servo_delay);
   servoAngkat.write(0);
+  digitalWrite(7, HIGH);
 }
 
 
@@ -1183,6 +1185,54 @@ void crabwalk_right_obstacle(){
   LeftBack(5,12,6,speed,servo_delay);
   
   // delay(20);
+}
+
+void crabwalk_right_test(){
+  //1
+  RightFront(12,5,6,speed,servo_delay);
+  LeftMid(6.6,6.6,6,speed,servo_delay);
+  RightBack(5,12,6,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(12,5,4,speed,servo_delay);
+  RightMid(6.6,6.6,4,speed,servo_delay);
+  LeftBack(5,12,4,speed,servo_delay);
+
+  LeftFront(8,5,4,speed,servo_delay);
+  RightMid(9.4,9.4,4,speed,servo_delay);
+  LeftBack(5,8,4,speed,servo_delay);
+
+  RightFront(10,5,6,speed,servo_delay);
+  LeftMid(8,8,6,speed,servo_delay);
+  RightBack(5,10,6,speed,servo_delay);
+
+  RightFront(8,5,6,speed,servo_delay);
+  LeftMid(9.4,9.4,6,speed,servo_delay);
+  RightBack(5,8,6,speed,servo_delay);
+
+  //3
+  LeftFront(8,5,6,speed,servo_delay);
+  RightMid(9.4,9.4,6,speed,servo_delay);
+  LeftBack(5,8,6,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(8,5,4,speed,servo_delay);
+  LeftMid(9.4,9.4,4,speed,servo_delay);
+  RightBack(5,8,4,speed,servo_delay);
+  
+  RightFront(12,5,4,speed,servo_delay);
+  LeftMid(6.6,6.6,4,speed,servo_delay);
+  RightBack(5,12,4,speed,servo_delay);
+
+  LeftFront(10,5,6,speed,servo_delay);
+  RightMid(8,8,6,speed,servo_delay);
+  LeftBack(5,10,6,speed,servo_delay);
+
+  LeftFront(12,5,6,speed,servo_delay);
+  RightMid(6.6,6.6,6,speed,servo_delay);
+  LeftBack(5,12,6,speed,servo_delay);
 }
 
 void walk_to_victim(){
