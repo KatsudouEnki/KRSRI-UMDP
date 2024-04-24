@@ -22,146 +22,36 @@ void loop(){
   
   preparation();
   display.clearDisplay();
+  servoAngkat.write(0);
   delay(5000);
-//  while(true){
-//    Serial.println(digitalRead(11));
-//  }
-  
-  
-//  home();
-//  delay(2000);
-//  obstacle_puing1();
 
-//  cam_state();
-  Serial.print("TEst");
-  Serial.print(Dynamixel.readPosition(17));
-  Serial.println(Dynamixel.readPosition(18));
-//  home();
-//  cam_state();
-//  obstacle_puing1();  
-//  for(int i=0; i<5;i++){
-//    walk_fast_obstacle();
-//  }
-//  obstacle_kelereng();
+  speed = 400;
+
+  obstacle_kelereng();
+  digitalWrite(7,HIGH);
+  transisi_r5_r6();
   while(true){
-  servoBuka.write(0);
-  delay(5000);
-  servoBuka.write(90);
-  delay(5000);
+//    compass();
+    distance_detection();
+    data_display();
+  }
+  while(true){
+  LeftFront(8,6,2,speed,servo_delay);
+  RightFront(8,6,2,speed,servo_delay);
+  delay(400);
+  LeftFront(8,10,2,speed,servo_delay);
+  RightFront(8,10,2,speed,servo_delay);
+  delay(400);
+  LeftFront(8,10,6.5,speed,servo_delay);
+  RightFront(8,10,6.5,speed,servo_delay);
+  delay(400);
+  
+
+
+
   }
   digitalWrite(7, LOW);
   default_state();
-//  delay(1000);
-  // int tes=0;
-  
-  // while(true){
-  //   compass();
-  //   if(angle8<55){
-  //     turn_right_fast();
-  //   }
-  //   else if(angle8>=55 && angle8<117){
-  //     turn_right_slow();
-  //   }
-  //   else if(angle8>137 && angle8<=200){
-  //     turn_left_slow();
-  //   }
-  //   else if(angle8>200){
-  //     turn_left_fast();
-  //   }
-  //   else{
-  //     distance_detection();
-  //     if(back_dis<=50 && back_dis>0){
-  //       walk_fast();
-  //     }
-  //     else if(back_dis>50 || back_dis==0){
-  //       walk_fast_obstacle();
-  //     }
 
-  //     distance_detection();
-  //     if(front_dis<=20&& front_dis>0){
-  //       delay(2000);
-  //     }
-  //     distance_detection();
-  //     if(right_dis>20 || right_dis==0){
-  //       crabwalk_right();
-  //     }
-  //   }
-    
-    
-  // }
-  // while(true){
-  //   distance_detection();
-  //   data_display();
-  //   if(front_dis>0 && front_dis<20){
-  //     tes=1; //stop
-  //   }
-  //   else{
-  //     tes=0; //jalan
-  //   }
-    
-  //   while(tes==0){
-      
-  //     distance_detection();
-  //     data_display();
-      
-  //     if(front_dis>0 && front_dis<20 && (left_dis>20 || left_dis==0) && (right_dis>20 || right_dis==0)){
-  //       tes=1;
-  //     }
-  //     else{
-  //       walk_fast();
-  //       tes=0;
-  //     }
-  
-  //     if(left_dis>0 && left_dis<=20){
-  //       crabwalk_right();
-  //     }
-  
-  //     if(right_dis>0 && right_dis<=20){
-  //       crabwalk_left();
-  //     }
-  //   }
-  
-  //   distance_detection();
-  //   data_display();
-  //   if((front_dis>0 && front_dis<=15) && (right_dis>0 && right_dis<=15)){
-  //     for(int i=0;i<5;i++){
-  //       turn_left_fast();
-  //     }
-  //   }
-
-  //   distance_detection();
-  //   data_display();
-  //   if((front_dis>0 && front_dis<=15) && (left_dis>0 && left_dis<=15)){
-  //     for(int i=0;i<4;i++){
-  //       turn_right_fast();
-  //     }
-  //   }
-  //   distance_detection();
-  //   data_display();
-  //   if((front_dis>0 && front_dis<=15) && (right_dis>0 && right_dis<=15)){
-  //     for(int i=0;i<4;i++){
-  //       turn_left_fast();
-  //     }
-  //   }
-
-  //   distance_detection();
-  //   data_display();
-    
-  //   if(front_dis>0 && front_dis<20){
-  //     reverse_fast();
-  //   }
-    
-  //   distance_detection();
-  //   data_display();
-  //   if(front_dis>0 && front_dis<20){
-  //     tes=5;
-  //   }
-  //   if(tes==5){
-  //     default_state();
-  //     delay(10000);
-  //   }
-  //     distance_detection();
-  //     data_display();
-  // }
 
 }

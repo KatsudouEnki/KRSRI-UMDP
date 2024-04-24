@@ -88,6 +88,9 @@ void setup(){
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
   }
+  display.setTextSize(2);      // Normal 1:1 pixel scale
+  display.setTextColor(SSD1306_WHITE); // Draw white text
+  display.clearDisplay();
   Serial.println(dynamixelGammaMid(test_x,test_y,test_z,0,0));
   Serial.println(dynamixelAlpha(test_x,test_y,test_z,0,0));
   Serial.println(dynamixelBeta(test_x,test_y,test_z,0,0));
@@ -97,8 +100,7 @@ void setup(){
   Serial.println(dynamixelBeta(default_x,default_y,default_z,0,0));
   delay(2000);
   display.clearDisplay();
-  display.setTextSize(4);      // Normal 1:1 pixel scale
-  display.setTextColor(SSD1306_WHITE); // Draw white text
+  
   qmc.init();
   myservo.attach(31);
   servoAngkat.attach(29);
@@ -343,50 +345,50 @@ void walk_fast_obstacle(){
 
 void walk_fast_balls(){
   //1
-  RightFront(5,10,3.75,speed,servo_delay);
-  LeftMid(5,10,3.75,speed,servo_delay);
-  RightBack(5,10,3.75,speed,servo_delay);
+  RightFront(5,10,4,speed,servo_delay);
+  LeftMid(5,10,4,speed,servo_delay);
+  RightBack(5,10,4,speed,servo_delay);
 
   delay(20);
 
-  LeftFront(10,5,2.5,speed,servo_delay);
-  RightMid(10,5,2.5,speed,servo_delay);
-  LeftBack(10,5,2.5,speed,servo_delay);
+  LeftFront(10,5,2.75,speed,servo_delay);
+  RightMid(10,5,2.75,speed,servo_delay);
+  LeftBack(10,5,2.75,speed,servo_delay);
 
   delay(80);
 
   //2
-  LeftFront(5,10,2.5,speed,servo_delay);
-  RightMid(5,10,2.5,speed,servo_delay);
-  LeftBack(5,10,2.5,speed,servo_delay);
+  LeftFront(5,10,2.75,speed,servo_delay);
+  RightMid(5,10,2.75,speed,servo_delay);
+  LeftBack(5,10,2.75,speed,servo_delay);
 
-  RightFront(10,5,3.75,speed,servo_delay);
-  LeftMid(10,5,3.75,speed,servo_delay);
-  RightBack(10,5,3.75,speed,servo_delay);
+  RightFront(10,5,4,speed,servo_delay);
+  LeftMid(10,5,4,speed,servo_delay);
+  RightBack(10,5,4,speed,servo_delay);
 
   delay(100);
 
   //3
-  LeftFront(5,10,3.75,speed,servo_delay);
-  RightMid(5,10,3.75,speed,servo_delay);
-  LeftBack(5,10,3.75,speed,servo_delay);
+  LeftFront(5,10,4,speed,servo_delay);
+  RightMid(5,10,4,speed,servo_delay);
+  LeftBack(5,10,4,speed,servo_delay);
 
   delay(20);
 
-  RightFront(10,5,2.5,speed,servo_delay);
-  LeftMid(10,5,2.5,speed,servo_delay);
-  RightBack(10,5,2.5,speed,servo_delay);
+  RightFront(10,5,2.75,speed,servo_delay);
+  LeftMid(10,5,2.75,speed,servo_delay);
+  RightBack(10,5,2.75,speed,servo_delay);
 
   delay(80);
 
   //4
-  LeftFront(10,5,3.75,speed,servo_delay);
-  RightMid(10,5,3.75,speed,servo_delay);
-  LeftBack(10,5,3.75,speed,servo_delay);
+  LeftFront(10,5,4,speed,servo_delay);
+  RightMid(10,5,4,speed,servo_delay);
+  LeftBack(10,5,4,speed,servo_delay);
 
-  RightFront(5,10,2.5,speed,servo_delay);
-  LeftMid(5,10,2.5,speed,servo_delay);
-  RightBack(5,10,2.5,speed,servo_delay);
+  RightFront(5,10,2.75,speed,servo_delay);
+  LeftMid(5,10,2.75,speed,servo_delay);
+  RightBack(5,10,2.75,speed,servo_delay);
 
   delay(100);
 }
@@ -1283,4 +1285,8 @@ void walk_to_victim(){
   RightBack(7.25,8.75,4.5,speed,servo_delay);
   
   delay(100);
+}
+
+void ladder(){
+
 }

@@ -192,6 +192,45 @@ void obstacle_kelereng(){
     distance_detection();
     data_display();
     if(azimuth<=190 && azimuth>=60){
+      turn_right_obstacle();
+    }
+    else if(azimuth<230 && azimuth > 190){
+      turn_right_slow();
+    }
+    else if(azimuth>250 && azimuth<=290){
+      turn_left_slow();
+    }
+    else if(azimuth>290 || azimuth<60){
+      turn_left_obstacle();
+    }
+    else{//240
+      state=1;
+    }
+  }
+  int prep=0;
+  while(prep==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(right_dis>15 || right_dis==0){
+      crabwalk_right();
+    }
+    else if(back_dis<=30 && back_dis>0){
+      walk_fast_obstacle();
+    }
+    else{
+      prep=1;
+    }
+  }
+
+  
+  state=0;
+  
+  while(state==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(azimuth<=190 && azimuth>=60){
       turn_right_fast();
     }
     else if(azimuth<230 && azimuth > 190){
@@ -204,12 +243,108 @@ void obstacle_kelereng(){
       turn_left_fast();
     }
     else{//240
-      walk_fast_balls();
+      walk_fast_obstacle();
     }
 
 
     compass();
     distance_detection();
-//    if(back_dis
+    data_display();
+//    if((back_dis>50 || back_dis==0)&& (front_dis<20 && front_dis>0)){
+    if(front_dis<23 && front_dis>0){
+      state=1;
+    }
+  }
+
+  
+}
+
+void transisi_r5_r6(){
+  ///////////////////////////keluar darikelereng kondsi nyerong
+  int state=0;
+  while(state==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(azimuth<=180 && azimuth>=15){
+      turn_right_obstacle();
+    }
+//    else if(azimuth<185 && azimuth > 145){
+//      turn_right_slow();
+//    }
+//    else if(azimuth>205 && azimuth<=245){
+//      turn_left_slow();
+//    }
+    else if(azimuth>210 || azimuth<15){
+      turn_left_obstacle();
+    }
+    else{//240
+      if(front_dis>22 || front_dis==0){
+        walk_fast_obstacle();
+      }
+      else{
+//        prep=1;
+        state=1;
+      }
+      
+    }
+  }
+///////////////////////////keluar dari kondisi nyerong
+  state=0;
+  while(state==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(azimuth<=100 || azimuth>330){
+      turn_right_fast();
+    }
+    else if(azimuth<140 && azimuth > 100){
+      turn_right_slow();
+    }
+    else if(azimuth>160 && azimuth<=200){
+      turn_left_slow();
+    }
+    else if(azimuth>200 && azimuth<330){
+      turn_left_fast();
+    }
+    else{//240
+      if(front_dis>20 || front_dis==0){
+        walk_fast_obstacle();
+      }
+      else{
+//        prep=1;
+        state=1;
+      }
+      
+    }
+  }
+
+  state=0;
+  while(state==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(azimuth<=100 || azimuth>330){
+      turn_right_fast();
+    }
+    else if(azimuth<140 && azimuth > 100){
+      turn_right_slow();
+    }
+    else if(azimuth>160 && azimuth<=200){
+      turn_left_slow();
+    }
+    else if(azimuth>200 && azimuth<330){
+      turn_left_fast();
+    }
+    else{//240
+      if(left_dis>10 || left_dis==0){
+        crabwalk_left();
+      }
+      else{
+//        prep=1;
+        state=1;
+      }
+      
+    }
   }
 }
