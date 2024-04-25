@@ -25,29 +25,61 @@ void loop(){
   servoAngkat.write(0);
   delay(5000);
 
-  speed = 400;
+  speed = 100;
 
-  obstacle_kelereng();
-  digitalWrite(7,HIGH);
-  transisi_r5_r6();
-  while(true){
-//    compass();
-    distance_detection();
-    data_display();
-  }
-  while(true){
-  LeftFront(8,6,2,speed,servo_delay);
-  RightFront(8,6,2,speed,servo_delay);
-  delay(400);
-  LeftFront(8,10,2,speed,servo_delay);
-  RightFront(8,10,2,speed,servo_delay);
-  delay(400);
-  LeftFront(8,10,6.5,speed,servo_delay);
-  RightFront(8,10,6.5,speed,servo_delay);
-  delay(400);
+//  obstacle_kelereng();
+//  digitalWrite(7,HIGH);
+//  transisi_r5_r6();
+//  while(true){
+////    compass();
+//    distance_detection();
+//    data_display();
   
+  while(true){ladder();}
+  while(true){
+  LeftFront(8,6,2.5,speed,servo_delay);
+  delay(400);
+  LeftFront(8,10,2.5,speed,servo_delay);
+  delay(400);
+  LeftFront(8,10,7,speed,servo_delay);
+  delay(400);
+  RightFront(8,6,2.5,speed,servo_delay);
+  delay(400);
+  RightFront(8,10,2.5,speed,servo_delay);
+  delay(400);
+  RightFront(8,10,7,speed,servo_delay);
+  delay(400);
 
-
+//  LeftMid(8,5,2.5,speed,servo_delay);
+//  RightMid(8,5,2.5,speed,servo_delay);
+//  delay(400);
+//  LeftMid(5,8,2.5,speed,servo_delay);
+//  RightMid(5,8,2.5,speed,servo_delay);
+//  delay(400);
+//  LeftMid(5,8,7,speed,servo_delay);
+//  RightMid(5,8,7,speed,servo_delay);
+//  delay(400);
+//
+//  LeftBack(10,8,2.5,speed,servo_delay);
+//  RightBack(10,8,2.5,speed,servo_delay);
+//  delay(400);
+//  LeftBack(6,8,2.5,speed,servo_delay);
+//  RightBack(6,8,2.5,speed,servo_delay);
+//  delay(400);
+//  LeftBack(6,8,7,speed,servo_delay);
+//  RightBack(6,8,7,speed,servo_delay);
+//  delay(400);
+//
+//  LeftFront(8,6,7,speed,servo_delay);
+//  RightFront(8,6,7,speed,servo_delay);
+//  
+//  LeftMid(8,5,7,speed,servo_delay);
+//  RightMid(8,5,7,speed,servo_delay);
+//
+//  LeftBack(10,8,7,speed,servo_delay);
+//  RightBack(10,8,7,speed,servo_delay);
+//
+//  delay(500);
 
   }
   digitalWrite(7, LOW);

@@ -1288,5 +1288,51 @@ void walk_to_victim(){
 }
 
 void ladder(){
+//1
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(5,10,6.5,speed,servo_delay);
+  RightBack(5,10,8.5,speed,servo_delay);
 
+  delay(20);
+
+  LeftFront(10,5,1,speed,servo_delay);
+  RightMid(10,5,3,speed,servo_delay);
+  LeftBack(10,5,5,speed,servo_delay);
+
+  delay(60);
+
+  //2
+  LeftFront(5,10,1,speed,servo_delay);
+  RightMid(5,10,3,speed,servo_delay);
+  LeftBack(5,10,5,speed,servo_delay);
+
+  RightFront(10,5,4.5,speed,servo_delay);
+  LeftMid(10,5,6.5,speed,servo_delay);
+  RightBack(10,5,8.5,speed,servo_delay);
+  
+  delay(80);
+
+  //3
+  LeftFront(5,10,4.5,speed,servo_delay);
+  RightMid(5,10,6.5,speed,servo_delay);
+  LeftBack(5,10,8.5,speed,servo_delay);
+
+  delay(20);
+
+  RightFront(10,5,1,speed,servo_delay);
+  LeftMid(10,5,3,speed,servo_delay);
+  RightBack(10,5,5,speed,servo_delay);
+  
+  delay(60);
+
+  //4
+  LeftFront(10,5,4.5,speed,servo_delay);
+  RightMid(10,5,6.5,speed,servo_delay);
+  LeftBack(10,5,8.5,speed,servo_delay);
+
+  RightFront(5,10,1,speed,servo_delay);
+  LeftMid(5,10,3,speed,servo_delay);
+  RightBack(5,10,5,speed,servo_delay);
+  
+  delay(80);
 }
