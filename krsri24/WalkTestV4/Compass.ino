@@ -43,7 +43,7 @@ void compass(){
   delay(10);                           // Short delay before next loop
   display.clearDisplay();
   
-  qmc.read(&x_axis, &y_axis, &z_axis,&azimuth);
+  // qmc.read(&x_axis, &y_axis, &z_axis,&azimuth);
   Serial.println(azimuth);
   display.setCursor(0,0);
   display.print(azimuth);

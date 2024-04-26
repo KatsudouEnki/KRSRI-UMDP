@@ -7,9 +7,9 @@
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 
-#include <MechaQMC5883.h>
+// #include <MechaQMC5883.h>
 
-MechaQMC5883 qmc;
+// MechaQMC5883 qmc;
 
 #define STX '\x02'
 #define ETX '\x03'
@@ -101,7 +101,7 @@ void setup(){
   delay(2000);
   display.clearDisplay();
   
-  qmc.init();
+  // qmc.init();
   myservo.attach(31);
   servoAngkat.attach(29);
   servoBuka.attach(27);
@@ -117,7 +117,7 @@ void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
   display.setCursor(80,0);
   display.print("Depan");
   
-  Dynamixel.moveSpeed(3, dynamixelGammaMid(x_val,y_val,z_val,0,0),speed);
+  Dynamixel.moveSpeed(3, dynamixelGammaLFRB(x_val,y_val,z_val,0,0),speed);
   display.setCursor(80,8);
   display.print(dynamixelGammaLFRB(x_val,y_val,z_val,0,0));
   delay(servo_delay);
@@ -204,7 +204,7 @@ void RightMid(float x_val, float y_val,float z_val, int speed,int servo_delay){
   delay(servo_delay);
 }
 void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
-  Dynamixel.moveSpeed(16, dynamixelGammaMid(x_val,y_val,z_val,1,0),speed);
+  Dynamixel.moveSpeed(16, dynamixelGammaLFRB(x_val,y_val,z_val,1,0),speed);
   display.setCursor(0,35);
   display.print(dynamixelGammaLFRB(x_val,y_val,z_val,1,0));
   delay(servo_delay);
