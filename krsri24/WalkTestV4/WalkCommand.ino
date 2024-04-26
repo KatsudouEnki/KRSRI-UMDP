@@ -36,19 +36,19 @@ void loop(){
 //    data_display();
   
   while(true){ladder();}
-  while(true){
-  LeftFront(8,6,2.5,speed,servo_delay);
-  delay(400);
-  LeftFront(8,10,2.5,speed,servo_delay);
-  delay(400);
-  LeftFront(8,10,7,speed,servo_delay);
-  delay(400);
-  RightFront(8,6,2.5,speed,servo_delay);
-  delay(400);
-  RightFront(8,10,2.5,speed,servo_delay);
-  delay(400);
-  RightFront(8,10,7,speed,servo_delay);
-  delay(400);
+  // while(true){
+  // LeftFront(8,6,2.5,speed,servo_delay);
+  // delay(400);
+  // LeftFront(8,10,2.5,speed,servo_delay);
+  // delay(400);
+  // LeftFront(8,10,7,speed,servo_delay);
+  // delay(400);
+  // RightFront(8,6,2.5,speed,servo_delay);
+  // delay(400);
+  // RightFront(8,10,2.5,speed,servo_delay);
+  // delay(400);
+  // RightFront(8,10,7,speed,servo_delay);
+  // delay(400);
 
 //  LeftMid(8,5,2.5,speed,servo_delay);
 //  RightMid(8,5,2.5,speed,servo_delay);
@@ -81,7 +81,6 @@ void loop(){
 //
 //  delay(500);
 
-  }
   digitalWrite(7, LOW);
   default_state();
 
