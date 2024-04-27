@@ -5,11 +5,10 @@
 #include <Adafruit_SSD1306.h>
 #include <NewPing.h>
 #include <Servo.h>
-#include <LiquidCrystal_I2C.h>
+//#include <LiquidCrystal_I2C.h>
+#include <MechaQMC5883.h>
 
-// #include <MechaQMC5883.h>
-
-// MechaQMC5883 qmc;
+MechaQMC5883 qmc;
 
 #define STX '\x02'
 #define ETX '\x03'
@@ -88,7 +87,7 @@ void setup(){
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
   }
-  display.setTextSize(2);      // Normal 1:1 pixel scale
+  display.setTextSize(1);      // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE); // Draw white text
   display.clearDisplay();
   Serial.println(dynamixelGammaMid(test_x,test_y,test_z,0,0));
@@ -101,7 +100,7 @@ void setup(){
   delay(2000);
   display.clearDisplay();
   
-  // qmc.init();
+  qmc.init();
   myservo.attach(31);
   servoAngkat.attach(29);
   servoBuka.attach(27);

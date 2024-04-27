@@ -148,7 +148,7 @@ void obstacle_puing1(){
 
     compass();
     distance_detection();
-    if((front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of -8 when default position
+    if(roll>=8 || (front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of 8 when default position and gripper on lower side of the obstacle
       state=1;
       default_state();
     }
@@ -178,7 +178,7 @@ void obstacle_miring(){
     }
     compass();
     distance_detection();
-    if(front_dis<30 &&front_dis>0){
+    if((front_dis<30 &&front_dis>0) && (roll<=3 && roll>=-3)){
       state=1;
       default_state();
     }

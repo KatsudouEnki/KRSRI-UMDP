@@ -26,14 +26,22 @@ void loop(){
   delay(2000);
 
   speed = 800;
-
+  
 //  obstacle_kelereng();
 //  digitalWrite(7,HIGH);
 //  transisi_r5_r6();
-//  while(true){
-////    compass();
+  home();
+  obstacle_puing1();
+  obstacle_miring();
+  obstacle_kelereng();
+  transisi_r5_r6();
+  while(true){
+//    compass();
 //    distance_detection();
 //    data_display();
+}
+
+
   while(false){
   LeftMid(7,9,4.5,speed,servo_delay);
   RightMid(7,9,4.5,speed,servo_delay);
