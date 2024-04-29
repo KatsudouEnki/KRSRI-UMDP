@@ -25,21 +25,21 @@ void loop(){
   servoAngkat.write(0);
   delay(2000);
 
-  speed = 800;
+  speed = 100;
   
 //  obstacle_kelereng();
 //  digitalWrite(7,HIGH);
 //  transisi_r5_r6();
-  home();
-  obstacle_puing1();
-  obstacle_miring();
-  obstacle_kelereng();
-  transisi_r5_r6();
-  while(true){
+  // home();
+  // obstacle_puing1();
+  // obstacle_miring();
+  // obstacle_kelereng();
+  // transisi_r5_r6();
+  // while(true){
 //    compass();
 //    distance_detection();
 //    data_display();
-}
+
 
 
   while(false){

@@ -5,7 +5,7 @@
 #include <Adafruit_SSD1306.h>
 #include <NewPing.h>
 #include <Servo.h>
-//#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal_I2C.h>
 #include <MechaQMC5883.h>
 
 MechaQMC5883 qmc;
