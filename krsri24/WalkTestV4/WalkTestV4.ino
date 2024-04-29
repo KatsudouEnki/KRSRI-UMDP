@@ -109,7 +109,7 @@ void setup(){
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(7,OUTPUT);
-  pinMode(11,INPUT);
+  pinMode(11,INPUT_PULLUP);
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
