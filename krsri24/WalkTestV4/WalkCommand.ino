@@ -25,23 +25,34 @@ void loop(){
   servoAngkat.write(0);
   delay(2000);
 
-  speed = 100;
+  
   
 //  obstacle_kelereng();
 //  digitalWrite(7,HIGH);
 //  transisi_r5_r6();
   // home();
-  // obstacle_puing1();
-  // obstacle_miring();
-  // obstacle_kelereng();
-  // transisi_r5_r6();
-  // while(true){
-//    compass();
-//    distance_detection();
-//    data_display();
+//  obstacle_puing2();
+//  // obstacle_miring();
+//  // obstacle_kelereng();
+//  // transisi_r5_r6();
+//  // while(true){
+////    compass();
+////    distance_detection();
+////    data_display();
+//  digitalWrite(7,HIGH);
+//  obstacle_batu2();
+//  
 
-
-
+  while(true){
+    compass();
+    distance_detection();
+    if(roll >= -10){
+      pre_ladder();
+    }else{
+      ladder();
+    }
+  }
+  while(true){ladder();}
   while(false){
   LeftMid(7,9,4.5,speed,servo_delay);
   RightMid(7,9,4.5,speed,servo_delay);
@@ -170,7 +181,6 @@ void loop(){
     LeftMid(6,10,5.5,speed,servo_delay);
     RightMid(6,10,5.5,speed,servo_delay);
     delay(200);
-  }
 
   }
   digitalWrite(7, LOW);

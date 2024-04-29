@@ -348,3 +348,77 @@ void transisi_r5_r6(){
     }
   }
 }
+
+void obstacle_puing2(){
+  int state=0;
+  while(state==0){//130
+    compass();
+    distance_detection();
+
+    if(azimuth<=140 || azimuth>=355){
+      turn_right_obstacle();
+    }
+//    else if(azimuth<320 && azimuth > 280){
+//      turn_right_slow();
+//    }
+//    else if(azimuth>340 || azimuth<20){
+//      turn_left_slow();
+//    }
+    else if(azimuth>180 && azimuth<355){
+      turn_left_obstacle();
+    }
+    else{//330
+      walk_fast_obstacle();
+    }
+    
+    compass();
+    distance_detection();
+    
+    if(left_dis>20 || left_dis==0){
+      crabwalk_left();
+    }
+
+    
+    compass();
+    distance_detection();
+    if((front_dis<=20 && front_dis>0)){
+      state=1;
+      default_state();
+    }
+  }
+}
+
+void obstacle_batu2(){
+  int state=0;
+  while(state==0){//130
+    compass();
+    distance_detection();
+
+    if(azimuth<=140 || azimuth>=355){
+      turn_right_obstacle();
+    }
+//    else if(azimuth<320 && azimuth > 280){
+//      turn_right_slow();
+//    }
+//    else if(azimuth>340 || azimuth<20){
+//      turn_left_slow();
+//    }
+    else if(azimuth>180 && azimuth<355){
+      turn_left_obstacle();
+    }
+    else{//330
+      crabwalk_right_obstacle();
+    }
+        
+    compass();
+    distance_detection();
+    if(right_dis<=15 && right_dis>0){
+      state=1;
+      default_state();
+    }
+  }
+}
+
+void obstacle_tangga(){
+  
+}
