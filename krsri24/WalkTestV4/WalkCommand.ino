@@ -60,7 +60,7 @@ void loop(){
       unsigned long now=millis();
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
-        delay(250);
+        delay(100);
         timer=now;
       }
     }
