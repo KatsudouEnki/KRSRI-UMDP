@@ -42,10 +42,35 @@ void loop(){
       digitalWrite(7,!digitalRead(7));
       obstacle_kelereng();
       digitalWrite(7,!digitalRead(7));
-      transisi_r5_r6();
-      digitalWrite(7,!digitalRead(7));
-      obstacle_puing2();
-      digitalWrite(7,!digitalRead(7));
+
+      while(true){
+        default_state();
+        distance_detection();
+//        data_display;
+
+        display.clearDisplay();
+        display.setCursor(50,0);
+        display.print("F=");
+        display.print(front_dis);
+        display.setCursor(0,32);
+        display.print("L=");
+        display.print(left_dis);
+        display.setCursor(80,32);
+        display.print("R=");
+        display.print(right_dis);
+        display.setCursor(50,50);
+        display.print("B=");
+        display.print(back_dis);
+        display.display();
+        delay(100);
+//        timer=now;
+      }
+//      transisi_r5_r6();
+//      digitalWrite(7,!digitalRead(7));
+//      obstacle_puing2();
+//      digitalWrite(7,!digitalRead(7));
+//      obstacle_batu2();
+//      digitalWrite(7,!digitalRead(7));
       while(true){
         compass();
         distance_detection();
@@ -60,9 +85,28 @@ void loop(){
       unsigned long now=millis();
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
+        distance_detection();
+//        data_display;
+
+        display.clearDisplay();
+        display.setCursor(50,0);
+        display.print("F=");
+        display.print(front_dis);
+        display.setCursor(0,32);
+        display.print("L=");
+        display.print(left_dis);
+        display.setCursor(80,32);
+        display.print("R=");
+        display.print(right_dis);
+        display.setCursor(50,50);
+        display.print("B=");
+        display.print(back_dis);
+        display.display();
         delay(100);
         timer=now;
       }
+      
+      
     }
   }
 //  // while(true){

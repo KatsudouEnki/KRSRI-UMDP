@@ -220,10 +220,10 @@ void obstacle_kelereng(){
     distance_detection();
     data_display();
     if(right_dis>10 || right_dis==0){
-      crabwalk_right_obstacle();
+      crabwalk_right();
     }
     else if(back_dis<=30 && back_dis>0){
-      walk_fast_obstacle();
+      walk_fast_balls();
     }
     else{
       prep=1;
@@ -257,8 +257,8 @@ void obstacle_kelereng(){
     compass();
     distance_detection();
     data_display();
-//    if((back_dis>50 || back_dis==0)&& (front_dis<20 && front_dis>0)){
-    if(front_dis<23 && front_dis>0){
+    if((back_dis>75 || back_dis==0)&& (left_dis>50 || left_dis>0)){
+//    if(front_dis<23 && front_dis>0){
       state=1;
     }
   }
