@@ -110,6 +110,7 @@ void korban1(){
 
 void obstacle_puing1(){
   int state=0;
+  ////reposisioning before entering the obstacle
   while(state==0){
     compass();
     distance_detection();
@@ -119,12 +120,17 @@ void obstacle_puing1(){
     else if(azimuth>320 || azimuth<165){
       turn_left_slow();
     }
+    else if(right_dis>=10 || right_dis == 0){
+      crabwalk_right();
+    }
     else{
       state=1;
+      
     }
+    
   }
 
-
+  //////////walk on the obstacle
   state=0;
   while(state==0){//310
     compass();
@@ -148,7 +154,8 @@ void obstacle_puing1(){
 
     compass();
     distance_detection();
-    if(roll>=8 || (front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of 8 when default position and gripper on lower side of the obstacle
+//    if(roll>=8 || (front_dis<=20 && front_dis>0)){//the obstacle after this have roll value of 8 when default position and gripper on lower side of the obstacle
+    if(roll>=8){//the obstacle after this have roll value of 8 when default position and gripper on lower side of the obstacle
       state=1;
       default_state();
     }
@@ -212,8 +219,8 @@ void obstacle_kelereng(){
     compass();
     distance_detection();
     data_display();
-    if(right_dis>15 || right_dis==0){
-      crabwalk_right();
+    if(right_dis>10 || right_dis==0){
+      crabwalk_right_obstacle();
     }
     else if(back_dis<=30 && back_dis>0){
       walk_fast_obstacle();
@@ -338,7 +345,7 @@ void transisi_r5_r6(){
     }
     else{//240
       if(left_dis>10 || left_dis==0){
-        crabwalk_left();
+        crabwalk_left_obstacle();
       }
       else{
 //        prep=1;
@@ -412,7 +419,7 @@ void obstacle_batu2(){
         
     compass();
     distance_detection();
-    if(right_dis<=15 && right_dis>0){
+    if(left_dis>=35){
       state=1;
       default_state();
     }
