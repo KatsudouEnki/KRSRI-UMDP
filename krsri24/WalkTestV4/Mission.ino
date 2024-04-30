@@ -168,16 +168,16 @@ void obstacle_miring(){
     compass();
     distance_detection();
     
-    if(angle8<90){
+    if(azimuth<270 && azimuth>=130){
       turn_right_fast();
     }
-    else if(angle8>=90 && angle8<122){
+    else if(azimuth>=270 && azimuth<300){
       turn_right_slow();
     }
-    else if(angle8>132 && angle8<=165){
+    else if(azimuth>320 && azimuth<350){
       turn_left_slow();
     }
-    else if(angle8>165){
+    else if(azimuth>350 || azimuth<130){
       turn_left_fast();
     }
     else{
@@ -185,7 +185,7 @@ void obstacle_miring(){
     }
     compass();
     distance_detection();
-    if((front_dis<30 &&front_dis>0) && (roll<=3 && roll>=-3)){
+    if((front_dis<30 &&front_dis>0) && (roll<=3 && roll>=-3) &&(azimuth<=320 && azimuth >=300)){
       state=1;
       default_state();
     }
@@ -257,7 +257,7 @@ void obstacle_kelereng(){
     compass();
     distance_detection();
     data_display();
-    if((back_dis>75 || back_dis==0)&& (left_dis>50 || left_dis>0)){
+    if((back_dis>75 || back_dis==0)&& (left_dis>50 || left_dis==0)){
 //    if(front_dis<23 && front_dis>0){
       state=1;
     }
