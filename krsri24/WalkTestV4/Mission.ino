@@ -219,6 +219,7 @@ void obstacle_kelereng(){
       state=1;
     }
   }
+  /////////////////////////problem when robot sidewalking because the marble making robot slip and rotates it
   int prep=0;
   while(prep==0){
     compass();
@@ -273,13 +274,14 @@ void obstacle_kelereng(){
 
 void transisi_r5_r6(){
   ///////////////////////////keluar darikelereng kondsi nyerong
-  int state=0;
+  int state=0,repeat=0;
   while(state==0){
     compass();
     distance_detection();
     data_display();
-    if(azimuth<=180 && azimuth>=15){
-      turn_right_obstacle();
+    if(repeat==5){
+      crabwalk_right();
+      repeat=0;
     }
 //    else if(azimuth<185 && azimuth > 145){
 //      turn_right_slow();
@@ -290,9 +292,13 @@ void transisi_r5_r6(){
     else if(azimuth>210 || azimuth<15){
       turn_left_obstacle();
     }
+    else if(azimuth<=200 && azimuth>=15){
+      turn_right_obstacle();
+    }
     else{//240
       if(front_dis>22 || front_dis==0){
         walk_fast_obstacle();
+        repeat=repeat+1;
       }
       else{
 //        prep=1;
@@ -303,25 +309,31 @@ void transisi_r5_r6(){
   }
 ///////////////////////////keluar dari kondisi nyerong
   state=0;
+  repeat=0;
   while(state==0){
     compass();
     distance_detection();
     data_display();
-    if(azimuth<=100 || azimuth>330){
-      turn_right_fast();
+    if (repeat==5){
+      crabwalk_right();
+      repeat=0;
     }
-    else if(azimuth<140 && azimuth > 100){
+    else if(azimuth<160 && azimuth > 120){
       turn_right_slow();
     }
-    else if(azimuth>160 && azimuth<=200){
+    else if(azimuth>180 && azimuth<=220){
       turn_left_slow();
     }
-    else if(azimuth>200 && azimuth<330){
+    else if(azimuth>220 && azimuth<350){
       turn_left_fast();
+    }
+    else if(azimuth<=120 || azimuth>350){
+      turn_right_fast();
     }
     else{//240
       if(front_dis>20 || front_dis==0){
         walk_fast_obstacle();
+        repeat+=1;
       }
       else{
 //        prep=1;
@@ -339,13 +351,13 @@ void transisi_r5_r6(){
     if(azimuth<=100 || azimuth>330){
       turn_right_fast();
     }
-    else if(azimuth<140 && azimuth > 100){
+    else if(azimuth<150 && azimuth > 110){
       turn_right_slow();
     }
-    else if(azimuth>160 && azimuth<=200){
+    else if(azimuth>170 && azimuth<=210){
       turn_left_slow();
     }
-    else if(azimuth>200 && azimuth<330){
+    else if(azimuth>210 && azimuth<340){
       turn_left_fast();
     }
     else{//240
