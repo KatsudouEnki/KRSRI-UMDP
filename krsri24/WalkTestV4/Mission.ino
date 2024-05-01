@@ -4,6 +4,11 @@
 3. korban1()
 4. obstacle_puing1()
 5. obstacle_miring()
+6. obstacle_kelereng()
+7. transisi_r5_r6()
+8. obstacle_puing2()
+9. obstacle_batu2()
+10 obstacle_tangga()
 */
 
 /*Heading setting
