@@ -30,6 +30,26 @@ void loop(){
 //  obstacle_kelereng();
 //  digitalWrite(7,HIGH);
 //  transisi_r5_r6();
+//  while(true){
+//    compass();
+////    distance_detection();
+////    data_display();
+//    if(azimuth<=190 && azimuth>=60){
+//      turn_right_fast();
+//    }
+//    else if(azimuth<230 && azimuth > 190){
+//      turn_right_slow();
+//    }
+//    else if(azimuth>250 && azimuth<=290){
+//      turn_left_slow();
+//    }
+//    else if(azimuth>290 || azimuth<60){
+//      turn_left_fast();
+//    }
+//    else{//240
+//      default_state();
+//    }
+//  }
   while(true){
     
     if(digitalRead(11)==HIGH){

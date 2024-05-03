@@ -1461,7 +1461,7 @@ void ladder(){
   RightMid(6,10,5.5,speed,servo_delay);
   LeftBack(9.9,3.15,7.5,speed,servo_delay);
   RightBack(9.9,3.15,7.5,speed,servo_delay);
-  delay(150);
+  delay(100);
   
   speed = 125;
   LeftFront(2.8,8.8,3.25,speed,servo_delay);
@@ -1523,7 +1523,7 @@ void ladder(){
   delay(100);
   LeftMid(6,10,5.5,speed,servo_delay);
   RightMid(6,10,5.5,speed,servo_delay);
-  delay(200);
+  delay(100);
 }
 
 void ladder_right(){

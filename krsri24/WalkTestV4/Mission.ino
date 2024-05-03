@@ -17,7 +17,7 @@
 
 
 void preparation(){
-  myservo.write(90);
+  myservo.write(120);
   servoAngkat.write(90);
   servoBuka.write(15);
   default_state();
@@ -398,7 +398,7 @@ void obstacle_puing2(){
     compass();
     distance_detection();
     
-    if(left_dis>20 || left_dis==0){
+    if(left_dis>25 || left_dis==0){
       crabwalk_left();
     }
 

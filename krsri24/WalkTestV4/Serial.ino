@@ -73,8 +73,8 @@ void dummy_detection(){
         else{
           pos=pos+1;
           servoBuka.write(0);
-          if(pos>=120){
-            pos=60;
+          if(pos>=150){
+            pos=90;
           }
           Serial.println(myservo.read());
           myservo.write(pos);
