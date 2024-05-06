@@ -42,13 +42,19 @@ void loop(){
   servo_movement("putar", 0);
 //  delay(2000);
   servo_movement("angkat", 0);
-  delay(2000);
+//  delay(2000);
 
+//  while(true){
+//    Serial.println(digitalRead(11));
+//    compass();
+//  }
   unsigned long timer=millis();
   while(true){
+    Serial.println(digitalRead(11));
     
     if(digitalRead(11)==HIGH){
       digitalWrite(7,LOW);
+      Serial.println("start");
       home();
       digitalWrite(7,!digitalRead(7));
       korban1();
@@ -91,34 +97,25 @@ void loop(){
         distance_detection();
 //        data_display;
 
-        display.clearDisplay();
-        display.setCursor(50,0);
-        display.print("F=");
-        display.print(front_dis);
-        display.setCursor(0,32);
-        display.print("L=");
-        display.print(left_dis);
-        display.setCursor(80,32);
-        display.print("R=");
-        display.print(right_dis);
-        display.setCursor(50,50);
-        display.print("B=");
-        display.print(back_dis);
-        display.display();
+//        display.clearDisplay();
+//        display.setCursor(50,0);
+//        display.print("F=");
+//        display.print(front_dis);
+//        display.setCursor(0,32);
+//        display.print("L=");
+//        display.print(left_dis);
+//        display.setCursor(80,32);
+//        display.print("R=");
+//        display.print(right_dis);
+//        display.setCursor(50,50);
+//        display.print("B=");
+//        display.print(back_dis);
+//        display.display();
         delay(100);
         timer=now;
       }
-      
-      
     }
   }
-//  // while(true){
-////    compass();
-////    distance_detection();
-////    data_display();
-//  digitalWrite(7,HIGH);
-//  obstacle_batu2();
-//  
 
   
   while(true){
