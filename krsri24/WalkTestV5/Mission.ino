@@ -17,7 +17,7 @@
 
 
 void preparation(){
-  myservo.write(120);
+  servo_movement("putar", 0);
   servoAngkat.write(90);
   servoBuka.write(15);
   default_state();

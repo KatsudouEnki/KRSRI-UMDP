@@ -30,12 +30,19 @@ void loop(){
   preparation();
   display.clearDisplay();
 
-//  servo_movement("angkat", 1);
-////  servoAngkat.write(90);
+//  delay(3000);
+//  servo_movement("putar", 1);
 //  delay(2000);
-////  servoAngkat.write(0);
+//  servo_movement("putar", 2);
+//  delay(2000);
+//  servo_movement("putar", 3);
+//  delay(2000);
+//  servo_movement("putar", 4);
+//  delay(2000);
+  servo_movement("putar", 0);
+//  delay(2000);
   servo_movement("angkat", 0);
-//  delay(2000);
+  delay(2000);
 
   unsigned long timer=millis();
   while(true){
@@ -46,6 +53,7 @@ void loop(){
       digitalWrite(7,!digitalRead(7));
       korban1();
       digitalWrite(7,!digitalRead(7));
+      servo_movement("angkat", 0);
       obstacle_puing1();
       digitalWrite(7,!digitalRead(7));
       obstacle_miring();

@@ -13,8 +13,10 @@ void servo_movement(String name, int state){
    * putar
    *  state
      *  0 = tengah
-     *  1 = kanan
-     *  2 = kiri
+     *  1 = kanan (scan)
+     *  2 = kanan (sz)
+     *  3 = kiri (scan)
+     *  4 = kiri (sz)
    */
   if(name=="buka"){
     if(state==0){
@@ -48,10 +50,16 @@ void servo_movement(String name, int state){
       myservo.write(120);
     }
     else if(state==1){
-      myservo.write(90);
+      myservo.write(150);
     }
     else if(state==2){
-      myservo.write(150);
+      myservo.write(170);
+    }
+    else if(state==3){
+      myservo.write(90);
+    }
+    else if(state==4){
+      myservo.write(60);
     }
     else{
       int val=myservo.read();
