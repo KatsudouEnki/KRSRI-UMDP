@@ -16,75 +16,46 @@
 15. crabwalk_right_obstacle()
 16. cam_state()
 17. walk_to_victim()
+18. pre_ladder()
+19. pre_ladder_right()
+20. pre_ladder_left()
+21. ladder()
+22. ladder_right()
+23. ladder_left()
+24. post_ladder()
 */
 
 void loop(){
   
   preparation();
   display.clearDisplay();
-  servoAngkat.write(0);
-  delay(2000);
+
+//  servo_movement("angkat", 1);
+////  servoAngkat.write(90);
+//  delay(2000);
+////  servoAngkat.write(0);
+  servo_movement("angkat", 0);
+//  delay(2000);
 
   unsigned long timer=millis();
-  
-//  obstacle_kelereng();
-//  digitalWrite(7,HIGH);
-//  transisi_r5_r6();
-//  while(true){
-//    compass();
-////    distance_detection();
-////    data_display();
-////    if(azimuth<=190 && azimuth>=60){
-////      turn_right_fast();
-////    }
-////    else if(azimuth<230 && azimuth > 190){
-////      turn_right_slow();
-////    }
-////    else if(azimuth>250 && azimuth<=290){
-////      turn_left_slow();
-////    }
-////    else if(azimuth>290 || azimuth<60){
-////      turn_left_fast();
-////    }
-////    else{//240
-////      default_state();
-////    }
-//  }
   while(true){
     
     if(digitalRead(11)==HIGH){
       digitalWrite(7,LOW);
       home();
       digitalWrite(7,!digitalRead(7));
+      korban1();
+      digitalWrite(7,!digitalRead(7));
       obstacle_puing1();
       digitalWrite(7,!digitalRead(7));
       obstacle_miring();
       digitalWrite(7,!digitalRead(7));
+      obstacle_batu1();
+      digitalWrite(7,!digitalRead(7));
+      safe_zone1();
+      digitalWrite(7,!digitalRead(7));
       obstacle_kelereng();
       digitalWrite(7,!digitalRead(7));
-
-//      while(true){
-//        default_state();
-//        distance_detection();
-////        data_display;
-//
-//        display.clearDisplay();
-//        display.setCursor(50,0);
-//        display.print("F=");
-//        display.print(front_dis);
-//        display.setCursor(0,32);
-//        display.print("L=");
-//        display.print(left_dis);
-//        display.setCursor(80,32);
-//        display.print("R=");
-//        display.print(right_dis);
-//        display.setCursor(50,50);
-//        display.print("B=");
-//        display.print(back_dis);
-//        display.display();
-//        delay(100);
-////        timer=now;
-//      }
       transisi_r5_r6();
       digitalWrite(7,!digitalRead(7));
       obstacle_puing2();
@@ -103,27 +74,29 @@ void loop(){
     }
     else{
       unsigned long now=millis();
-      compass();
+//      compass();
+//      servoAngkat.write(90);
+      
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
         
         distance_detection();
 //        data_display;
 
-//        display.clearDisplay();
-//        display.setCursor(50,0);
-//        display.print("F=");
-//        display.print(front_dis);
-//        display.setCursor(0,32);
-//        display.print("L=");
-//        display.print(left_dis);
-//        display.setCursor(80,32);
-//        display.print("R=");
-//        display.print(right_dis);
-//        display.setCursor(50,50);
-//        display.print("B=");
-//        display.print(back_dis);
-//        display.display();
+        display.clearDisplay();
+        display.setCursor(50,0);
+        display.print("F=");
+        display.print(front_dis);
+        display.setCursor(0,32);
+        display.print("L=");
+        display.print(left_dis);
+        display.setCursor(80,32);
+        display.print("R=");
+        display.print(right_dis);
+        display.setCursor(50,50);
+        display.print("B=");
+        display.print(back_dis);
+        display.display();
         delay(100);
         timer=now;
       }

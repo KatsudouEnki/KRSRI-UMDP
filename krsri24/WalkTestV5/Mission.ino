@@ -58,58 +58,15 @@ void home(){
 }
 
 void korban1(){
-  pos=90;
-  //<60 == putar kiri
-  //>120 == putar kanan
-  int state=0;
-  servoAngkat.write(5);
-  cam_state();
-  while(true){
-    dummy_detection();
-//    Serial.print(dummy_state);
-//    Serial.print(';');
-//    Serial.print(dummy_x_coor);
-//    Serial.print(';');
-//    Serial.println(dummy_y_coor);
-    
-//    if(dummy_x_coor <= -70 && dummy_state==1){
-//      digitalWrite(LED_BUILTIN,LOW);
-//      pos=pos-1;
-//      myservo.write(pos);
-//    }
-//    else if(dummy_x_coor >= 70 && dummy_state==1){
-//      digitalWrite(LED_BUILTIN,LOW);
-//      pos=pos+1;
-//      myservo.write(pos);
-//    }
-//    else if(dummy_state==0){
-//      digitalWrite(LED_BUILTIN,HIGH);
-//      pos=pos+1;
-//      if(pos>=180){
-//        pos=0;
-//      }
-//      myservo.write(pos);
-//    }
-//    else{
-//      digitalWrite(LED_BUILTIN,LOW);
-//      servoBuka.write(90);
-//      delay(2000);
-//      servoBuka.write(0);
-//      delay(2000);
-////      state=1;
-//      pos=pos;
-//    }
-//    if(dummy_x_coor >= -70 && dummy_x_coor <= 70 && dummy_state==1){
-//      digitalWrite(LED_BUILTIN,LOW);
-//      servoBuka.write(90);
-//      delay(2000);
-//      servoBuka.write(15);
-//      delay(2000);
-////      state=1;
-//      pos=pos;
-//    }
-    delay(100);
-  }
+
+  //Temporary threshold
+  delay(2000);
+  cam_state(); 
+  servo_movement("angkat",1);
+  delay(1000);
+  servo_movement("angkat", 0);
+  delay(2000);
+  //////////////////////
   
 }
 
@@ -190,13 +147,55 @@ void obstacle_miring(){
     }
     compass();
     distance_detection();
-    if((front_dis<30 &&front_dis>0) && (roll<=3 && roll>=-3) &&(azimuth<=310 && azimuth >=290)){
+    if((front_dis<25 &&front_dis>0) && (roll<=3 && roll>=-3) &&(azimuth<=310 && azimuth >=290)){
       state=1;
       default_state();
     }
   }
 }
 
+void obstacle_batu1(){
+  int state=0;
+  while(state==0){
+    compass();
+    distance_detection();
+    
+    if(azimuth<260 && azimuth>=120){
+      turn_right_fast();
+    }
+    else if(azimuth>=260 && azimuth<290){
+      turn_right_slow();
+    }
+    else if(azimuth>310 && azimuth<340){
+      turn_left_slow();
+    }
+    else if(azimuth>340 || azimuth<120){
+      turn_left_fast();
+    }
+    else{
+      walk_fast();
+    }
+    compass();
+    distance_detection();
+    if((front_dis<25 &&front_dis>0) && (roll<=3 && roll>=-3) &&(azimuth<=310 && azimuth >=290)){
+      state=1;
+      default_state();
+    }
+  }
+}
+
+void safe_zone1(){
+  //Temporary holder
+  myservo.write(180);
+  servoAngkat.write(0);
+  delay(500);
+  servoBuka.write(90);
+  delay(500);
+  servoAngkat.write(90);
+  delay(250);
+  servoBuka.write(0);
+  myservo.write(120);
+}
 void obstacle_kelereng(){
   int state=0;
   while(state==0){
