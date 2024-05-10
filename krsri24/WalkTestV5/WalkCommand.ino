@@ -42,11 +42,14 @@ void loop(){
   servo_movement("putar", 0);
 //  delay(2000);
   servo_movement("angkat", 0);
-//  delay(2000);
-
+  delay(2000);
+    
+    
+//  dummy_detection();
 //  while(true){
-//    Serial.println(digitalRead(11));
-//    compass();
+//
+//    
+//    
 //  }
   unsigned long timer=millis();
   while(true){
@@ -58,7 +61,10 @@ void loop(){
       home();
       digitalWrite(7,!digitalRead(7));
       korban1();
+      servo_movement("angkat", 2);
+      dummy_detection();
       digitalWrite(7,!digitalRead(7));
+      speed=800;
       servo_movement("angkat", 0);
       obstacle_puing1();
       digitalWrite(7,!digitalRead(7));

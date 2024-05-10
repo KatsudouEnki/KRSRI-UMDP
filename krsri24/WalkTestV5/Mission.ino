@@ -18,8 +18,8 @@
 
 void preparation(){
   servo_movement("putar", 0);
-  servoAngkat.write(90);
-  servoBuka.write(15);
+  servo_movement("angkat", 0);
+  servo_movement("buka",0);
   default_state();
 }
 
@@ -58,15 +58,37 @@ void home(){
 }
 
 void korban1(){
+  speed=200;
+  int state=0;
+  while(state==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(azimuth<=190 && azimuth>=60){
+      turn_right_fast();
+    }
+    else if(azimuth<230 && azimuth > 190){
+      turn_right_slow();
+    }
+    else if(azimuth>250 && azimuth<=290){
+      turn_left_slow();
+    }
+    else if(azimuth>290 || azimuth<60){
+      turn_left_fast();
+    }
+    else{//240
+      reverse_fast();
+    }
+    
+    compass();
+    distance_detection();
+    data_display();
 
-  //Temporary threshold
-  delay(2000);
-  cam_state(); 
-  servo_movement("angkat",1);
-  delay(1000);
-  servo_movement("angkat", 0);
-  delay(2000);
-  //////////////////////
+    if(back_dis<15 && back_dis>0){
+      state=1;
+      default_state();
+    }
+  }
   
 }
 
@@ -79,7 +101,7 @@ void obstacle_puing1(){
     if(azimuth<280 && azimuth > 145){
       turn_right_slow();
     }
-    else if(azimuth>300 || azimuth<145){
+    else if(azimuth>300 || azimuth<=145){
       turn_left_slow();
     }
     else if(right_dis>=10 || right_dis == 0){
@@ -87,14 +109,12 @@ void obstacle_puing1(){
     }
     else{
       state=1;
-      
     }
-    
   }
 
   //////////walk on the obstacle
   state=0;
-  while(state==0){//310
+  while(state==0){//290
     compass();
     distance_detection();
 
@@ -110,7 +130,7 @@ void obstacle_puing1(){
     else if(azimuth>310 || azimuth<125){
       turn_left_obstacle();
     }
-    else{//300
+    else{//290
       walk_fast_obstacle();
     }
 
@@ -120,6 +140,9 @@ void obstacle_puing1(){
     if(roll>=8 && (azimuth<=310 && azimuth >=270)){//the obstacle after this have roll value of 8 when default position and gripper on lower side of the obstacle
       state=1;
       default_state();
+    }
+    else{
+      state=0;
     }
   }
 }
@@ -177,7 +200,7 @@ void obstacle_batu1(){
     }
     compass();
     distance_detection();
-    if((front_dis<25 &&front_dis>0) && (roll<=3 && roll>=-3) &&(azimuth<=310 && azimuth >=290)){
+    if((front_dis<25 &&front_dis>0) && (roll<=2 && roll>=-2) &&(azimuth<=305 && azimuth >=295)){
       state=1;
       default_state();
     }
@@ -185,17 +208,48 @@ void obstacle_batu1(){
 }
 
 void safe_zone1(){
-  //Temporary holder
-  myservo.write(180);
-  servoAngkat.write(0);
+  int state=0;
+  while(state==0){
+    compass();
+    distance_detection();
+    
+    if(azimuth<260 && azimuth>=120){
+      turn_right_fast();
+    }
+    else if(azimuth>=260 && azimuth<290){
+      turn_right_slow();
+    }
+    else if(azimuth>310 && azimuth<340){
+      turn_left_slow();
+    }
+    else if(azimuth>340 || azimuth<120){
+      turn_left_fast();
+    }
+    else{
+      walk_fast();
+    }
+    compass();
+    distance_detection();
+    if((front_dis<25 &&front_dis>10) && (azimuth<=310 && azimuth >=290)){
+      state=1;
+      default_state();
+    }
+    else if(front_dis<=10 && front_dis>0){
+      reverse_fast();
+    }
+  }
+  
+  servo_movement("putar", 2);
+  servo_movement("angkat", 1);
   delay(500);
-  servoBuka.write(90);
+  servo_movement("buka", 1);
   delay(500);
-  servoAngkat.write(90);
+  servo_movement("angkat", 0);
   delay(250);
-  servoBuka.write(0);
-  myservo.write(120);
+  servo_movement("buka", 0);
+  servo_movement("putar", 0);
 }
+
 void obstacle_kelereng(){
   int state=0;
   while(state==0){
@@ -288,10 +342,10 @@ void transisi_r5_r6(){
 //    else if(azimuth>205 && azimuth<=245){
 //      turn_left_slow();
 //    }
-    else if(azimuth>200 || azimuth<5){
+    else if(azimuth>210 || azimuth<15){
       turn_left_obstacle();
     }
-    else if(azimuth<=190 && azimuth>=5){
+    else if(azimuth<=200 && azimuth>=15){
       turn_right_obstacle();
     }
     else{//240
@@ -309,7 +363,7 @@ void transisi_r5_r6(){
 ///////////////////////////keluar dari kondisi nyerong
   state=0;
   repeat=0;
-  while(state==0){
+  while(state==0){//180
     compass();
     distance_detection();
     data_display();
@@ -317,19 +371,19 @@ void transisi_r5_r6(){
       crabwalk_right();
       repeat=0;
     }
-    else if(azimuth<160 && azimuth > 120){
+    else if(azimuth<175 && azimuth > 130){
       turn_right_slow();
     }
-    else if(azimuth>180 && azimuth<=220){
+    else if(azimuth>185 && azimuth<=230){
       turn_left_slow();
     }
-    else if(azimuth>220 && azimuth<350){
+    else if(azimuth>230 && azimuth<360){
       turn_left_fast();
     }
-    else if(azimuth<=120 || azimuth>350){
+    else if(azimuth<=130 || azimuth>=360){
       turn_right_fast();
     }
-    else{//240
+    else{//180
       if(front_dis>20 || front_dis==0){
         walk_fast_obstacle();
         repeat+=1;
@@ -343,7 +397,7 @@ void transisi_r5_r6(){
   }
 
   state=0;
-  while(state==0){
+  while(state==0){//180
     compass();
     distance_detection();
     data_display();
@@ -359,7 +413,7 @@ void transisi_r5_r6(){
     else if(azimuth>210 && azimuth<340){
       turn_left_fast();
     }
-    else{//240
+    else{//180
       if(left_dis>10 || left_dis==0){
         crabwalk_left_obstacle();
       }
