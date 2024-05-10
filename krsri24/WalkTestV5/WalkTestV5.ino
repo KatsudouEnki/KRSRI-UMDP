@@ -229,6 +229,9 @@ void default_state(){
   RightFront(8,8,4.5,speed,servo_delay);
   RightMid(8,8,4.5,speed,servo_delay);
   RightBack(8,8,4.5,speed,servo_delay);
+  servo_movement("angkat", 0);
+  servo_movement("buka", 0);
+  servo_movement("putar",0);
 }
 
 void cam_state(){
@@ -239,7 +242,7 @@ void cam_state(){
   RightFront(8,8,6,speed,servo_delay);
   RightMid(8,8,6,speed,servo_delay);
   RightBack(8,8,6,speed,servo_delay);
-  servoAngkat.write(0);
+  servo_movement("angkat",1);
   digitalWrite(7, HIGH);
 }
 

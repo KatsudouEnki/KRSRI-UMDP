@@ -5,6 +5,7 @@ void servo_movement(String name, int state){
      *  state
        *  0 = tutup
        *  1 = buka
+       *  2 = grip korban
    * angkat
      *  state
        *  0 = angkat
@@ -20,10 +21,13 @@ void servo_movement(String name, int state){
    */
   if(name=="buka"){
     if(state==0){
-      servoBuka.write(117);
+      servoBuka.write(100);//117
     }
     else if(state==1){
-      servoBuka.write(100);
+      servoBuka.write(80);
+    }
+    else if(state==2){
+      servoBuka.write(125);//117
     }
     else{
       int val=servoBuka.read();
@@ -32,13 +36,13 @@ void servo_movement(String name, int state){
   }
   else if(name == "angkat"){
     if(state==0){
-      servoAngkat.write(0);
+      servoAngkat.write(20);
     }
     else if(state==1){
-      servoAngkat.write(90);
+      servoAngkat.write(110);
     }
     else if(state==2){
-      servoAngkat.write(105);
+      servoAngkat.write(125);
     }
     else{
       int val=servoAngkat.read();
@@ -46,20 +50,21 @@ void servo_movement(String name, int state){
     }
   }
   else if(name == "putar"){
+    int posisi_awal=100;
     if(state==0){
-      myservo.write(120);
+      myservo.write(posisi_awal);
     }
     else if(state==1){
-      myservo.write(150);
+      myservo.write(posisi_awal+30);
     }
     else if(state==2){
-      myservo.write(170);
+      myservo.write(posisi_awal+60);
     }
     else if(state==3){
-      myservo.write(90);
+      myservo.write(posisi_awal-30);
     }
     else if(state==4){
-      myservo.write(60);
+      myservo.write(posisi_awal-60);
     }
     else{
       int val=myservo.read();

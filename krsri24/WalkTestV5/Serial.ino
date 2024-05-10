@@ -22,7 +22,7 @@ String get_value(String data, char separator, int index) {
 
 void dummy_detection(){
   speed=200;
-  int status_korban=0;
+  int status_korban=0, rep=0;
   while(status_korban==0){
     if (Serial2.available()) {
       if (buff_serial.length() > 16) {
@@ -57,11 +57,11 @@ void dummy_detection(){
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>=17){
+            if(back_dis>17){
               servo_movement("angkat", 2);
 //              walk_to_victim();
               delay(200);
-              servo_movement("buka", 0);
+              servo_movement("buka", 2);
               delay(400);
               speed=100;
               reverse_fast();
@@ -83,12 +83,17 @@ void dummy_detection(){
           else{
             pos=pos+1;
             servo_movement("buka", 0);
-            if(pos>=150){
-              pos=90;
+            if(pos>=130){
+              pos=70;
+              rep++;
+              if(rep>10){
+                status_korban=1;
+              }
             }
             Serial.println(myservo.read());
             myservo.write(pos);
           }
+          delay(10);
           //////////////////////////////////////////////////////////////////// pakai sensor jarak atau koordinat Y dari kamera
           buff_serial = "";
         }

@@ -37,7 +37,7 @@ void loop(){
 //  delay(2000);
 //  servo_movement("putar", 3);
 //  delay(2000);
-//  servo_movement("putar", 4);
+  servo_movement("buka", 0);
 //  delay(2000);
   servo_movement("putar", 0);
 //  delay(2000);
@@ -52,20 +52,25 @@ void loop(){
 //    
 //  }
   unsigned long timer=millis();
+  int start_state=digitalRead(11);
   while(true){
-    Serial.println(digitalRead(11));
+    Serial.println(start_state);
     
-    if(digitalRead(11)==HIGH){
+    if(digitalRead(11)!=start_state){
       digitalWrite(7,LOW);
       Serial.println("start");
       home();
       digitalWrite(7,!digitalRead(7));
       korban1();
+      servo_movement("buka", 1);
+      delay(200);
       servo_movement("angkat", 2);
       dummy_detection();
       digitalWrite(7,!digitalRead(7));
       speed=800;
       servo_movement("angkat", 0);
+      servo_movement("putar", 0);
+      servo_movement("buka", 2);
       obstacle_puing1();
       digitalWrite(7,!digitalRead(7));
       obstacle_miring();
@@ -82,25 +87,18 @@ void loop(){
       digitalWrite(7,!digitalRead(7));
       obstacle_batu2();
       digitalWrite(7,!digitalRead(7));
-      while(true){
-        compass();
-        distance_detection();
-        if(roll > -16){
-          pre_ladder();
-        }else{
-          ladder();
-        }
-      }
+      obstacle_tangga();
+      while(true);
     }
     else{
       unsigned long now=millis();
-//      compass();
+      compass();
+      default_state();
 //      servoAngkat.write(90);
       
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
-        
-        distance_detection();
+//        distance_detection();
 //        data_display;
 
 //        display.clearDisplay();
