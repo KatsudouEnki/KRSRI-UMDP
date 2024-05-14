@@ -47,7 +47,7 @@ void loop(){
     
 //  dummy_detection();
 //  while(true){
-//
+//servo_movement("angkat", 2);
 //    
 //    
 //  }

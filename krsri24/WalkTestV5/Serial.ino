@@ -29,7 +29,7 @@ void dummy_detection(){
         buff_serial = "";
       }
       
-      String rx_in, dtx, dstate;
+      String rx_in, dtx, dty, dstate;
       char chrx_in = Serial2.read();
       buff_serial += String(chrx_in);
       // check header
@@ -51,13 +51,14 @@ void dummy_detection(){
   
           dtx = get_value(rx_in,',',1);
           // Serial.print("dx = "); Serial.println(dtx.toInt());
-  
+          dty = get_value(rx_in,',',2);
           if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
             servo_movement("buka",1);
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>17){
+//            if(back_dis>17){//////dy>350
+            if(dty.toInt()>=350){//////dy>350
               servo_movement("angkat", 2);
 //              walk_to_victim();
               delay(200);

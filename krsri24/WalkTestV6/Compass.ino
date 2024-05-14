@@ -50,9 +50,13 @@ void bno_init(){
     {
         /* There was a problem detecting the BNO055 ... check your connections */
         Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+//        display.clearDisplay();
+//        display.setTextSize(10);
+//        display.print("X");
+//        display.display();
         while (1);
     }
-
+//    display.setTextSize(1);
     int eeAddress = 0;
     long bnoID;
     bool foundCalib = false;
