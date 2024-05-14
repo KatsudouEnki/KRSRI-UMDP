@@ -58,7 +58,7 @@ void loop(){
 //  }
   unsigned long timer=millis();
   int start_state=digitalRead(11);
-  while(true){
+  while(false){
     Serial.println(start_state);
     
     if(digitalRead(11)!=start_state){
@@ -128,7 +128,8 @@ void loop(){
 
   
   while(true){
-    ladder_right();
+    compass();
+    default_state()11;
   }
   
   digitalWrite(7, LOW);

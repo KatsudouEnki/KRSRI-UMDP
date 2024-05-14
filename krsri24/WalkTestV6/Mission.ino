@@ -503,10 +503,10 @@ void obstacle_tangga(){
     compass();
     distance_detection();
 
-    if(azimuth<=210 && azimuth>=45){
+    if(azimuth<=220 && azimuth>=45){
       turn_right_obstacle();
     }
-    else if(azimuth>220|| azimuth<45){
+    else if(azimuth>230|| azimuth<45){
       turn_left_obstacle();
     }
     else{//330
@@ -515,7 +515,7 @@ void obstacle_tangga(){
         
     compass();
     distance_detection();
-    if(left_dis>=35 &&(azimuth >210 && azimuth<220)){
+    if(left_dis>=35 &&(azimuth >220 && azimuth<230)){
       state=1;
       default_state();
     }
@@ -526,30 +526,44 @@ void obstacle_tangga(){
   while(state==1){
     compass();
     distance_detection();
-//    if(roll > -10 && (azimuth>=220|| azimuth<45) && (back_dis<50 && back_dis>0)){
-//      pre_ladder_left();
-//    }
-//    else if(roll>-10 && (azimuth<=210 && azimuth>=45) && (back_dis<50 && back_dis>0)){
-//      pre_ladder_right();
-//    }
-//    else if(roll>-10 && (azimuth>210 && azimuth<220) && (back_dis>50 || back_dis==0)){
-//      post_ladder();
-//    }
-
-    if(roll>-10){
-      pre_ladder();
+    pre_ladder();
+    if(roll<-10){
+      state=2;
     }
-    else{//330
-      digitalWrite(7, !digitalRead(7));
-      if(azimuth<=210 && azimuth>=45){
-        ladder_right();
-      }else if(azimuth>=217|| azimuth<45){
-        ladder_left();
-      }else{
-        ladder();
-      }
-      digitalWrite(7, !digitalRead(7));
+  }
+  
+  while(state==2){
+    int counter = 0;
+    compass();
+    distance_detection();
+    digitalWrite(7, !digitalRead(7));
+
+    if(azimuth<=220 && azimuth>=45){
+      ladder_right();
+    }else if(azimuth>=230|| azimuth<45){
+      ladder_left();
+    }else if(roll>-16 && counter>=15){
+      state=3;
+    }else{
+     ladder();
+     counter++;
+    }
+
+     compass();
+     distance_detection();
+     digitalWrite(7, !digitalRead(7));
+    }
+
+    while(state==3){
+    compass();
+    distance_detection();
+    digitalWrite(7, !digitalRead(7));
+
+    post_ladder();
+    if(roll>-2 && front_dis>0 && front_dis<25){
+      default_state();
+      state=4;
+    }
     }
     
-  }
 }
