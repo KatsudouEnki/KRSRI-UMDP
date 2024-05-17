@@ -333,7 +333,7 @@ void transisi_r5_r6(){
       crabwalk_right();
       repeat=0;
     }
-    else if(azimuth>280 || azimuth<75){
+    else if(azimuth>270 || azimuth<75){
       turn_left_obstacle();
     }
     else if(azimuth<250 && azimuth>=75){
@@ -371,7 +371,7 @@ void transisi_r5_r6(){
     else if(azimuth>250 && azimuth<=280){
       turn_left_slow();
     }
-    else if(azimuth>280 || azimuth<50){
+    else if(azimuth>270 || azimuth<50){
       turn_left_fast();
     }
     else if(azimuth<=180 && azimuth>=50){
@@ -399,10 +399,10 @@ void transisi_r5_r6(){
     if(azimuth<=170 && azimuth>30){
       turn_right_fast();
     }
-    else if(azimuth<195 && azimuth > 170){
+    else if(azimuth<200 && azimuth > 170){
       turn_right_slow();
     }
-    else if(azimuth>215 && azimuth<=270){
+    else if(azimuth>220 && azimuth<=270){
       turn_left_slow();
     }
     else if(azimuth>270 || azimuth<40){
@@ -459,7 +459,7 @@ void obstacle_puing2(){
     
     compass();
     distance_detection();
-    if((front_dis<=20 && front_dis>0)){
+    if((front_dis<=20 && front_dis>0)){  
       state=1;
       default_state();
     }
@@ -503,10 +503,10 @@ void obstacle_tangga(){
     compass();
     distance_detection();
 
-    if(azimuth<=220 && azimuth>=45){
+    if(azimuth<=222 && azimuth>=45){
       turn_right_obstacle();
     }
-    else if(azimuth>230|| azimuth<45){
+    else if(azimuth>=228|| azimuth<45){
       turn_left_obstacle();
     }
     else{//330
@@ -515,7 +515,7 @@ void obstacle_tangga(){
         
     compass();
     distance_detection();
-    if(left_dis>=35 &&(azimuth >220 && azimuth<230)){
+    if(left_dis>=35 &&(azimuth >222 && azimuth<228)){
       state=1;
       default_state();
     }
@@ -526,9 +526,11 @@ void obstacle_tangga(){
   while(state==1){
     compass();
     distance_detection();
-    pre_ladder();
-    if(roll<-10){
+    if(roll < -10){
       state=2;
+    }
+    else{
+      pre_ladder();
     }
   }
   
@@ -538,9 +540,9 @@ void obstacle_tangga(){
     distance_detection();
     digitalWrite(7, !digitalRead(7));
 
-    if(azimuth<=220 && azimuth>=45){
+    if(azimuth<=222 && azimuth>=45){
       ladder_right();
-    }else if(azimuth>=230|| azimuth<45){
+    }else if(azimuth>=228|| azimuth<45){
       ladder_left();
     }else if(roll>-16 && counter>=15){
       state=3;
@@ -549,21 +551,21 @@ void obstacle_tangga(){
      counter++;
     }
 
-     compass();
-     distance_detection();
-     digitalWrite(7, !digitalRead(7));
-    }
+//     compass();
+//     distance_detection();
+//     digitalWrite(7, !digitalRead(7));
+  }
 
-    while(state==3){
+  while(state==3){
     compass();
     distance_detection();
     digitalWrite(7, !digitalRead(7));
-
+  
     post_ladder();
     if(roll>-2 && front_dis>0 && front_dis<25){
       default_state();
       state=4;
     }
-    }
+  }
     
 }

@@ -57,15 +57,18 @@ void dummy_detection(){
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>17 || dty.toInt()>375){
+            if(back_dis>17 || dty.toInt()>325){
               servo_movement("angkat", 2);
+              walk_to_victim();
+//              walk_to_victim();
 //              walk_to_victim();
               delay(200);
               servo_movement("buka", 2);
-              delay(400);
+              delay(800);
               speed=100;
               reverse_fast();
-              delay(300);
+              servo_movement("buka", 2);
+              delay(600);
               servo_movement("angkat", 0);
               status_korban=1;
             }
@@ -85,7 +88,7 @@ void dummy_detection(){
           }
           else{
             pos=pos+1;
-            servo_movement("buka", 0);
+//            servo_movement("buka", 0);
             if(pos>=130){
               pos=70;
               rep++;

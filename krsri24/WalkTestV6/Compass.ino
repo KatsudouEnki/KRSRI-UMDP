@@ -31,11 +31,11 @@ void compass(){
   display.print("bearing ");
   display.print(azimuth);
 //  display.display();
-  display.setCursor(0,20);
+  display.setCursor(0,15);
   display.print("pitch ");
   display.print(pitch,DEC);
 //  display.display();
-  display.setCursor(0,40);
+  display.setCursor(0,30);
   display.print("Roll ");
   display.print(roll,DEC);
   display.display();
@@ -233,6 +233,15 @@ void displayCalStatus(void)
     Serial.print(accel, DEC);
     Serial.print(" M:");
     Serial.print(mag, DEC);
+    display.setCursor(0,45);
+    display.print("Sys:");
+    display.print(system, DEC);
+    display.print(" G:");
+    display.print(gyro, DEC);
+    display.print(" A:");
+    display.print(accel, DEC);
+    display.print(" M:");
+    display.print(mag, DEC);
 }
 
 /**************************************************************************/

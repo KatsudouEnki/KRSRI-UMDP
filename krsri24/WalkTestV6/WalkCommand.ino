@@ -58,14 +58,14 @@ void loop(){
 //  }
   unsigned long timer=millis();
   int start_state=digitalRead(11);
-  while(false){
+  while(true){
     Serial.println(start_state);
     
     if(digitalRead(11)!=start_state){
       digitalWrite(7,LOW);
       Serial.println("start");
       home();
-      digitalWrite(7,!digitalRead(7));
+      digitalWrite(7,LOW);
       korban1();
       servo_movement("buka", 1);
       delay(200);
@@ -129,7 +129,7 @@ void loop(){
   
   while(true){
     compass();
-    default_state()11;
+    default_state();
   }
   
   digitalWrite(7, LOW);
