@@ -89,8 +89,8 @@ void dummy_detection(){
           else{
             pos=pos+1;
 //            servo_movement("buka", 0);
-            if(pos>=130){
-              pos=70;
+            if(pos>=120){
+              pos=80;
               rep++;
               if(rep>5){
                 status_korban=1;

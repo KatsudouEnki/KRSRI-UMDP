@@ -221,20 +221,33 @@ void safe_zone1(){
       turn_left_fast();
     }
     else{
-      walk_fast();
+      if((front_dis<20 && front_dis>0)){
+        reverse_fast();
+      }
+      else if((right_dis<25 && right_dis>0)){
+        crabwalk_left();
+      }
+      else if((right_dis>30 || right_dis ==0)){
+        crabwalk_right();
+      }
+      else{
+        walk_fast();
+      }
+      
     }
     compass();
     distance_detection();
-    if((front_dis<=30) && (azimuth<=40 && azimuth >=20)){
+    if((front_dis<=30 && front_dis>=20) && (right_dis>=15 && right_dis<=20)&& (azimuth<=40 && azimuth >=20)){
       state=1;
       default_state();
-    }
+    } 
+    
 //    else if(front_dis<20 && front_dis>0){
 //      reverse_fast();
 //    }
   }
   
-  servo_movement("putar", 2);
+  servo_movement("putar", 1);
   delay(500);
   servo_movement("angkat", 1);
   delay(500);

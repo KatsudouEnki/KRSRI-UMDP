@@ -1,4 +1,4 @@
-#include <DynamixelSerial.h>
+  #include <DynamixelSerial.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>

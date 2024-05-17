@@ -50,7 +50,7 @@ void servo_movement(String name, int state){
     }
   }
   else if(name == "putar"){
-    int posisi_awal=104;
+    int posisi_awal=100;
     if(state==0){
       myservo.write(posisi_awal);
     }
