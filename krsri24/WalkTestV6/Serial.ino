@@ -65,6 +65,8 @@ void dummy_detection(){
               delay(200);
               servo_movement("buka", 2);
               delay(800);
+              servo_movement("angkat", 3);
+              delay(250);
               speed=100;
               reverse_fast();
               servo_movement("buka", 2);

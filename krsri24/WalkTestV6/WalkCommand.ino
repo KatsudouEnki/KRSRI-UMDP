@@ -104,7 +104,7 @@ void loop(){
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
        distance_detection();
-      //  data_disp
+      //  data_display();
 
       //  display.clearDisplay();
       //  display.setCursor(50,0);
@@ -128,9 +128,9 @@ void loop(){
 
   
   while(true){
-    compass();
-    // obstacle_tangga();
-    pre_ladder_test(roll);
+//    compass();
+    obstacle_tangga();
+//    pre_ladder_test(roll);
   }
   
   digitalWrite(7, LOW);

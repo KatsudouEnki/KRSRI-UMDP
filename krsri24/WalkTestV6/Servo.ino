@@ -1,4 +1,4 @@
- void servo_movement(String name, int state){
+void servo_movement(String name, int state){
   /*
    * 
    * buka 
@@ -11,6 +11,8 @@
        *  0 = angkat
        *  1 = turun (scan)
        *  2 = turun (ambil)
+       *  3 = setengah angkat
+       *  4 = Tangga
    * putar
      *  state
        *  0 = tengah
@@ -43,6 +45,12 @@
     }
     else if(state==2){
       servoAngkat.write(125);
+    }
+    else if(state==3){
+      servoAngkat.write(95);
+    }
+    else if(state==4){
+      servoAngkat.write(50);
     }
     else{
       int val=servoAngkat.read();

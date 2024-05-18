@@ -224,10 +224,10 @@ void safe_zone1(){
       if((front_dis<20 && front_dis>0)){
         reverse_fast();
       }
-      else if((right_dis<25 && right_dis>0)){
+      else if((right_dis<27 && right_dis>0)){
         crabwalk_left();
       }
-      else if((right_dis>30 || right_dis ==0)){
+      else if((right_dis>32 || right_dis ==0)){
         crabwalk_right();
       }
       else{
@@ -237,7 +237,7 @@ void safe_zone1(){
     }
     compass();
     distance_detection();
-    if((front_dis<=30 && front_dis>=20) && (right_dis>=15 && right_dis<=20)&& (azimuth<=40 && azimuth >=20)){
+    if((front_dis<=30 && front_dis>=20) && (right_dis>=27 && right_dis<=32)&& (azimuth<=40 && azimuth >=20)){
       state=1;
       default_state();
     } 

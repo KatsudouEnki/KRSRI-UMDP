@@ -1388,13 +1388,13 @@ void pre_ladder_test(int roll_value){
     z_tangga=6.25;
   }
   else if(roll_value<=-10 && roll_value>-13){
-    z_tangga=6.65;
+    z_tangga=6.55;
   }
   else if(roll_value<=-13 && roll_value>-16){
-    z_tangga=6.9;
+    z_tangga=6.7;
   }
   else if(roll_value<=-16 && roll_value>-21){
-    z_tangga=7.1;
+    z_tangga=6.8;
   }
   speed = 325;
   LeftFront(4.55,14.3,4.5,speed,servo_delay);
