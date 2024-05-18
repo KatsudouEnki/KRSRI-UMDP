@@ -58,7 +58,7 @@ void loop(){
 //  }
   unsigned long timer=millis();
   int start_state=digitalRead(11);
-  while(true){
+  while(false){
     Serial.println(start_state);
     
     if(digitalRead(11)!=start_state){
@@ -103,23 +103,23 @@ void loop(){
       
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
-//        distance_detection();
-//        data_display;
+       distance_detection();
+      //  data_disp
 
-//        display.clearDisplay();
-//        display.setCursor(50,0);
-//        display.print("F=");
-//        display.print(front_dis);
-//        display.setCursor(0,32);
-//        display.print("L=");
-//        display.print(left_dis);
-//        display.setCursor(80,32);
-//        display.print("R=");
-//        display.print(right_dis);
-//        display.setCursor(50,50);
-//        display.print("B=");
-//        display.print(back_dis);
-//        display.display();
+      //  display.clearDisplay();
+      //  display.setCursor(50,0);
+      //  display.print("F=");
+      //  display.print(front_dis);
+      //  display.setCursor(0,32);
+      //  display.print("L=");
+      //  display.print(left_dis);
+      //  display.setCursor(80,32);
+      //  display.print("R=");
+      //  display.print(right_dis);
+      //  display.setCursor(50,50);
+      //  display.print("B=");
+      //  display.print(back_dis);
+      //  display.display();
         delay(100);
         timer=now;
       }
@@ -129,7 +129,8 @@ void loop(){
   
   while(true){
     compass();
-    default_state();
+    // obstacle_tangga();
+    pre_ladder_test(roll);
   }
   
   digitalWrite(7, LOW);
