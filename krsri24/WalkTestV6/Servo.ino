@@ -26,7 +26,7 @@ void servo_movement(String name, int state){
       servoBuka.write(107);//117
     }
     else if(state==1){
-      servoBuka.write(50);
+      servoBuka.write(70);
     }
     else if(state==2){
       servoBuka.write(125);//117

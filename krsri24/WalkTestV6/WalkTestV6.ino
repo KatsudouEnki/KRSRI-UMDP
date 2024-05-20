@@ -1215,13 +1215,13 @@ void crabwalk_right_test(){
 
   delay(5);
 
-  LeftFront(12,5,4,speed,servo_delay);
-  RightMid(6.6,6.6,4,speed,servo_delay);
-  LeftBack(5,12,4,speed,servo_delay);
+  LeftFront(12,5,5,speed,servo_delay);
+  RightMid(6.6,6.6,5,speed,servo_delay);
+  LeftBack(5,12,5,speed,servo_delay);
 
-  LeftFront(8,5,4,speed,servo_delay);
-  RightMid(9.4,9.4,4,speed,servo_delay);
-  LeftBack(5,8,4,speed,servo_delay);
+  LeftFront(8,5,5,speed,servo_delay);
+  RightMid(9.4,9.4,5,speed,servo_delay);
+  LeftBack(5,8,5,speed,servo_delay);
 
   RightFront(10,5,6,speed,servo_delay);
   LeftMid(8,8,6,speed,servo_delay);
@@ -1238,13 +1238,13 @@ void crabwalk_right_test(){
 
   delay(5);
 
-  RightFront(8,5,4,speed,servo_delay);
-  LeftMid(9.4,9.4,4,speed,servo_delay);
-  RightBack(5,8,4,speed,servo_delay);
+  RightFront(8,5,5,speed,servo_delay);
+  LeftMid(9.4,9.4,5,speed,servo_delay);
+  RightBack(5,8,5,speed,servo_delay);
   
-  RightFront(12,5,4,speed,servo_delay);
-  LeftMid(6.6,6.6,4,speed,servo_delay);
-  RightBack(5,12,4,speed,servo_delay);
+  RightFront(12,5,5,speed,servo_delay);
+  LeftMid(6.6,6.6,5,speed,servo_delay);
+  RightBack(5,12,5,speed,servo_delay);
 
   LeftFront(10,5,6,speed,servo_delay);
   RightMid(8,8,6,speed,servo_delay);
@@ -1383,18 +1383,18 @@ void pre_ladder(){
 void pre_ladder_test(int roll_value){
   double z_tangga=5;
   if(roll_value<=-3 && roll_value>-7){
-    z_tangga=5.75;
+    z_tangga=5.5;
   }else if(roll_value<=-7 && roll_value>-10){
-    z_tangga=6.25;
+    z_tangga=6.00;
   }
   else if(roll_value<=-10 && roll_value>-13){
-    z_tangga=6.55;
+    z_tangga=6.25;
   }
   else if(roll_value<=-13 && roll_value>-16){
-    z_tangga=6.7;
+    z_tangga=6.45;
   }
   else if(roll_value<=-16 && roll_value>-21){
-    z_tangga=6.8;
+    z_tangga=6.6;
   }
   speed = 325;
   LeftFront(4.55,14.3,4.5,speed,servo_delay);

@@ -46,7 +46,7 @@ void loop(){
     
 //    transisi_r5_r6();
 //  dummy_detection();
-//  while(true){
+//  while(true);
 //
 //    //  delay(3000);
 ////  servo_movement("buka", 1);
@@ -58,7 +58,7 @@ void loop(){
 //  }
   unsigned long timer=millis();
   int start_state=digitalRead(11);
-  while(false){
+  while(true){
     Serial.println(start_state);
     
     if(digitalRead(11)!=start_state){
