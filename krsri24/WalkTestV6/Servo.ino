@@ -38,13 +38,14 @@ void servo_movement(String name, int state){
   }
   else if(name == "angkat"){
     if(state==0){
-      servoAngkat.write(20);
+      //servoAngkat.write(20);
+      servoAngkat.write(0);
     }
     else if(state==1){
-      servoAngkat.write(110);
+      servoAngkat.write(90);
     }
     else if(state==2){
-      servoAngkat.write(125);
+      servoAngkat.write(120);
     }
     else if(state==3){
       servoAngkat.write(95);

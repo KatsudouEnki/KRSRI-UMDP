@@ -36,8 +36,7 @@ void loop(){
 //  servo_movement("putar", 2);
 //  delay(2000);
 //  servo_movement("putar", 3);
-//  delay(2000);
-  servo_movement("buka", 0);
+//  delay(2000);  servo_movement("buka", 0);
 //  delay(2000);
   servo_movement("putar", 0);
 //  delay(2000);
@@ -128,9 +127,8 @@ void loop(){
 
   
   while(true){
-//    compass();
-    obstacle_tangga();
-//    pre_ladder_test(roll);
+    compass();
+    pre_ladder_test(roll);
   }
   
   digitalWrite(7, LOW);

@@ -221,13 +221,13 @@ void safe_zone1(){
       turn_left_fast();
     }
     else{
-      if((front_dis<20 && front_dis>0)){
+      if((front_dis<17 && front_dis>0)){
         reverse_fast();
       }
-      else if((right_dis<27 && right_dis>0)){
+      else if((right_dis<12 && right_dis>0)){
         crabwalk_left();
       }
-      else if((right_dis>32 || right_dis ==0)){
+      else if((right_dis>17 || right_dis ==0)){
         crabwalk_right();
       }
       else{
@@ -237,7 +237,7 @@ void safe_zone1(){
     }
     compass();
     distance_detection();
-    if((front_dis<=30 && front_dis>=20) && (right_dis>=27 && right_dis<=32)&& (azimuth<=40 && azimuth >=20)){
+    if((front_dis<=28 && front_dis>=18) && (right_dis>=12 && right_dis<=17)&& (azimuth<=40 && azimuth >=20)){
       state=1;
       default_state();
     } 
@@ -249,7 +249,7 @@ void safe_zone1(){
   
   servo_movement("putar", 1);
   delay(500);
-  servo_movement("angkat", 1);
+  servo_movement("angkat", 2);
   delay(500);
   servo_movement("buka", 1);
   delay(500);
