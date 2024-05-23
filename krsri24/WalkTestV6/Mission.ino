@@ -251,7 +251,7 @@ void safe_zone1(){
   delay(500);
   servo_movement("angkat", 2);
   delay(500);
-  servo_movement("buka", 1);
+  servo_movement("buka", 3);
   delay(500);
   servo_movement("angkat", 0);
   delay(250);
@@ -553,14 +553,15 @@ void obstacle_tangga(){
     distance_detection();
     digitalWrite(7, !digitalRead(7));
 
-    if(azimuth<210 && azimuth>=45){
+    if(azimuth<208 && azimuth>=45){
       ladder_right();
-    }else if(azimuth>216|| azimuth<45){
+    }else if(azimuth>212|| azimuth<45){
       ladder_left();
     }else if(roll>-16 && counter>=15){
       state=3;
     }else{
-     ladder();
+    //  ladder();
+    pre_ladder_test(roll);
      counter++;
     }
 

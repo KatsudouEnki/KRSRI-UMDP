@@ -1393,10 +1393,10 @@ void pre_ladder_test(int roll_value){
   else if(roll_value<=-13 && roll_value>-16){
     z_tangga=6.3;
   }
-  else if(roll_value<=-16 && roll_value>-21){
-    z_tangga=6.75;
+  else if(roll_value<=-16 && roll_value>-19){
+    z_tangga=5.75;
   }
-  else if(roll_value<=-21 && roll_value>-35){
+  else if(roll_value<=-19 && roll_value>-35){
     z_tangga=5.35;
   }
   speed = 650;
@@ -1420,47 +1420,47 @@ void pre_ladder_test(int roll_value){
   speed = 650;
   LeftFront(2.8,8.8,0,speed,servo_delay);
   RightBack(14.3,4.55,1.5,speed,servo_delay);
-  delay(60);
+  delay(140);
   LeftFront(3.15,9.9,-0.2,speed,servo_delay);
-  delay(20);
+  delay(18);
   LeftFront(3.5,11,-0.4,speed,servo_delay);
   RightBack(11,3.5,1.5,speed,servo_delay);
-  delay(20);
+  delay(18);
   LeftFront(3.85,12.1,-0.6,speed,servo_delay);
-  delay(20);
+  delay(18);
   LeftFront(4.2,13.2,-0.8,speed,servo_delay);
   RightBack(8.8,2.8,1.5,speed,servo_delay);
-  delay(20);
+  delay(18);
   LeftFront(4.55,14.3,-1,speed,servo_delay);
-  delay(20);
+  delay(18);
   LeftFront(4.9,15.4,0,speed,servo_delay);
   RightBack(8.8,2.8,2.5,speed,servo_delay);
-  delay(30);
+  delay(18);
   LeftFront(4.55,14.3,4.5,speed,servo_delay);
   RightBack(8.8,2.8,4.5,speed,servo_delay);
-  delay(50);
+  delay(100);
   
   RightFront(2.8,8.8,0,speed,servo_delay);
   LeftBack(14.3,4.55,1.5,speed,servo_delay);
-  delay(60);
+  delay(140);
   RightFront(3.15,9.9,-0.1,speed,servo_delay);
-  delay(20);
+  delay(18);
   RightFront(3.5,11,-0.3,speed,servo_delay);
   LeftBack(11,3.5,1.5,speed,servo_delay);
-  delay(20);
+  delay(18);
   RightFront(3.85,12.1,-0.5,speed,servo_delay);
-  delay(20);
+  delay(18);
   RightFront(4.2,13.2,-0.7,speed,servo_delay);
   LeftBack(8.8,2.8,1.5,speed,servo_delay);
-  delay(20);
+  delay(18);
   RightFront(4.55,14.3,-0.9,speed,servo_delay);
-  delay(20);
+  delay(18);
   RightFront(4.9,15.4,0.1,speed,servo_delay);
   LeftBack(8.8,2.8,2.5,speed,servo_delay);
-  delay(30);
+  delay(18);
   RightFront(4.55,14.3,4.5,speed,servo_delay);
   LeftBack(8.8,2.8,4.5,speed,servo_delay);
-  delay(50);
+  delay(100);
   
   LeftMid(10,6,z_tangga-3,speed/2,servo_delay);
   RightMid(10,6,z_tangga-3,speed/2,servo_delay);
@@ -1734,66 +1734,66 @@ void ladder_left(){
 }
 
 void post_ladder(){
-  speed = 325;
+  speed = 650;
   LeftFront(3.85,12.1,8.25,speed,servo_delay);
   RightFront(3.85,12.1,8.25,speed,servo_delay);
-  LeftMid(6,10,5.5,speed,servo_delay);
-  RightMid(6,10,5.5,speed,servo_delay);
+  LeftMid(6,10,5.5,speed/2,servo_delay);
+  RightMid(6,10,5.5,speed/2,servo_delay);
   LeftBack(8.8,2.8,7.5,speed,servo_delay);
   RightBack(8.8,2.8,7.5,speed,servo_delay);
-  delay(50);
+  // delay(50);
   
-  speed = 200;
-  LeftFront(2.1,6.6,8.25,speed/2,servo_delay);
-  RightFront(2.1,6.6,8.25,speed/2,servo_delay);
+  speed = 250;
+  LeftFront(2.1,6.6,8.25,speed,servo_delay);
+  RightFront(2.1,6.6,8.25,speed,servo_delay);
   LeftMid(10,6,5.5,speed/2,servo_delay);
   RightMid(10,6,5.5,speed/2,servo_delay);
   LeftBack(14.3,4.55,7.5,speed,servo_delay);
   RightBack(14.3,4.55,7.5,speed,servo_delay);
-  delay(450);
+  delay(350);
   
-  speed = 325;
+  speed = 650;
   LeftFront(2.1,6.6,5.75,speed,servo_delay);
   RightBack(14.3,4.55,5,speed,servo_delay);
-  delay(30);
+  delay(90);
   LeftFront(2.45,7.7,5.75,speed,servo_delay);
-  delay(30);
+  delay(18);
   LeftFront(2.8,8.8,5.75,speed,servo_delay);
-  delay(30);
+  delay(18);
   LeftFront(3.15,9.9,5.75,speed,servo_delay);
   RightBack(11,3.5,5,speed,servo_delay);
-  delay(30);
+  delay(18);
   LeftFront(3.5,11,5.75,speed,servo_delay);
-  delay(30);
+  delay(18);
   LeftFront(3.85,12.1,5.75,speed,servo_delay);
-  delay(30);
+  delay(18);
   LeftFront(4.2,13.2,5.75,speed,servo_delay);
   RightBack(8.8,2.8,5,speed,servo_delay);
-  delay(80);
+  delay(18);
   LeftFront(3.85,12.1,8.25,speed,servo_delay);
   RightBack(8.8,2.8,7.5,speed,servo_delay);
-  delay(120);
+  delay(100);
   
   RightFront(2.1,6.6,5.75,speed,servo_delay);
   LeftBack(14.3,4.55,5,speed,servo_delay);
-  delay(30);
+  delay(90);
   RightFront(2.45,7.7,5.75,speed,servo_delay);
-  delay(30);
+  delay(18);
   RightFront(2.8,8.8,5.75,speed,servo_delay);
-  delay(30);
+  delay(18);
   RightFront(3.15,9.9,5.75,speed,servo_delay);
   LeftBack(11,3.5,5,speed,servo_delay);
-  delay(30);
+  delay(18);
   RightFront(3.5,11,5.75,speed,servo_delay);
-  delay(30);
+  delay(18);
   RightFront(3.85,12.1,5.75,speed,servo_delay);
-  delay(30);
+  delay(18);
   RightFront(4.2,13.2,5.75,speed,servo_delay);
   LeftBack(8.8,2.8,5,speed,servo_delay);
-  delay(80);
+  delay(18);
   RightFront(3.85,12.1,8.25,speed,servo_delay);
   LeftBack(8.8,2.8,7.5,speed,servo_delay);
-  delay(120);
+  delay(100);
   
   LeftMid(10,6,3.5,speed,servo_delay);
   RightMid(10,6,3.5,speed,servo_delay);
@@ -1803,5 +1803,5 @@ void post_ladder(){
   delay(50);
   LeftMid(6,10,5.5,speed,servo_delay);
   RightMid(6,10,5.5,speed,servo_delay);
-  delay(25);
+  // delay(25);
 }

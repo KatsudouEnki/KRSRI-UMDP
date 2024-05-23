@@ -128,7 +128,8 @@ void loop(){
   
   while(true){
     compass();
-    pre_ladder_test(roll);
+    // pre_ladder_test(roll);
+    post_ladder();
   }
   
   digitalWrite(7, LOW);
