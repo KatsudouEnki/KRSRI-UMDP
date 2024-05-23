@@ -221,13 +221,13 @@ void safe_zone1(){
       turn_left_fast();
     }
     else{
-      if((front_dis<17 && front_dis>0)){
+      if((front_dis<=20 && front_dis>0)){
         reverse_fast();
       }
-      else if((right_dis<12 && right_dis>0)){
+      else if((right_dis<11 && right_dis>0)){
         crabwalk_left();
       }
-      else if((right_dis>17 || right_dis ==0)){
+      else if((right_dis>16 || right_dis ==0)){
         crabwalk_right();
       }
       else{
@@ -237,7 +237,7 @@ void safe_zone1(){
     }
     compass();
     distance_detection();
-    if((front_dis<=28 && front_dis>=18) && (right_dis>=12 && right_dis<=17)&& (azimuth<=40 && azimuth >=20)){
+    if((front_dis<=30 && front_dis>20) && (right_dis>=11 && right_dis<=16)&& (azimuth<=40 && azimuth >=20)){
       state=1;
       default_state();
     } 
@@ -278,26 +278,22 @@ void obstacle_kelereng(){
       turn_left_obstacle();
     }
     else{//240
-      state=1;
+      compass();
+      distance_detection();
+      data_display();
+      if(back_dis<=30 && back_dis>0){
+        walk_fast_balls();
+      }
+      else if(right_dis>10 || right_dis==0){
+        crabwalk_right();
+      }
+      else{
+        state=1;
+      }
+     
     }
   }
   /////////////////////////problem when robot sidewalking because the marble making robot slip and rotates ////solved?
-  int prep=0;
-  while(prep==0){
-    compass();
-    distance_detection();
-    data_display();
-    if(right_dis>10 || right_dis==0){
-      crabwalk_right();
-    }
-    else if(back_dis<=30 && back_dis>0){
-      walk_fast_balls();
-    }
-    else{
-      prep=1;
-    }
-  }
-
   
   state=0;
   
@@ -332,6 +328,97 @@ void obstacle_kelereng(){
   }
 
   
+}
+
+void obstacle_kelereng_w_korban(){
+  
+  int state=0;
+  speed=400;
+  while(state==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(azimuth<=200 && azimuth>=30){
+      turn_right_obstacle();
+    }
+    else if(azimuth<30 || azimuth>220){
+      turn_left_obstacle();
+    }
+    else{//240
+      state=1;
+    }
+  }
+  /////////////////////////problem when robot sidewalking because the marble making robot slip and rotates ////solved?
+  int prep=0;
+  while(prep==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(left_dis<=40 && left_dis>0){
+      crabwalk_right_obstacle();
+    }
+    else if(back_dis>10 || back_dis==0){
+      reverse_fast_obstacle();
+    }
+    else{
+      prep=1;
+    }
+  }
+  servo_movement("buka", 1);
+  delay(200);
+  servo_movement("angkat", 2);
+  dummy_detection();
+  servo_movement("angkat", 0);
+  servo_movement("putar", 0);
+  servo_movement("buka", 2);
+
+  
+  state=0;
+  speed=500;
+  while(state==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(azimuth<=250 && azimuth>=120){
+      turn_right_fast();
+    }
+    else if(azimuth<290 && azimuth > 250){
+      turn_right_slow();
+    }
+    else if(azimuth>310 && azimuth<=350){
+      turn_left_slow();
+    }
+    else if(azimuth<130 || azimuth>350){
+      turn_left_fast();
+    }
+    else{//240
+      walk_fast_obstacle();
+    }
+
+
+    compass();
+    distance_detection();
+    data_display();
+    if((back_dis>75 || back_dis==0)&& (left_dis>50 || left_dis==0)){
+//    if(front_dis<23 && front_dis>0){
+      state=1;
+    }
+  }
+
+  
+}
+
+void safe_zone2(){
+  servo_movement("putar", 2);
+  delay(500);
+  servo_movement("angkat", 2);
+  delay(500);
+  servo_movement("buka", 3);
+  delay(500);
+  servo_movement("angkat", 0);
+  delay(250);
+  servo_movement("buka", 0);
+  servo_movement("putar", 0);
 }
 
 void transisi_r5_r6(){

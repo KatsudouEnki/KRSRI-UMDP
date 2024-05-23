@@ -23,6 +23,7 @@
 22. ladder_right()
 23. ladder_left()
 24. post_ladder()
+reverse_fast_obstacle()
 */
 
 void loop(){
@@ -83,7 +84,9 @@ void loop(){
       digitalWrite(7,!digitalRead(7));
       safe_zone1();
       digitalWrite(7,!digitalRead(7));
-      obstacle_kelereng();
+      obstacle_kelereng_w_korban();
+      digitalWrite(7,!digitalRead(7));
+      safe_zone2();
       digitalWrite(7,!digitalRead(7));
       transisi_r5_r6();
       digitalWrite(7,!digitalRead(7));

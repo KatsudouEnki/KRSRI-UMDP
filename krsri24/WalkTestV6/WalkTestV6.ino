@@ -461,6 +461,56 @@ void reverse_fast(){
   // delay(30);
 }
 
+void reverse_fast_obstacle(){
+  //1
+  RightFront(10,5,5.5,speed,servo_delay);
+  LeftMid(10,5,5.5,speed,servo_delay);
+  RightBack(10,5,5.5,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(5,10,3.5,speed,servo_delay);
+  RightMid(5,10,3.5,speed,servo_delay);
+  LeftBack(5,10,3.5,speed,servo_delay);
+
+  // delay(25);
+
+  //2
+  LeftFront(10,5,3.5,speed,servo_delay);
+  RightMid(10,5,3.5,speed,servo_delay);
+  LeftBack(10,5,3.5,speed,servo_delay);
+
+  RightFront(5,10,5.5,speed,servo_delay);
+  LeftMid(5,10,5.5,speed,servo_delay);
+  RightBack(5,10,5.5,speed,servo_delay);
+  
+  // delay(30);
+
+  //3
+  LeftFront(10,5,5.5,speed,servo_delay);
+  RightMid(10,5,5.5,speed,servo_delay);
+  LeftBack(10,5,5.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(5,10,3.5,speed,servo_delay);
+  LeftMid(5,10,3.5,speed,servo_delay);
+  RightBack(5,10,3.5,speed,servo_delay);
+  
+  // delay(25);
+
+  //4
+  LeftFront(5,10,5.5,speed,servo_delay);
+  RightMid(5,10,5.5,speed,servo_delay);
+  LeftBack(5,10,5.5,speed,servo_delay);
+
+  RightFront(10,5,3.5,speed,servo_delay);
+  LeftMid(10,5,3.5,speed,servo_delay);
+  RightBack(10,5,3.5,speed,servo_delay);
+  
+  // delay(30);
+}
+
 void turn_left_slow(){
   //1
   RightFront(7.25,8.75,4.5,speed,servo_delay);

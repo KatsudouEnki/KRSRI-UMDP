@@ -6,6 +6,7 @@ void servo_movement(String name, int state){
        *  0 = tutup
        *  1 = buka
        *  2 = grip korban
+       *  3 = release
    * angkat
      *  state
        *  0 = angkat
@@ -70,7 +71,7 @@ void servo_movement(String name, int state){
       myservo.write(posisi_awal+30);
     }
     else if(state==2){
-      myservo.write(posisi_awal+60);
+      myservo.write(posisi_awal+45);
     }
     else if(state==3){
       myservo.write(posisi_awal-30);
