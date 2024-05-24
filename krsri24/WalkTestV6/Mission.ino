@@ -42,7 +42,7 @@ void home(){
       turn_left_fast();
     }
     else{//310
-      crabwalk_right_test();
+      crabwalk_right_test0();
     }
     
     compass();
@@ -340,36 +340,39 @@ void obstacle_kelereng_w_korban(){
     compass();
     distance_detection();
     data_display();
-    if(azimuth<=200 && azimuth>=30){
+    if(azimuth<203 && azimuth>=30){
       turn_right_obstacle();
     }
-    else if(azimuth<30 || azimuth>220){
+    else if(azimuth<30 || azimuth>217){
       turn_left_obstacle();
     }
     else{//240
       compass();
       distance_detection();
       data_display();
-      if(left_dis<=40 && left_dis>0){
-        crabwalk_right_obstacle();
-      }
-      else if(back_dis>10 || back_dis==0){
+      if(back_dis>17 || back_dis==0){
         reverse_fast_obstacle();
+      }
+      else if(left_dis<=44 && left_dis>0){
+        crabwalk_right_test();
       }
       else{
         state=1;
       }
     }
+    delay(100);
   }
   /////////////////////////problem when robot sidewalking because the marble making robot slip and rotates ////solved?
 //  int prep=0;
 //  while(prep==0){
 //    
 //  }
+//  compass();
+  default_state();
   servo_movement("buka", 1);
   delay(200);
-  servo_movement("angkat", 2);
-  dummy_detection();
+  servo_movement("angkat", 5);
+  dummy_detection2();
   servo_movement("angkat", 0);
   servo_movement("putar", 0);
   servo_movement("buka", 2);
@@ -627,7 +630,7 @@ void obstacle_tangga(){
   while(state==1){
     compass();
     distance_detection();
-    if(roll < -18){
+    if(roll < -22){
       state=2;
     }
     else{
@@ -635,22 +638,26 @@ void obstacle_tangga(){
     }
   }
   
-  while(state==2){
+  while(state==2){//sdh di tangga
+    int var_heading=222, heading_offset=4;
     int counter = 0;
     compass();
     distance_detection();
     digitalWrite(7, !digitalRead(7));
 
-    if(azimuth<208 && azimuth>=45){
+    if(azimuth<var_heading-heading_offset && azimuth>=45){
       ladder_right();
-    }else if(azimuth>212|| azimuth<45){
+    }
+    else if(azimuth> var_heading+heading_offset || azimuth<45){
       ladder_left();
-    }else if(roll>-16 && counter>=15){
+    }
+    else if(roll>-16 && counter>=15){
       state=3;
-    }else{
+    }
+    else{
     //  ladder();
-    pre_ladder_test(roll);
-     counter++;
+      pre_ladder_test(roll);
+      counter++;
     }
 
 //     compass();

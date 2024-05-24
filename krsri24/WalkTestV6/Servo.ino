@@ -12,7 +12,7 @@ void servo_movement(String name, int state){
        *  0 = angkat
        *  1 = turun (scan)
        *  2 = turun (ambil)
-       *  3 = setengah angkat
+       *  3 = angkat sedikit setelah ambil
        *  4 = Tangga
    * putar
      *  state
@@ -57,6 +57,12 @@ void servo_movement(String name, int state){
     else if(state==4){
       servoAngkat.write(50);
     }
+    else if(state==5){
+      servoAngkat.write(110);
+    }
+    else if(state==6){
+      servoAngkat.write(85);
+    }
     else{
       int val=servoAngkat.read();
       servoAngkat.write(val);
@@ -71,7 +77,7 @@ void servo_movement(String name, int state){
       myservo.write(posisi_awal+30);
     }
     else if(state==2){
-      myservo.write(posisi_awal+45);
+      myservo.write(posisi_awal+40);
     }
     else if(state==3){
       myservo.write(posisi_awal-30);

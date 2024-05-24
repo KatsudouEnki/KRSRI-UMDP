@@ -101,7 +101,7 @@ void loop(){
       unsigned long now=millis();
       compass();
       default_state();
-//      servoAngkat.write(90);
+      
       
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
@@ -130,9 +130,17 @@ void loop(){
 
   
   while(true){
+//    servo_movement("angkat",3);
+    
     compass();
-    // pre_ladder_test(roll);
-    post_ladder();
+    pre_ladder_test(roll);
+//    post_ladder();
+//    obstacle_batu1();
+//    safe_zone1();
+//    
+//    obstacle_kelereng_w_korban();
+//    
+//    while(true){compass;};
   }
   
   digitalWrite(7, LOW);
