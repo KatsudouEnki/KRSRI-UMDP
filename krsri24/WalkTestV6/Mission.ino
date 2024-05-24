@@ -353,7 +353,7 @@ void obstacle_kelereng_w_korban(){
       if(back_dis>17 || back_dis==0){
         reverse_fast_obstacle();
       }
-      else if(left_dis<=44 && left_dis>0){
+      else if(left_dis<=40 && left_dis>0){
         crabwalk_right_test();
       }
       else{
@@ -413,9 +413,31 @@ void obstacle_kelereng_w_korban(){
 }
 
 void safe_zone2(){
+  int state=0;
+  speed=500;
+  while(state==0){
+    compass();
+    distance_detection();
+    data_display();
+    if(azimuth<=250 && azimuth>=120){
+      turn_right_fast();
+    }
+    else if(azimuth<290 && azimuth > 250){
+      turn_right_slow();
+    }
+    else if(azimuth>310 && azimuth<=350){
+      turn_left_slow();
+    }
+    else if(azimuth<130 || azimuth>350){
+      turn_left_fast();
+    }
+    else{//240
+      state=1;
+    }
+  }
   servo_movement("putar", 2);
   delay(500);
-  servo_movement("angkat", 2);
+  servo_movement("angkat", 3);
   delay(500);
   servo_movement("buka", 3);
   delay(500);
@@ -619,7 +641,7 @@ void obstacle_tangga(){
         
     compass();
     distance_detection();
-    if(left_dis>=35 &&(azimuth>=210 && azimuth<=216)){
+    if(left_dis>=33 &&(azimuth>=219 && azimuth<=225)){
       state=1;
       default_state();
     }
@@ -638,9 +660,11 @@ void obstacle_tangga(){
     }
   }
   
+  servo_movement("angkat",4);
+  
+  int counter = 0;
   while(state==2){//sdh di tangga
     int var_heading=222, heading_offset=4;
-    int counter = 0;
     compass();
     distance_detection();
     digitalWrite(7, !digitalRead(7));
@@ -651,7 +675,8 @@ void obstacle_tangga(){
     else if(azimuth> var_heading+heading_offset || azimuth<45){
       ladder_left();
     }
-    else if(roll>-16 && counter>=15){
+    else if(counter>=5){
+//    else if(roll>-16 && counter>=5){
       state=3;
     }
     else{
@@ -664,8 +689,19 @@ void obstacle_tangga(){
 //     distance_detection();
 //     digitalWrite(7, !digitalRead(7));
   }
-
+  
   while(state==3){
+    compass();
+    distance_detection();
+    if(roll>-16){
+      state=4;
+    }
+    else{
+      pre_ladder_test(roll);
+    }
+  }
+  
+  while(state==4){
     compass();
     distance_detection();
     digitalWrite(7, !digitalRead(7));

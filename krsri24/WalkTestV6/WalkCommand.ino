@@ -131,9 +131,9 @@ void loop(){
   
   while(true){
 //    servo_movement("angkat",3);
-    
-    compass();
-    pre_ladder_test(roll);
+    obstacle_tangga();
+//    compass();
+//    pre_ladder_test(roll);
 //    post_ladder();
 //    obstacle_batu1();
 //    safe_zone1();
