@@ -335,7 +335,7 @@ void obstacle_kelereng(){
 void obstacle_kelereng_w_korban(){
   
   int state=0;
-  speed=400;
+  speed=600;
   while(state==0){
     compass();
     distance_detection();
@@ -347,14 +347,21 @@ void obstacle_kelereng_w_korban(){
       turn_left_obstacle();
     }
     else{//240
+      speed=350;
       compass();
       distance_detection();
       data_display();
-      if(back_dis>17 || back_dis==0){
+      if(back_dis>13 || back_dis==0){
         reverse_fast_obstacle();
       }
-      else if(left_dis<=40 && left_dis>0){
+      else if(left_dis<=44 && left_dis>0){
         crabwalk_right_test();
+      }
+      else if(left_dis>=54 || left_dis==0){
+        crabwalk_left_obstacle();
+      }
+      else if(right_dis>8 && right_dis<30){
+        state=1;
       }
       else{
         state=1;
@@ -624,7 +631,7 @@ void obstacle_batu2(){
 }
 
 void obstacle_tangga(){
-  int state=0;
+  int state=0, counter=0;
   while(state==0){//130
     compass();
     distance_detection();
@@ -637,11 +644,12 @@ void obstacle_tangga(){
     }
     else{//330
       crabwalk_right_obstacle();
+      counter++;
     }
         
     compass();
     distance_detection();
-    if(left_dis>=33 &&(azimuth>=219 && azimuth<=225)){
+    if((left_dis>=33 &&(azimuth>=219 && azimuth<=225)) || counter>8){
       state=1;
       default_state();
     }
@@ -662,7 +670,7 @@ void obstacle_tangga(){
   
   servo_movement("angkat",4);
   
-  int counter = 0;
+  counter = 0;
   while(state==2){//sdh di tangga
     int var_heading=222, heading_offset=4;
     compass();
@@ -689,11 +697,11 @@ void obstacle_tangga(){
 //     distance_detection();
 //     digitalWrite(7, !digitalRead(7));
   }
-  
+  servo_movement("angkat",1);
   while(state==3){
     compass();
     distance_detection();
-    if(roll>-16){
+    if(roll>-23){
       state=4;
     }
     else{
@@ -706,7 +714,8 @@ void obstacle_tangga(){
     distance_detection();
     digitalWrite(7, !digitalRead(7));
   
-    post_ladder();
+//    post_ladder();
+    post_ladder_rev();
     if(roll>-2 && front_dis>0 && front_dis<25){
       default_state();
       state=4;

@@ -58,7 +58,7 @@ void loop(){
 //  }
   unsigned long timer=millis();
   int start_state=digitalRead(11);
-  while(true){
+  while(false){
     Serial.println(start_state);
     
     if(digitalRead(11)!=start_state){
@@ -131,15 +131,16 @@ void loop(){
   
   while(true){
 //    servo_movement("angkat",3);
-    obstacle_tangga();
+//    obstacle_tangga();
 //    compass();
-//    pre_ladder_test(roll);
+//    post_ladder_test(roll);
 //    post_ladder();
 //    obstacle_batu1();
 //    safe_zone1();
 //    
 //    obstacle_kelereng_w_korban();
-//    
+servo_movement("angkat",1);
+    post_ladder_rev();
 //    while(true){compass;};
   }
   

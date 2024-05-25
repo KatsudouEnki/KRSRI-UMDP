@@ -148,7 +148,7 @@ void dummy_detection2(){
   speed=200;
   int status_korban=0, rep=0;
   while(status_korban==0){
-    if (Serial2.available()) {
+      if (Serial2.available()) {
       if (buff_serial.length() > 16) {
         buff_serial = "";
       }
@@ -176,7 +176,7 @@ void dummy_detection2(){
           dtx = get_value(rx_in,',',1);
           // Serial.print("dx = "); Serial.println(dtx.toInt());
   
-          if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
+          if(dtx.toInt()>=-90 && dtx.toInt()<=50 && dstate.toInt()==1){
             servo_movement("buka",1);
             walk_to_victim();
 
@@ -202,47 +202,37 @@ void dummy_detection2(){
             myservo.write(pos);
             Serial.print("pos = "); Serial.println(pos);
           }
-          else if(dtx.toInt()<=-70 && dstate.toInt()==1){
+          else if(dtx.toInt()<=-90 && dstate.toInt()==1){
             servo_movement("buka",1);
             pos=pos-1;
             myservo.write(pos);
             } 
-          else if(dtx.toInt()>=70 && dstate.toInt()==1){
+          else if(dtx.toInt()>=50 && dstate.toInt()==1){
             servo_movement("buka",1);
             pos=pos+1;
             myservo.write(pos);
           }
           else{
-//            if(scan_state==0){
-//              pos=pos+1;
-//            }
-//            else{
-//              pos--;
-//            }
-//            
-////            servo_movement("buka", 0);
-//            if(pos>=120){
-//              scan_state=1;
-//              rep++;
-//              if(rep>5){
-//                status_korban=1;
-//              }
-//            }
-//            else if(pos<80){
-//              scan_state=0;
-//            }
             pos=pos-1;
             if(pos<=80){
-              pos=120;
+              
+              while(pos<=120){
+                pos=pos+10;
+                myservo.write(pos);
+                delay(10);
+              }
+              
+              
+              
               rep++;
               if(rep>3){
                 status_korban=1;
               }
             }
-            Serial.println(myservo.read());
             myservo.write(pos);
+            delay(10);
           }
-          delay(25);
+          delay(50);
           buff_serial = "";
         }
       }
