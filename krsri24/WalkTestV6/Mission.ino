@@ -347,7 +347,7 @@ void obstacle_kelereng_w_korban(){
       turn_left_obstacle();
     }
     else{//240
-      speed=350;
+      speed=325;
       compass();
       distance_detection();
       data_display();
@@ -360,12 +360,18 @@ void obstacle_kelereng_w_korban(){
       else if(left_dis>=54 || left_dis==0){
         crabwalk_left_obstacle();
       }
-      else if(right_dis>8 && right_dis<30){
+      else if((right_dis<35 && right_dis>0) || (left_dis>44 && left_dis<54)){
         state=1;
       }
       else{
-        state=1;
+        state=0;
       }
+
+//      compass();
+//      distance_detection();
+//      if(right_dis>8 && right_dis<30){
+//        state=1;
+//      }
     }
     delay(100);
   }
@@ -404,14 +410,19 @@ void obstacle_kelereng_w_korban(){
       turn_left_fast();
     }
     else{//240
-      walk_fast_obstacle();
+      if(right_dis>10 || right_dis==0){
+        crabwalk_right_obstacle();
+      }
+      else{
+        walk_fast_obstacle();
+      }
     }
 
 
     compass();
     distance_detection();
     data_display();
-    if((back_dis>75 || back_dis==0)&& (left_dis>50 || left_dis==0)){
+    if(((back_dis>75 || back_dis==0) && (left_dis>40 || left_dis==0)) || (front_dis<=10 && front_dis>0)){
 //    if(front_dis<23 && front_dis>0){
       state=1;
     }
@@ -443,13 +454,13 @@ void safe_zone2(){
     }
   }
   servo_movement("putar", 2);
-  delay(500);
+  delay(750);
   servo_movement("angkat", 3);
-  delay(500);
+  delay(750);
   servo_movement("buka", 3);
-  delay(500);
+  delay(750);
   servo_movement("angkat", 0);
-  delay(250);
+  delay(750);
   servo_movement("buka", 0);
   servo_movement("putar", 0);
 }
@@ -660,7 +671,7 @@ void obstacle_tangga(){
   while(state==1){
     compass();
     distance_detection();
-    if(roll < -22){
+    if(roll < -20){
       state=2;
     }
     else{
@@ -672,7 +683,7 @@ void obstacle_tangga(){
   
   counter = 0;
   while(state==2){//sdh di tangga
-    int var_heading=222, heading_offset=4;
+    int var_heading=224, heading_offset=4;
     compass();
     distance_detection();
     digitalWrite(7, !digitalRead(7));
@@ -683,7 +694,7 @@ void obstacle_tangga(){
     else if(azimuth> var_heading+heading_offset || azimuth<45){
       ladder_left();
     }
-    else if(counter>=5){
+    else if(counter>=12){
 //    else if(roll>-16 && counter>=5){
       state=3;
     }
@@ -692,21 +703,25 @@ void obstacle_tangga(){
       pre_ladder_test(roll);
       counter++;
     }
-
-//     compass();
-//     distance_detection();
-//     digitalWrite(7, !digitalRead(7));
   }
+  
   servo_movement("angkat",1);
+  counter=0;
   while(state==3){
     compass();
     distance_detection();
-    if(roll>-23){
+    if(roll>-18 && counter>7){
       state=4;
     }
     else{
       pre_ladder_test(roll);
+      if(counter>15){
+        compass();
+        ladder_stand(roll);
+      }
+      counter++;
     }
+    delay(200);
   }
   
   while(state==4){
@@ -715,11 +730,11 @@ void obstacle_tangga(){
     digitalWrite(7, !digitalRead(7));
   
 //    post_ladder();
-    post_ladder_rev();
-    if(roll>-2 && front_dis>0 && front_dis<25){
-      default_state();
-      state=4;
-    }
+    post_ladder_rev(roll);
+//    if(roll>-2 && front_dis>0 && front_dis<25){
+//      default_state();
+//      state=4;
+//    }
   }
     
 }

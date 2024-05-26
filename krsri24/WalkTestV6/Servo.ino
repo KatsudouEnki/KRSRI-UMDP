@@ -58,10 +58,10 @@ void servo_movement(String name, int state){
       servoAngkat.write(70);
     }
     else if(state==5){
-      servoAngkat.write(110);
+      servoAngkat.write(120);
     }
     else if(state==6){
-      servoAngkat.write(85);
+      servoAngkat.write(95);
     }
     else{
       int val=servoAngkat.read();

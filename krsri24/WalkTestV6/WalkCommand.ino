@@ -58,7 +58,7 @@ void loop(){
 //  }
   unsigned long timer=millis();
   int start_state=digitalRead(11);
-  while(false){
+  while(true){
     Serial.println(start_state);
     
     if(digitalRead(11)!=start_state){
@@ -131,7 +131,7 @@ void loop(){
   
   while(true){
 //    servo_movement("angkat",3);
-//    obstacle_tangga();
+    obstacle_tangga();
 //    compass();
 //    post_ladder_test(roll);
 //    post_ladder();
@@ -139,9 +139,20 @@ void loop(){
 //    safe_zone1();
 //    
 //    obstacle_kelereng_w_korban();
-servo_movement("angkat",1);
-    post_ladder_rev();
-//    while(true){compass;};
+//    int var_heading=222, heading_offset=6;
+//    compass();
+//    distance_detection();
+//    if(azimuth<var_heading-heading_offset && azimuth>=45){
+//      ladder_right();
+//    }
+//    else if(azimuth> var_heading+heading_offset || azimuth<45){
+//      ladder_left();
+//    }
+//    else {
+//      post_ladder_rev(roll);
+//    }
+//    post_ladder_rev(roll);
+    while(true){compass;};
   }
   
   digitalWrite(7, LOW);
