@@ -57,7 +57,7 @@ void dummy_detection(){
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>17 || dty.toInt()>325){
+            if(back_dis>17 || dty.toInt()>325 || (gripper_dis<=8 && gripper_dis>0)){
               servo_movement("angkat", 2);
               walk_to_victim();
 //              walk_to_victim();
@@ -177,15 +177,15 @@ void dummy_detection2(){
           // Serial.print("dx = "); Serial.println(dtx.toInt());
   
           if(dtx.toInt()>=-90 && dtx.toInt()<=50 && dstate.toInt()==1){
-            servo_movement("buka",1);
+            servo_movement("buka",4);
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>17 || dty.toInt()>350){
+            if(back_dis>16 || dty.toInt()>350){
               servo_movement("angkat", 5);
               walk_to_victim();
-//              walk_to_victim();
-//              walk_to_victim();
+              servo_movement("angkat", 7);
+              walk_to_victim();
               delay(200);
               servo_movement("buka", 2);
               delay(800);
@@ -203,29 +203,30 @@ void dummy_detection2(){
             Serial.print("pos = "); Serial.println(pos);
           }
           else if(dtx.toInt()<=-90 && dstate.toInt()==1){
-            servo_movement("buka",1);
+            servo_movement("buka",4);
             pos=pos-1;
             myservo.write(pos);
             } 
           else if(dtx.toInt()>=50 && dstate.toInt()==1){
-            servo_movement("buka",1);
+            servo_movement("buka",4);
             pos=pos+1;
             myservo.write(pos);
           }
           else{
             pos=pos-1;
             if(pos<=80){
-              
               while(pos<=120){
                 pos=pos+10;
                 myservo.write(pos);
-                delay(10);
+                delay(20);
               }
-              
-              
-              
               rep++;
-              if(rep>3){
+              if(rep>2){
+                reverse_fast_obstacle();
+                delay(100);
+                default_state();
+              }
+              if(rep>5){
                 status_korban=1;
               }
             }

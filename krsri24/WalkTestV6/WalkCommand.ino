@@ -46,7 +46,7 @@ void loop(){
     
 //    transisi_r5_r6();
 //  dummy_detection();
-//  while(true);
+//  while(false);
 //
 //    //  delay(3000);
 ////  servo_movement("buka", 1);
@@ -100,7 +100,9 @@ void loop(){
     else{
       unsigned long now=millis();
       compass();
-      default_state();
+//      default_state();
+//      servo_movement("angkat",2);
+//      ladder_stand(roll);
       
       
       if(now - timer>750){
@@ -108,20 +110,23 @@ void loop(){
        distance_detection();
       //  data_display();
 
-      //  display.clearDisplay();
-      //  display.setCursor(50,0);
-      //  display.print("F=");
-      //  display.print(front_dis);
-      //  display.setCursor(0,32);
-      //  display.print("L=");
-      //  display.print(left_dis);
-      //  display.setCursor(80,32);
-      //  display.print("R=");
-      //  display.print(right_dis);
-      //  display.setCursor(50,50);
-      //  display.print("B=");
-      //  display.print(back_dis);
-      //  display.display();
+//        display.clearDisplay();
+//        display.setCursor(50,0);
+//        display.print("F=");
+//        display.print(front_dis);
+//        display.setCursor(0,32);
+//        display.print("L=");
+//        display.print(left_dis);
+//        display.setCursor(90,32);
+//        display.print("R=");
+//        display.print(right_dis);
+//        display.setCursor(50,50);
+//        display.print("B=");
+//        display.print(back_dis);
+//        display.setCursor(40,32);
+//        display.print("G=");
+//        display.print(gripper_dis);
+//        display.display();
         delay(100);
         timer=now;
       }
@@ -130,29 +135,24 @@ void loop(){
 
   
   while(true){
-//    servo_movement("angkat",3);
-    obstacle_tangga();
-//    compass();
+    compass();
+    servo_movement("angkat",4);
 //    post_ladder_test(roll);
-//    post_ladder();
-//    obstacle_batu1();
-//    safe_zone1();
-//    
+    
 //    obstacle_kelereng_w_korban();
-//    int var_heading=222, heading_offset=6;
-//    compass();
-//    distance_detection();
-//    if(azimuth<var_heading-heading_offset && azimuth>=45){
-//      ladder_right();
-//    }
-//    else if(azimuth> var_heading+heading_offset || azimuth<45){
-//      ladder_left();
-//    }
-//    else {
-//      post_ladder_rev(roll);
-//    }
-//    post_ladder_rev(roll);
-    while(true){compass;};
+//    digitalWrite(7,!digitalRead(7));
+//    safe_zone2();
+//    digitalWrite(7,!digitalRead(7));
+//    transisi_r5_r6();
+//    digitalWrite(7,!digitalRead(7));
+//    obstacle_puing2();
+//    digitalWrite(7,!digitalRead(7));
+//    obstacle_batu2();
+//    digitalWrite(7,!digitalRead(7));
+//    obstacle_tangga();
+
+      pre_ladder_test(roll);
+//    while(true);
   }
   
   digitalWrite(7, LOW);

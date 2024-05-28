@@ -35,6 +35,9 @@ void servo_movement(String name, int state){
     else if(state==3){
       servoBuka.write(40);
     }
+    else if(state==4){
+      servoBuka.write(55);
+    }
     else{
       int val=servoBuka.read();
       servoBuka.write(val);
@@ -58,10 +61,13 @@ void servo_movement(String name, int state){
       servoAngkat.write(70);
     }
     else if(state==5){
-      servoAngkat.write(120);
+      servoAngkat.write(115);
     }
     else if(state==6){
-      servoAngkat.write(95);
+      servoAngkat.write(90);
+    }
+    else if(state==7){
+      servoAngkat.write(110);
     }
     else{
       int val=servoAngkat.read();
@@ -74,10 +80,10 @@ void servo_movement(String name, int state){
       myservo.write(posisi_awal);
     }
     else if(state==1){
-      myservo.write(posisi_awal+30);
+      myservo.write(posisi_awal+40);
     }
     else if(state==2){
-      myservo.write(posisi_awal+40);
+      myservo.write(posisi_awal+50);
     }
     else if(state==3){
       myservo.write(posisi_awal-30);
