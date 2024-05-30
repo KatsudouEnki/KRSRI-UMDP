@@ -225,6 +225,7 @@ void dummy_detection2(){
                 reverse_fast_obstacle();
                 delay(100);
                 default_state();
+                servo_movement("angkat", 5);
               }
               if(rep>5){
                 status_korban=1;

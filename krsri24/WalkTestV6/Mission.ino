@@ -767,8 +767,8 @@ void obstacle_tangga(){
     distance_detection();
     digitalWrite(7, !digitalRead(7));
   
-//    post_ladder();
-//    post_ladder_rev(roll);
+    post_ladder();
+    post_ladder_rev(roll);
     post_ladder_rev(roll);
     if(roll>7){
       default_state();
