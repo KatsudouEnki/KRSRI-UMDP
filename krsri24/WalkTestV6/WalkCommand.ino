@@ -107,7 +107,7 @@ void loop(){
       
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
-       distance_detection();
+        distance_detection();
       //  data_display();
 
 //        display.clearDisplay();

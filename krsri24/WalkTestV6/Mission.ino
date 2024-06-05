@@ -24,6 +24,7 @@ void preparation(){
 }
 
 void home(){
+  int set_point=300;
   int state=0;
   while(state==0){
     compass();
