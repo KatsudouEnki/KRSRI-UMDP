@@ -62,39 +62,39 @@ void loop(){
     Serial.println(start_state);
     
     if(digitalRead(11)!=start_state){
-      digitalWrite(7,LOW);
+      // digitalWrite(7,LOW);
       Serial.println("start");
-      home();
-      digitalWrite(7,LOW);
-      korban1();
-      servo_movement("buka", 1);
-      delay(200);
-      servo_movement("angkat", 2);
-      dummy_detection();
-      digitalWrite(7,!digitalRead(7));
-      speed=800;
-      servo_movement("angkat", 0);
-      servo_movement("putar", 0);
-      servo_movement("buka", 2);
-      obstacle_puing1();
-      digitalWrite(7,!digitalRead(7));
-      obstacle_miring();
-      digitalWrite(7,!digitalRead(7));
-      obstacle_batu1();
-      digitalWrite(7,!digitalRead(7));
-      safe_zone1();
-      digitalWrite(7,!digitalRead(7));
-      obstacle_kelereng_w_korban();
-      digitalWrite(7,!digitalRead(7));
-      safe_zone2();
-      digitalWrite(7,!digitalRead(7));
+      // home();
+      // digitalWrite(7,LOW);
+      // korban1();
+      // servo_movement("buka", 1);
+      // delay(200);
+      // servo_movement("angkat", 2);
+      // dummy_detection();
+      // digitalWrite(7,!digitalRead(7));
+      // speed=800;
+      // servo_movement("angkat", 0);
+      // servo_movement("putar", 0);
+      // servo_movement("buka", 2);
+      // obstacle_puing1();
+      // digitalWrite(7,!digitalRead(7));
+      // obstacle_miring();
+      // digitalWrite(7,!digitalRead(7));
+      // obstacle_batu1();
+      // digitalWrite(7,!digitalRead(7));
+      // safe_zone1();
+      // digitalWrite(7,!digitalRead(7));
+      // obstacle_kelereng_w_korban();
+      // digitalWrite(7,!digitalRead(7));
+      // safe_zone2();
+      // digitalWrite(7,!digitalRead(7));
       transisi_r5_r6();
-      digitalWrite(7,!digitalRead(7));
-      obstacle_puing2();
-      digitalWrite(7,!digitalRead(7));
-      obstacle_batu2();
-      digitalWrite(7,!digitalRead(7));
-      obstacle_tangga();
+      // digitalWrite(7,!digitalRead(7));
+      // obstacle_puing2();
+      // digitalWrite(7,!digitalRead(7));
+      // obstacle_batu2();
+      // digitalWrite(7,!digitalRead(7));
+      // obstacle_tangga();
       while(true);
     }
     else{
@@ -136,7 +136,8 @@ void loop(){
   
   while(true){
     compass();
-    servo_movement("angkat",4);
+    servo_movement("putar",0);
+    servo_movement("angkat",0);
 //    post_ladder_test(roll);
     
 //    obstacle_kelereng_w_korban();
@@ -150,8 +151,8 @@ void loop(){
 //    obstacle_batu2();
 //    digitalWrite(7,!digitalRead(7));
 //    obstacle_tangga();
-
-      pre_ladder_test(roll);
+      speed=500;
+      lunge();
 //    while(true);
   }
   
