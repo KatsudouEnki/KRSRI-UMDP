@@ -225,7 +225,7 @@ void safe_zone1(){
       if((front_dis<=20 && front_dis>0)){
         reverse_fast();
       }
-      else if((right_dis<8 && right_dis>0)){
+      else if((right_dis<7 && right_dis>0)){
         crabwalk_left();
       }
       else if((right_dis>11 || right_dis ==0)){
@@ -238,7 +238,7 @@ void safe_zone1(){
     }
     compass();
     distance_detection();
-    if((front_dis<=30 && front_dis>20) && (right_dis>=8 && right_dis<=11)&& (azimuth<=40 && azimuth >=20)){
+    if((front_dis<=30 && front_dis>20) && (right_dis>=7 && right_dis<=11)&& (azimuth<=40 && azimuth >=20)){
       state=1;
       default_state();
     } 
@@ -267,16 +267,16 @@ void obstacle_kelereng(){
     distance_detection();
     data_display();
     if(azimuth<=250 && azimuth>=120){
-      turn_right_obstacle();
+      turn_right_obstacle_fast();
     }
     else if(azimuth<290 && azimuth > 250){
-      turn_right_slow();
+      turn_right_obstacle();
     }
     else if(azimuth>310 && azimuth<=350){
-      turn_left_slow();
+      turn_left_obstacle();
     }
     else if(azimuth<120 || azimuth>350){
-      turn_left_obstacle();
+      turn_left_obstacle_fast();
     }
     else{//240
       state=1;
@@ -341,11 +341,18 @@ void obstacle_kelereng_w_korban(){
     compass();
     distance_detection();
     data_display();
-    if(azimuth<218 && azimuth>=30){
+
+    if(azimuth<=180 && azimuth>=45){
+      turn_right_obstacle_fast();
+    }
+    if(azimuth<218 && azimuth>=180){
       turn_right_obstacle();
     }
     else if(azimuth<30 || azimuth>232){
       turn_left_obstacle();
+    }
+    else if(azimuth<45 || azimuth>270){
+      turn_left_obstacle_fast();
     }
     else{//240
       speed=325;
@@ -400,16 +407,16 @@ void obstacle_kelereng_w_korban(){
     distance_detection();
     data_display();
     if(azimuth<=250 && azimuth>=120){
-      turn_right_fast();
+      turn_right_obstacle_fast();
     }
     else if(azimuth<290 && azimuth > 250){
-      turn_right_slow();
+      turn_right_obstacle();
     }
     else if(azimuth>310 && azimuth<=350){
-      turn_left_slow();
+      turn_left_obstacle();
     }
     else if(azimuth<130 || azimuth>350){
-      turn_left_fast();
+      turn_left_obstacle_fast();
     }
     else{//240
       if(right_dis<14){
@@ -563,19 +570,19 @@ void transisi_r5_r6(){
     if(azimuth<=245 && azimuth>120){
       turn_right_fast();
     }
-    else if(azimuth<275 && azimuth > 245){
+    else if(azimuth<285 && azimuth > 245){
       turn_right_slow();
     }
-    else if(azimuth>315 && azimuth<=345){
+    else if(azimuth>315 && azimuth<=355){
       turn_left_slow();
     }
-    else if(azimuth>345 || azimuth<130){
+    else if(azimuth>355 || azimuth<130){
       turn_left_fast();
     }
     else{//180
 //      if(left_dis>10 || left_dis==0){
 //      if((left_dis<10 && left_dis>0) && ((back_dis<=25 &&back_dis>0) || (front_dis<=15 && front_dis>0))){
-      if(back_dis<20 && back_dis>0){
+      if(back_dis<10 && back_dis>0){
         state=1;
       }
       else{
