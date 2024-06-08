@@ -40,14 +40,6 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define SONAR_NUM 5      // Number of sensors.
 #define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
 
-NewPing sonar[SONAR_NUM] = {   // Sensor object array.
-  NewPing(42, 42, MAX_DISTANCE),  // Depan
-  NewPing(34, 34, MAX_DISTANCE),  // Belakang
-  NewPing(32, 32, MAX_DISTANCE),  // Kiri
-  NewPing(36, 36, MAX_DISTANCE),   // Kanan
-  NewPing(38, 38, MAX_DISTANCE)
-};
- 
 int left_dis,
     right_dis,
     front_dis,
