@@ -1,4 +1,4 @@
-  void default_state1(){
+void default_state1(){
   LeftFront(8,8,4.5,speed,servo_delay);
   LeftMid(8,8,4.5,speed,servo_delay);
   LeftBack(8,8,4.5,speed,servo_delay);

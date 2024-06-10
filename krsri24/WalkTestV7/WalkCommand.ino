@@ -132,12 +132,14 @@ void loop(){
       }
     }
   }
-
-  
+obstacle_kelereng_w_korban();
+  safe_zone2();
+  digitalWrite(7,!digitalRead(7));
+  transisi_r5_r6();
   while(true){
-    compass();
-    servo_movement("putar",0);
-    servo_movement("angkat",0);
+//    compass();
+//    servo_movement("putar",0);
+//    servo_movement("angkat",0);
 //    post_ladder_test(roll);
     
 //    obstacle_kelereng_w_korban();
@@ -151,8 +153,8 @@ void loop(){
 //    obstacle_batu2();
 //    digitalWrite(7,!digitalRead(7));
 //    obstacle_tangga();
-      speed=900;
-      walk_fast_obstacle();
+//      speed=900;
+//      walk_fast_obstacle();
 
 //    while(true);
   }

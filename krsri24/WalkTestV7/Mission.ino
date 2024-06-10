@@ -24,71 +24,140 @@ void preparation(){
 }
 
 void home(){
-  int set_point=300, offset=5;
-  int state=0;
-  while(state==0){
-    compass();
-    distance_detection();
-    data_display();
-    if(azimuth<=set_point-40 && azimuth>=set_point-180){
-      turn_right_fast();
-    }
-    else if(azimuth<set_point-offset && azimuth > set_point-40){
-      turn_right_slow();
-    }
-    else if(azimuth>set_point+offset && azimuth<=set_point+40){
-      turn_left_slow();
-    }
-    else if(azimuth<set_point-180 || azimuth>set_point+40){
-      turn_left_fast();
-    }
-    else{
-      crabwalk_right_test0();
+  if(MIRROR_SIDE == 0){
+    int set_point=300, offset=5;
+    int state=0;
+    while(state==0){
       compass();
       distance_detection();
       data_display();
-  
-      if(left_dis>50 || left_dis==0){
-        state=1;
-        default_state();
+      if(azimuth<=set_point-40 && azimuth>=set_point-180){// 260-120
+        turn_right_fast();
+      }
+      else if(azimuth<set_point-offset && azimuth > set_point-40){// 295-260
+        turn_right_slow();
+      }
+      else if(azimuth>set_point+offset && azimuth<=set_point+40){//305-340
+        turn_left_slow();
+      }
+      else if(azimuth<set_point-180 || azimuth>set_point+40){//120 ++ 340
+        turn_left_fast();
+      }
+      else{
+        crabwalk_right_test0();
+        compass();
+        distance_detection();
+        data_display();
+    
+        if(left_dis>50 || left_dis==0){
+          state=1;
+          default_state();
+        }
       }
     }
   }
-  
-}
-
-void korban1(){
-  speed=200;
-  int set_point=300, offset=4;
-  int state=0;
-  while(state==0){
-    compass();
-    distance_detection();
-    data_display();
-    if(azimuth<=set_point-50 && azimuth>=set_point-180){
-      turn_right_fast();
-    }
-    else if(azimuth<set_point-offset && azimuth > set_point-50){
-      turn_right_slow();
-    }
-    else if(azimuth>set_point+offset && azimuth<=set_point+50){
-      turn_left_slow();
-    }
-    else if(azimuth<set_point-180 || azimuth>set_point+50){
-      turn_left_fast();
-    }
-    else{
-      reverse_fast();
+  else{
+    int set_point=120, offset=5;
+    int state=0;
+    while(state==0){
       compass();
       distance_detection();
       data_display();
-  
-      if(back_dis<10 && back_dis>0){
-        state=1;
-        default_state();
+      if(azimuth<=set_point-40 || azimuth>=set_point+180){ //80 ++ 300
+        turn_right_fast();
       }
+      else if(azimuth<set_point-offset && azimuth > set_point-40){ //115-80
+        turn_right_slow();
+      }
+      else if(azimuth>set_point+offset && azimuth<=set_point+40){ //125-160
+        turn_left_slow();
+      }
+      else if(azimuth<set_point+180 && azimuth>set_point+40){ //300 - 160
+        turn_left_fast();
+      }
+      else{
+        crabwalk_right_test0();
+//        crabwalk_left_test0();
+        compass();
+        distance_detection();
+        data_display();
+    
+        if(right_dis>50 || right_dis==0){
+          state=1;
+          default_state();
+        }
+      }
+    }
+  }
+}
+
+void korban1(){
+  if(MIRROR_SIDE == 0){
+    speed=200;
+    int set_point=300, offset=4;
+    int state=0;
+    while(state==0){
+      compass();
+      distance_detection();
+      data_display();
+      if(azimuth<=set_point-50 && azimuth>=set_point-180){//250 120
+        turn_right_fast();
+      }
+      else if(azimuth<set_point-offset && azimuth > set_point-50){//296 250
+        turn_right_slow();
+      }
+      else if(azimuth>set_point+offset && azimuth<=set_point+50){//304 350
+        turn_left_slow();
+      }
+      else if(azimuth<set_point-180 || azimuth>set_point+50){//120 350
+        turn_left_fast();
+      }
+      else{
+        reverse_fast();
+        compass();
+        distance_detection();
+        data_display();
+    
+        if(back_dis<10 && back_dis>0){
+          state=1;
+          default_state();
+        }
+      } 
     } 
-  } 
+  }
+  else{
+    speed=200;
+    int set_point=120, offset=4;
+    int state=0;
+    while(state==0){
+      compass();
+      distance_detection();
+      data_display();
+      if(azimuth<=set_point-50 || azimuth>=set_point+180){
+        turn_right_fast();
+      }
+      else if(azimuth<set_point-offset && azimuth > set_point-50){
+        turn_right_slow();
+      }
+      else if(azimuth>set_point+offset && azimuth<=set_point+50){
+        turn_left_slow();
+      }
+      else if(azimuth<set_point+180 && azimuth>set_point+50){
+        turn_left_fast();
+      }
+      else{
+        reverse_fast();
+        compass();
+        distance_detection();
+        data_display();
+    
+        if(back_dis<10 && back_dis>0){
+          state=1;
+          default_state();
+        }
+      } 
+    }
+  }
 }
 
 void obstacle_puing1(){
@@ -372,7 +441,7 @@ void obstacle_kelereng_w_korban(){
   delay(200);
   servo_movement("angkat", 5);
   delay(100);
-  dummy_detection2();
+//  dummy_detection2();
   servo_movement("angkat", 0);
   servo_movement("putar", 0);
   servo_movement("buka", 2);

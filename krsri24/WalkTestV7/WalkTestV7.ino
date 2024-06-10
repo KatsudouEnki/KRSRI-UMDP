@@ -21,6 +21,9 @@ MechaQMC5883 qmc;
 #define CMPS12_ADDRESS 0x60  // Address of CMPS12 shifted right one bit for arduino wire library
 #define ANGLE_8  1           // Register to read 8bit angle from
 
+#define MIRROR_SIDE 0
+
+
 unsigned char high_byte, low_byte, angle8;
 char pitch, roll;
 unsigned int angle16;
@@ -39,6 +42,15 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 #define SONAR_NUM 5      // Number of sensors.
 #define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
+
+NewPing sonar[SONAR_NUM] = {   // Sensor object array.
+  NewPing(42, 42, MAX_DISTANCE),  // Depan
+  NewPing(34, 34, MAX_DISTANCE),  // Belakang
+  NewPing(32, 32, MAX_DISTANCE),  // Kiri
+  NewPing(36, 36, MAX_DISTANCE),   // Kanan
+  NewPing(38, 38, MAX_DISTANCE)
+};
+ 
 
 int left_dis,
     right_dis,
