@@ -58,7 +58,7 @@ void loop(){
 //  }
   unsigned long timer=millis();
   int start_state=digitalRead(11);
-  while(false){
+  while(true){
     Serial.println(start_state);
     
     if(digitalRead(11)!=start_state){

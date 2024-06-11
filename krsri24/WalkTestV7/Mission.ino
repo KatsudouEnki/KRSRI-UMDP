@@ -441,7 +441,7 @@ void obstacle_kelereng_w_korban(){
   delay(200);
   servo_movement("angkat", 5);
   delay(100);
-//  dummy_detection2();
+  dummy_detection2();
   servo_movement("angkat", 0);
   servo_movement("putar", 0);
   servo_movement("buka", 2);
