@@ -100,7 +100,7 @@ void loop(){
     else{
       unsigned long now=millis();
       compass();
-//      default_state();
+      default_state();
 //      servo_movement("angkat",2);
 //      ladder_stand(roll);
       

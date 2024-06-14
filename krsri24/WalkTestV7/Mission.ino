@@ -162,7 +162,7 @@ void korban1(){
 
 void obstacle_puing1(){
 
-  if(MIRROR_SIDE == 0{
+  if(MIRROR_SIDE == 0){
     int set_point=20, offset=10;
     int state=0;
     ////reposisioning before entering the obstacle
@@ -577,10 +577,10 @@ void obstacle_kelereng_w_korban(){
       compass();
       distance_detection();
       data_display();
-      if(azimuth<azimuth<set_point-offset && azimuth>=azimuth<set_point-180){
+      if(azimuth<set_point-offset && azimuth>=set_point-180){
         turn_right_obstacle();
       }
-      else if(azimuth<azimuth<set_point-180 || azimuth>azimuth<set_point+offset){
+      else if(azimuth<set_point-180 || azimuth>set_point+offset){
         turn_left_obstacle();
       }
       else{//240
@@ -665,10 +665,10 @@ void obstacle_kelereng_w_korban(){
       compass();
       distance_detection();
       data_display();
-      if(azimuth<azimuth<set_point-offset && azimuth>=azimuth<set_point-180){
+      if(azimuth<set_point-offset && azimuth>=set_point-180){
         turn_right_obstacle();
       }
-      else if(azimuth<azimuth<set_point-180 || azimuth>azimuth<set_point+offset){
+      else if(azimuth<set_point-180 || azimuth>set_point+offset){
         turn_left_obstacle();
       }
       else{//240
@@ -680,7 +680,7 @@ void obstacle_kelereng_w_korban(){
           reverse_fast_obstacle();
         }
         else if(right_dis<=44 && right_dis>0){
-          crabwalk_left_test();
+//          crabwalk_left_test();
         }
         else if(right_dis>=54 || right_dis==0){
           crabwalk_right_obstacle();
