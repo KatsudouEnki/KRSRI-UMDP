@@ -115,7 +115,7 @@ void setup(){
   display.clearDisplay();
   
   qmc.init();
-  myservo.attach(31);
+  myservo.attach(44);
   servoAngkat.attach(29);
   servoBuka.attach(27);
   Wire.begin();  

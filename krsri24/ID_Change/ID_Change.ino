@@ -12,19 +12,19 @@ void setup() {
   digitalWrite(LED_BUILTIN,LOW);
   delay(500);
 //  Dynamixel.setID(ID_lama, ID_baru);
-//   Dynamixel.setID(17,1);
+//   Dynamixel.setID(6,19);
   
   digitalWrite(LED_BUILTIN,HIGH);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int id =17;
-  for(id=0; id<19;id++){
+  int id =19;
+//  for(id=0; id<;id++){
     Serial.println(id);
     Dynamixel.moveSpeed(id, 400,200);
     delay(2000);
     Dynamixel.moveSpeed(id,600,200);
     delay(2000);
-  }
+//  }
 }
