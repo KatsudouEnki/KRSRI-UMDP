@@ -45,7 +45,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 NewPing sonar[SONAR_NUM] = {   // Sensor object array.
   NewPing(42, 42, MAX_DISTANCE),  // Depan
-  NewPing(34, 34, MAX_DISTANCE),  // Belakang
+  NewPing(40, 40, MAX_DISTANCE),  // Belakang
   NewPing(32, 32, MAX_DISTANCE),  // Kiri
   NewPing(36, 36, MAX_DISTANCE),   // Kanan
   NewPing(38, 38, MAX_DISTANCE)
@@ -97,10 +97,11 @@ void setup(){
         default_x=8,
         default_y=8,
         default_z=4.5;
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-    Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
-  }
+//  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+//    Serial.println(F("SSD1306 allocation failed"));
+//    for(;;); // Don't proceed, loop forever
+//  }
+
   display.setTextSize(1);      // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE); // Draw white text
   display.clearDisplay();
@@ -114,10 +115,10 @@ void setup(){
   delay(2000);
   display.clearDisplay();
   
-  qmc.init();
+//  qmc.init();
   myservo.attach(44);
-  servoAngkat.attach(29);
-  servoBuka.attach(27);
+  servoAngkat.attach(34);//A10
+  servoBuka.attach(32);//A8
   Wire.begin();  
  
   bno_init();
@@ -129,109 +130,109 @@ void setup(){
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
-  display.setCursor(80,0);
-  display.print("Depan");
+//  display.setCursor(80,0);
+//  display.print("Depan");
   
   Dynamixel.moveSpeed(3, dynamixelGammaLFRB(x_val,y_val,z_val,0,0),speed);
-  display.setCursor(80,8);
-  display.print(dynamixelGammaLFRB(x_val,y_val,z_val,0,0));
+//  display.setCursor(80,8);
+//  display.print(dynamixelGammaLFRB(x_val,y_val,z_val,0,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(2, dynamixelAlpha(x_val,y_val,z_val,0,1), speed);
-  display.setCursor(80,16);
-  display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
+//  display.setCursor(80,16);
+//  display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
   delay(servo_delay);
 
   Dynamixel.moveSpeed(1, dynamixelBeta(x_val,y_val,z_val,1,1), speed);
-  display.setCursor(80,24);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
+//  display.setCursor(80,24);
+//  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
   delay(servo_delay);
 }
 void LeftMid(float x_val, float y_val,float z_val, int speed,int servo_delay){
-  display.setCursor(40,0);
-  display.print("MID");
+//  display.setCursor(40,0);
+//  display.print("MID");
   
   Dynamixel.moveSpeed(9, dynamixelGammaMid(x_val,y_val,z_val,0,0),speed);
-  display.setCursor(40,8);
-  display.print(dynamixelGammaMid(x_val,y_val,z_val,0,0));
+//  display.setCursor(40,8);
+//  display.print(dynamixelGammaMid(x_val,y_val,z_val,0,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(8, dynamixelAlpha(x_val,y_val,z_val,0,1), speed);
-  display.setCursor(40,16);
-  display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
+//  display.setCursor(40,16);
+//  display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(7, dynamixelBeta(x_val,y_val,z_val,1,1), speed);
-  display.setCursor(40,24);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
+//  display.setCursor(40,24);
+//  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
   delay(servo_delay);
 }
 void LeftBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
-  display.setCursor(0,0);
-  display.print("Back");
-  
+//  display.setCursor(0,0);
+//  display.print("Back");
+//  
   Dynamixel.moveSpeed(15, dynamixelGamma(x_val,y_val,z_val,0,0), speed);
-  display.setCursor(0,8);
-  display.print(dynamixelGamma(x_val,y_val,z_val,0,0));
+//  display.setCursor(0,8);
+//  display.print(dynamixelGamma(x_val,y_val,z_val,0,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(14, dynamixelAlpha(x_val,y_val,z_val,0,1), speed);
-  display.setCursor(0,16);
-  display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
+//  display.setCursor(0,16);
+//  display.print(dynamixelAlpha(x_val,y_val,z_val,0,1));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(13, dynamixelBeta(x_val,y_val,z_val,1,1), speed);
-  display.setCursor(0,24);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
+//  display.setCursor(0,24);
+//  display.print(dynamixelBeta(x_val,y_val,z_val,1,1));
   delay(servo_delay);
 }
 
 void RightFront(float x_val, float y_val,float z_val, int speed,int servo_delay){
   Dynamixel.moveSpeed(4, dynamixelGamma(x_val,y_val,z_val,1,0),speed);
-  display.setCursor(80,35);
-  display.print(dynamixelGamma(x_val,y_val,z_val,1,0));
+//  display.setCursor(80,35);
+//  display.print(dynamixelGamma(x_val,y_val,z_val,1,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(5, dynamixelAlpha(x_val,y_val,z_val,0,0), speed);
-  display.setCursor(80,43);
-  display.print(dynamixelAlpha(x_val,y_val,z_val,0,0));
+//  display.setCursor(80,43);
+//  display.print(dynamixelAlpha(x_val,y_val,z_val,0,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(6, dynamixelBeta(x_val,y_val,z_val,1,0), speed);
-  display.setCursor(80,51);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
+//  display.setCursor(80,51);
+//  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
   delay(servo_delay);
 }
 void RightMid(float x_val, float y_val,float z_val, int speed,int servo_delay){
   Dynamixel.moveSpeed(10, dynamixelGammaMid(x_val,y_val,z_val,1,0),speed);
-  display.setCursor(40,35);
-  display.print(dynamixelGammaMid(x_val,y_val,z_val,1,0));
+//  display.setCursor(40,35);
+//  display.print(dynamixelGammaMid(x_val,y_val,z_val,1,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(11, dynamixelAlpha(x_val,y_val,z_val,0,0), speed);
-  display.setCursor(40,43);
-  display.print(dynamixelAlpha(x_val,y_val,z_val,0,0));
+//  display.setCursor(40,43);
+//  display.print(dynamixelAlpha(x_val,y_val,z_val,0,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(12, dynamixelBeta(x_val,y_val,z_val,1,0), speed);
-  display.setCursor(40,51);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
+//  display.setCursor(40,51);
+//  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
   delay(servo_delay);
 }
 void RightBack(float x_val, float y_val,float z_val, int speed,int servo_delay){
   Dynamixel.moveSpeed(16, dynamixelGammaLFRB(x_val,y_val,z_val,1,0),speed);
-  display.setCursor(0,35);
-  display.print(dynamixelGammaLFRB(x_val,y_val,z_val,1,0));
+//  display.setCursor(0,35);
+//  display.print(dynamixelGammaLFRB(x_val,y_val,z_val,1,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(17, dynamixelAlpha(x_val,y_val,z_val,0,0), speed);
-  display.setCursor(0,43);
-  display.print(dynamixelAlpha(x_val,y_val,z_val,0,0));
+//  display.setCursor(0,43);
+//  display.print(dynamixelAlpha(x_val,y_val,z_val,0,0));
   delay(servo_delay);
   
   Dynamixel.moveSpeed(18, dynamixelBeta(x_val,y_val,z_val,1,0), speed);
-  display.setCursor(0,51);
-  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
+//  display.setCursor(0,51);
+//  display.print(dynamixelBeta(x_val,y_val,z_val,1,0));
   delay(servo_delay);
 }
 

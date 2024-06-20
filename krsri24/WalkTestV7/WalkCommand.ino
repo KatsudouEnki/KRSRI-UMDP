@@ -27,41 +27,23 @@ reverse_fast_obstacle()
 */
 
 void loop(){
+  Serial.println("Loop");
   
-  preparation();
+//  preparation();
+  Serial.println("cl"); 
   display.clearDisplay();
 
-//  delay(3000);
-//  servo_movement("putar", 1);
-//  delay(2000);
-//  servo_movement("putar", 2);
-//  delay(2000);
-//  servo_movement("putar", 3);
-//  delay(2000);  servo_movement("buka", 0);
-//  delay(2000);
   servo_movement("putar", 0);
 //  delay(2000);
-  servo_movement("angkat", 0);
+//  servo_movement("angkat", 0);
   delay(2000);
-    
-//    transisi_r5_r6();
-//  dummy_detection();
-//  while(false);
-//
-//    //  delay(3000);
-////  servo_movement("buka", 1);
-//  delay(2000);
-//  servo_movement("buka", 2);
-//  delay(2000);
-////  servo_movement("buka", 0);
-//  delay(2000);
-//  }
+    Serial.println("go"); 
   unsigned long timer=millis();
-  int start_state=digitalRead(11);
-  while(true){
+  int start_state;
+  while(false){
     Serial.println(start_state);
     
-    if(digitalRead(11)!=start_state){
+    if(digitalRead(46) == 1){
       digitalWrite(7,LOW);
       Serial.println("start");
       home();
@@ -99,12 +81,14 @@ void loop(){
     }
     else{
       unsigned long now=millis();
-      compass();
+//      compass();
       default_state();
+      
 //      servo_movement("angkat",2);
 //      ladder_stand(roll);
-      
-      
+      servo_movement("putar", 0);
+      delay(500);
+      servo_movement("putar", 1);
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
         distance_detection();
@@ -132,31 +116,20 @@ void loop(){
       }
     }
   }
-obstacle_kelereng_w_korban();
-  safe_zone2();
-  digitalWrite(7,!digitalRead(7));
-  transisi_r5_r6();
+  Serial.println("standby");
   while(true){
-//    compass();
-//    servo_movement("putar",0);
-//    servo_movement("angkat",0);
-//    post_ladder_test(roll);
-    
-//    obstacle_kelereng_w_korban();
-//    digitalWrite(7,!digitalRead(7));
-//    safe_zone2();
-//    digitalWrite(7,!digitalRead(7));
-//    transisi_r5_r6();
-//    digitalWrite(7,!digitalRead(7));
-//    obstacle_puing2();
-//    digitalWrite(7,!digitalRead(7));
-//    obstacle_batu2();
-//    digitalWrite(7,!digitalRead(7));
-//    obstacle_tangga();
-//      speed=900;
-//      walk_fast_obstacle();
 
-//    while(true);
+//    default_state();
+  Serial.println("go");
+  servo_movement("putar", 0);
+//    LeftFront(8,8,4.5,speed,servo_delay);
+//    LeftMid(8,8,4.5,speed,servo_delay);
+//  LeftBack(8,8,4.5,speed,servo_delay);
+//    RightFront(8,8,4.5,speed,servo_delay);
+//    RightMid(8,8,4.5,speed,servo_delay);
+//  RightBack(8,8,4.5,speed,servo_delay);
+  default_state();
+
   }
   
   digitalWrite(7, LOW);

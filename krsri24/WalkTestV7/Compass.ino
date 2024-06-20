@@ -137,27 +137,27 @@ void bno_init(){
             delay(BNO055_SAMPLERATE_DELAY_MS);
         }
 
-        Serial.println("\nFully calibrated!");
-    Serial.println("--------------------------------");
-    Serial.println("Calibration Results: ");
-    adafruit_bno055_offsets_t newCalib;
-    bno.getSensorOffsets(newCalib);
-    displaySensorOffsets(newCalib);
-
-    Serial.println("\n\nStoring calibration data to EEPROM...");
-
-    eeAddress = 0;
-    bno.getSensor(&sensor);
-    bnoID = sensor.sensor_id;
-
-    EEPROM.put(eeAddress, bnoID);
-
-    eeAddress += sizeof(long);
-    EEPROM.put(eeAddress, newCalib);
-    Serial.println("Data stored to EEPROM.");
-
-    Serial.println("\n--------------------------------\n");
-    delay(500);
+      Serial.println("\nFully calibrated!");
+      Serial.println("--------------------------------");
+      Serial.println("Calibration Results: ");
+      adafruit_bno055_offsets_t newCalib;
+      bno.getSensorOffsets(newCalib);
+      displaySensorOffsets(newCalib);
+  
+      Serial.println("\n\nStoring calibration data to EEPROM...");
+  
+      eeAddress = 0;
+      bno.getSensor(&sensor);
+      bnoID = sensor.sensor_id;
+  
+      EEPROM.put(eeAddress, bnoID);
+  
+      eeAddress += sizeof(long);
+      EEPROM.put(eeAddress, newCalib);
+      Serial.println("Data stored to EEPROM.");
+  
+      Serial.println("\n--------------------------------\n");
+      delay(500);
     }
 
 }
