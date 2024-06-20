@@ -126,9 +126,10 @@ void loop(){
   speed=300;
   walk_fast();
   Serial.println(servoBuka.read());
-  servoBuka.write(90);//buka
-  delay(1000);
+//  servoBuka.write(90);//buka
+//  delay(1000);
   servoBuka.write(160);//tutup
+  while(1);
     while(1){
     
     delay(1000);
