@@ -122,14 +122,32 @@ void loop(){
 //    default_state();
   Serial.println("go");
   servo_movement("putar", 0);
+  servo_movement("angkat", 0);
+  speed=300;
+  walk_fast();
+  Serial.println(servoBuka.read());
+  servoBuka.write(90);//buka
+  delay(1000);
+  servoBuka.write(160);//tutup
+    while(1){
+    
+    delay(1000);
+    servoBuka.write(80);
+    delay(1000);
+    servoBuka.write(130);
+    delay(4000);
+  }
 //    LeftFront(8,8,4.5,speed,servo_delay);
 //    LeftMid(8,8,4.5,speed,servo_delay);
 //  LeftBack(8,8,4.5,speed,servo_delay);
 //    RightFront(8,8,4.5,speed,servo_delay);
 //    RightMid(8,8,4.5,speed,servo_delay);
 //  RightBack(8,8,4.5,speed,servo_delay);
-  default_state();
-
+//  default_state();
+//  Dynamixel.moveSpeed(19,250, 500);
+//  delay(500);
+//  Dynamixel.moveSpeed(19,400, 50);
+//  delay(3000);
   }
   
   digitalWrite(7, LOW);

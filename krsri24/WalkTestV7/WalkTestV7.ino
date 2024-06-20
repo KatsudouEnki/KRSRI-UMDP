@@ -12,6 +12,7 @@
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 #include <EEPROM.h>
+#include "Adafruit_VL53L0X.h"
 
 MechaQMC5883 qmc;
 
@@ -50,7 +51,21 @@ NewPing sonar[SONAR_NUM] = {   // Sensor object array.
   NewPing(36, 36, MAX_DISTANCE),   // Kanan
   NewPing(38, 38, MAX_DISTANCE)
 };
- 
+
+
+///TOF
+#define LOX1_ADDRESS 0x30 //Address TOF sensor 1
+#define LOX2_ADDRESS 0x31 //Address TOF sensor 2
+// set the pins to shutdown
+#define SHT_LOX1 38
+#define SHT_LOX2 40
+// objects for the vl53l0x
+Adafruit_VL53L0X lox1 = Adafruit_VL53L0X();
+Adafruit_VL53L0X lox2 = Adafruit_VL53L0X();
+// this holds the measurement
+VL53L0X_RangingMeasurementData_t measure1;
+VL53L0X_RangingMeasurementData_t measure2;
+
 
 int left_dis,
     right_dis,
@@ -117,12 +132,12 @@ void setup(){
   
 //  qmc.init();
   myservo.attach(44);
-  servoAngkat.attach(34);//A10
-  servoBuka.attach(32);//A8
+  servoAngkat.attach(42);//A10
+  servoBuka.attach(40);//A8
   Wire.begin();  
  
   bno_init();
-  
+//  setID();
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(7,OUTPUT);

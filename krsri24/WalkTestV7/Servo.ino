@@ -46,29 +46,30 @@ void servo_movement(String name, int state){
   else if(name == "angkat"){
     if(state==0){
       //servoAngkat.write(20);
-      servoAngkat.write(10);
+      servoAngkat.write(125);
+      Dynamixel.moveSpeed(19,850, 500);
     }
-    else if(state==1){
-      servoAngkat.write(90);
-    }
-    else if(state==2){
-      servoAngkat.write(120);
-    }
-    else if(state==3){
-      servoAngkat.write(95);
-    }
-    else if(state==4){
-      servoAngkat.write(70);
-    }
-    else if(state==5){
-      servoAngkat.write(115);
-    }
-    else if(state==6){
-      servoAngkat.write(90);
-    }
-    else if(state==7){
-      servoAngkat.write(110);
-    }
+//    else if(state==1){
+//      servoAngkat.write(90);
+//    }
+//    else if(state==2){
+//      servoAngkat.write(120);
+//    }
+//    else if(state==3){
+//      servoAngkat.write(95);
+//    }
+//    else if(state==4){
+//      servoAngkat.write(70);
+//    }
+//    else if(state==5){
+//      servoAngkat.write(115);
+//    }
+//    else if(state==6){
+//      servoAngkat.write(90);
+//    }
+//    else if(state==7){
+//      servoAngkat.write(110);
+//    }
     else{
       int val=servoAngkat.read();
       servoAngkat.write(val);
