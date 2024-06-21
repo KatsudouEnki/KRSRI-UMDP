@@ -46,12 +46,13 @@ void servo_movement(String name, int state){
   else if(name == "angkat"){
     if(state==0){
       //servoAngkat.write(20);
-      servoAngkat.write(125);
-      Dynamixel.moveSpeed(19,850, 500);
+      servoAngkat.write(170);
+      Dynamixel.moveSpeed(19,825, 500);
     }
-//    else if(state==1){
+    else if(state==1){
 //      servoAngkat.write(90);
-//    }
+      Dynamixel.moveSpeed(19,200, 500);
+    }
 //    else if(state==2){
 //      servoAngkat.write(120);
 //    }

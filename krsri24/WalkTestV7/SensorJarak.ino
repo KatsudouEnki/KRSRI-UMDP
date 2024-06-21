@@ -3,19 +3,19 @@ void distance_detection(){
   lox2.rangingTest(&measure2, false); // pass in 'true' to get debug data printout!
 
   // print sensor one reading
-  Serial.print("1: ");
+//  Serial.print("1: ");
   if(measure1.RangeStatus != 4) {     // if not out of range
     left_dis = measure1.RangeMilliMeter;    
-//    Serial.print(sensor1);
-//    Serial.print("mm");    
+//    Serial.print(measure1.RangeMilliMeter);
+//    Serial.print("measure1.RangeMilliMeter");    
   } else {
     Serial.print("Out of range");
   }
   
-  Serial.print(" ");
+//  Serial.print(" ");
 
   // print sensor two reading
-  Serial.print("2: ");
+//  Serial.print("2: ");
   if(measure2.RangeStatus != 4) {
     right_dis = measure2.RangeMilliMeter;
 //    Serial.print(sensor2);

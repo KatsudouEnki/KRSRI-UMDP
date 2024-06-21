@@ -36,11 +36,12 @@ void loop(){
   servo_movement("putar", 0);
 //  delay(2000);
 //  servo_movement("angkat", 0);
-  delay(2000);
+//  delay(2000);
     Serial.println("go"); 
   unsigned long timer=millis();
   int start_state;
-  while(false){
+  speed=800;
+  while(true){
     Serial.println(start_state);
     
     if(digitalRead(46) == 1){
@@ -87,8 +88,8 @@ void loop(){
 //      servo_movement("angkat",2);
 //      ladder_stand(roll);
       servo_movement("putar", 0);
-      delay(500);
-      servo_movement("putar", 1);
+//      delay(500);
+//      servo_movement("putar", 1);
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
         distance_detection();
@@ -124,19 +125,21 @@ void loop(){
   servo_movement("putar", 0);
   servo_movement("angkat", 0);
   speed=300;
+//  default_state();
   walk_fast();
   Serial.println(servoBuka.read());
 //  servoBuka.write(90);//buka
 //  delay(1000);
   servoBuka.write(160);//tutup
-  while(1);
+//  while(1);
     while(1){
-    
-    delay(1000);
-    servoBuka.write(80);
-    delay(1000);
-    servoBuka.write(130);
-    delay(4000);
+      distance_detection();
+      data_display();
+//    delay(1000);
+//    servoBuka.write(80);
+//    delay(2000);
+//    servoBuka.write(150);
+//    delay(5000);
   }
 //    LeftFront(8,8,4.5,speed,servo_delay);
 //    LeftMid(8,8,4.5,speed,servo_delay);

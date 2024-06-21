@@ -45,11 +45,11 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
 
 NewPing sonar[SONAR_NUM] = {   // Sensor object array.
-  NewPing(42, 42, MAX_DISTANCE),  // Depan
-  NewPing(40, 40, MAX_DISTANCE),  // Belakang
-  NewPing(32, 32, MAX_DISTANCE),  // Kiri
-  NewPing(36, 36, MAX_DISTANCE),   // Kanan
-  NewPing(38, 38, MAX_DISTANCE)
+  NewPing(34, 34, MAX_DISTANCE),  // Depan
+  NewPing(32, 32, MAX_DISTANCE),  // Belakang
+  NewPing(31, 31, MAX_DISTANCE),  // Kiri
+  NewPing(35, 35, MAX_DISTANCE),   // Kanan
+  NewPing(37, 37, MAX_DISTANCE)
 };
 
 
@@ -57,8 +57,8 @@ NewPing sonar[SONAR_NUM] = {   // Sensor object array.
 #define LOX1_ADDRESS 0x30 //Address TOF sensor 1
 #define LOX2_ADDRESS 0x31 //Address TOF sensor 2
 // set the pins to shutdown
-#define SHT_LOX1 38
-#define SHT_LOX2 40
+#define SHT_LOX1 66 //A12
+#define SHT_LOX2 68 //A14
 // objects for the vl53l0x
 Adafruit_VL53L0X lox1 = Adafruit_VL53L0X();
 Adafruit_VL53L0X lox2 = Adafruit_VL53L0X();
@@ -112,10 +112,10 @@ void setup(){
         default_x=8,
         default_y=8,
         default_z=4.5;
-//  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-//    Serial.println(F("SSD1306 allocation failed"));
-//    for(;;); // Don't proceed, loop forever
-//  }
+  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;); // Don't proceed, loop forever
+  }
 
   display.setTextSize(1);      // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE); // Draw white text
@@ -127,17 +127,17 @@ void setup(){
   Serial.println(dynamixelGammaMid(default_x,default_y,default_z,0,0));
   Serial.println(dynamixelAlpha(default_x,default_y,default_z,0,0));
   Serial.println(dynamixelBeta(default_x,default_y,default_z,0,0));
-  delay(2000);
+//  delay(2000);
   display.clearDisplay();
   
 //  qmc.init();
   myservo.attach(44);
-  servoAngkat.attach(42);//A10
-  servoBuka.attach(40);//A8
+  servoAngkat.attach(40);//A10
+  servoBuka.attach(42);//A8
   Wire.begin();  
  
   bno_init();
-//  setID();
+  setID();
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(7,OUTPUT);
@@ -321,6 +321,10 @@ void walk_fast(){
   RightFront(5,10,3,speed,servo_delay);
   LeftMid(5,10,3,speed,servo_delay);
   RightBack(5,10,3,speed,servo_delay);
+  delay(5);
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
 }
 
 void walk_fast_obstacle(){
