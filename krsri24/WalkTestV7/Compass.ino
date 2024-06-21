@@ -5,12 +5,12 @@ void compass(){
   bno.getEvent(&event);
 
   /* Display the floating point data */
-  Serial.print("X: ");
-  Serial.print(event.orientation.x, 4);
-  Serial.print("\tY: ");
-  Serial.print(event.orientation.y, 4);
-  Serial.print("\tZ: ");
-  Serial.print(event.orientation.z, 4);
+  // Serial.print("X: ");
+  // Serial.print(event.orientation.x, 4);
+  // Serial.print("\tY: ");
+  // Serial.print(event.orientation.y, 4);
+  // Serial.print("\tZ: ");
+  // Serial.print(event.orientation.z, 4);
 
   /* Optional: Display calibration status */
   displayCalStatus();

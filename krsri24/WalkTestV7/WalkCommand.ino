@@ -34,13 +34,29 @@ void loop(){
   display.clearDisplay();
 
   servo_movement("putar", 0);
-//  delay(2000);
-//  servo_movement("angkat", 0);
-//  delay(2000);
+  delay(2000);
+  servo_movement("angkat", 0);
+  delay(2000);
     Serial.println("go"); 
   unsigned long timer=millis();
   int start_state;
   speed=800;
+
+  compass();
+      distance_detection();
+  while(true){
+      compass();
+      // distance_detection();
+      // data_display();
+
+      crabwalk_right_obstacle();
+
+      // compass();
+      // distance_detection();
+      // data_display();
+    // default_state();
+  }
+
   while(true){
     Serial.println(start_state);
     

@@ -12,7 +12,7 @@
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 #include <EEPROM.h>
-#include "Adafruit_VL53L0X.h"
+#include <Adafruit_VL53L0X.h>
 
 MechaQMC5883 qmc;
 
@@ -319,12 +319,8 @@ void walk_fast(){
   delay(50);
 
   RightFront(5,10,3,speed,servo_delay);
-  LeftMid(5,10,3,speed,servo_delay);
+  LeftMid(6,9,3,speed,servo_delay);
   RightBack(5,10,3,speed,servo_delay);
-  delay(5);
-  RightFront(5,10,4.5,speed,servo_delay);
-  LeftMid(5,10,4.5,speed,servo_delay);
-  RightBack(5,10,4.5,speed,servo_delay);
 }
 
 void walk_fast_obstacle(){
@@ -373,7 +369,7 @@ void walk_fast_obstacle(){
   delay(60);
 
   RightFront(5,10,3,speed,servo_delay);
-  LeftMid(5,10,3,speed,servo_delay);
+  LeftMid(6,9,3,speed,servo_delay);
   RightBack(5,10,3,speed,servo_delay);
 }
 
@@ -421,7 +417,7 @@ void walk_fast_balls(){
   LeftBack(10,5,4.5,speed,servo_delay);
 
   RightFront(5,10,2.75,speed,servo_delay);
-  LeftMid(5,10,2.75,speed,servo_delay);
+  LeftMid(6,9,2.75,speed,servo_delay);
   RightBack(5,10,2.75,speed,servo_delay);
 
   delay(100);
@@ -807,7 +803,7 @@ void turn_right_fast(){
   LeftBack(10,5,4.5,speed/3,servo_delay);
 
   RightFront(10,5,3,speed,servo_delay);
-  LeftMid(5,10,3,speed,servo_delay);
+  LeftMid(6,9,3,speed,servo_delay);
   RightBack(10,5,3,speed,servo_delay);
   
   delay(50);
@@ -909,7 +905,7 @@ void turn_right_obstacle_fast(){
   delay(60);
 
   RightFront(10,5,3.5,speed,servo_delay);
-  LeftMid(5,10,3.5,speed,servo_delay);
+  LeftMid(6,9,3.5,speed,servo_delay);
   RightBack(10,5,3.5,speed,servo_delay);
 }
 
