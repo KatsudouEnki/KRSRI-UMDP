@@ -9,6 +9,7 @@ void distance_detection(){
 //    Serial.print(measure1.RangeMilliMeter);
 //    Serial.print("measure1.RangeMilliMeter");    
   } else {
+    left_dis = left_dis;
     Serial.print("Out of range");
   }
   
@@ -21,6 +22,7 @@ void distance_detection(){
 //    Serial.print(sensor2);
 //    Serial.print("mm");
   } else {
+    right_dis=right_dis;
     Serial.print("Out of range");
   }
 
@@ -35,13 +37,7 @@ void distance_detection(){
 
 
 void setID() {///pas boot awal
-  pinMode(SHT_LOX1, OUTPUT);
-  pinMode(SHT_LOX2, OUTPUT);
-
-  Serial.println("Shutdown pins inited...");
-
-  digitalWrite(SHT_LOX1, LOW);
-  digitalWrite(SHT_LOX2, LOW);
+  
 
   Serial.println("Both in reset mode...(pins are low)");
   

@@ -42,14 +42,17 @@ void loop(){
   int start_state;
   speed=800;
 
-  compass();
-      distance_detection();
   while(true){
-      compass();
+      // compass();
       // distance_detection();
       // data_display();
-
-      crabwalk_right_obstacle();
+      Serial.println(digitalRead(46));
+      if(digitalRead(46) == LOW){
+        walk_fast_test();
+      }
+      else{
+        default_state();
+      }
 
       // compass();
       // distance_detection();
@@ -60,7 +63,7 @@ void loop(){
   while(true){
     Serial.println(start_state);
     
-    if(digitalRead(46) == 1){
+    if(digitalRead(46) == LOW){
       digitalWrite(7,LOW);
       Serial.println("start");
       home();
@@ -68,8 +71,10 @@ void loop(){
       korban1();
       servo_movement("buka", 1);
       delay(200);
-      servo_movement("angkat", 2);
-      dummy_detection();
+      // servo_movement("angkat", 2);
+      servo_movement("angkat", 1);
+      delay(2000);
+      // dummy_detection();
       digitalWrite(7,!digitalRead(7));
       speed=800;
       servo_movement("angkat", 0);
@@ -108,7 +113,8 @@ void loop(){
 //      servo_movement("putar", 1);
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
-        distance_detection();
+        compass();
+        // distance_detection();
       //  data_display();
 
 //        display.clearDisplay();

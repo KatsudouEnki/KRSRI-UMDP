@@ -136,8 +136,18 @@ void setup(){
   servoBuka.attach(42);//A8
   Wire.begin();  
  
-  bno_init();
-  setID();
+  // bno_init();
+
+  //
+  pinMode(SHT_LOX1, OUTPUT);
+  pinMode(SHT_LOX2, OUTPUT);
+
+  Serial.println("Shutdown pins inited...");
+
+  digitalWrite(SHT_LOX1, LOW);
+  digitalWrite(SHT_LOX2, LOW);
+
+  // setID();
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(7,OUTPUT);
@@ -313,6 +323,51 @@ void walk_fast(){
 
   //4
   LeftFront(10,5,4.5,speed/3,servo_delay);
+  RightMid(10,5,4.5,speed/3,servo_delay);
+  LeftBack(10,5,4.5,speed/3,servo_delay);
+
+  delay(50);
+
+  RightFront(5,10,3,speed,servo_delay);
+  LeftMid(6,9,3,speed,servo_delay);
+  RightBack(5,10,3,speed,servo_delay);
+}
+
+void walk_fast_test(){
+  //1
+  RightFront(5,10,4.5,speed,servo_delay);
+  LeftMid(5,10,4.5,speed,servo_delay);
+  RightBack(5,10,4.5,speed,servo_delay);
+  delay(5);
+
+  LeftFront(10,5,3,speed,servo_delay);
+  RightMid(10,5,3,speed,servo_delay);
+  LeftBack(10,5,3,speed,servo_delay);
+
+  //2
+  LeftFront(5,10,3,speed,servo_delay);
+  RightMid(5,10,3,speed,servo_delay);
+  LeftBack(5,10,3,speed,servo_delay);
+
+  RightFront(10,5,4.5,speed/3,servo_delay);
+  LeftMid(10,5,4.5,speed/3,servo_delay);
+  RightBack(10,5,4.5,speed/3,servo_delay);
+
+  delay(50);
+
+  //3
+  LeftFront(5,10,4.9,speed,servo_delay);
+  RightMid(5,10,4.5,speed,servo_delay);
+  LeftBack(5,10,4.5,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(10,5,3,speed,servo_delay);
+  LeftMid(10,5,3,speed,servo_delay);
+  RightBack(10,5,3,speed,servo_delay);
+
+  //4
+  LeftFront(10,5,4.9,speed/3.6,servo_delay);
   RightMid(10,5,4.5,speed/3,servo_delay);
   LeftBack(10,5,4.5,speed/3,servo_delay);
 

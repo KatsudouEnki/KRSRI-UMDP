@@ -47,8 +47,8 @@ int sensor1,sensor2;
 
 
 // set the pins to shutdown
-#define SHT_LOX1 38
-#define SHT_LOX2 40
+#define SHT_LOX1 66
+#define SHT_LOX2 68
 
 // objects for the vl53l0x
 Adafruit_VL53L0X lox1 = Adafruit_VL53L0X();
