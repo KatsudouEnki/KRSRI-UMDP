@@ -96,6 +96,8 @@ LiquidCrystal_I2C lcd(0x27,16,2);
 #define BNO055_SAMPLERATE_DELAY_MS (10)
 Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
 
+void(* resetFunc) (void) = 0;
+
 void setup(){
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -147,7 +149,7 @@ void setup(){
   digitalWrite(SHT_LOX1, LOW);
   digitalWrite(SHT_LOX2, LOW);
 
-  // setID();
+   setID();
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(7,OUTPUT);

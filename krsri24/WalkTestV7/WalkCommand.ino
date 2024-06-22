@@ -46,13 +46,46 @@ void loop(){
       // compass();
       // distance_detection();
       // data_display();
-      Serial.println(digitalRead(46));
-      if(digitalRead(46) == LOW){
-        walk_fast_test();
+
+
+      lox1.rangingTest(&measure1, false); // pass in 'true' to get debug data printout!
+      lox2.rangingTest(&measure2, false); // pass in 'true' to get debug data printout!
+    
+      // print sensor one reading
+      Serial.print("1: ");
+      if(measure1.RangeStatus != 4) {     // if not out of range
+        left_dis = measure1.RangeMilliMeter;    
+        Serial.print(measure1.RangeMilliMeter);
+        Serial.print(" ");
+        Serial.print(left_dis);
+//        Serial.print("measure1.RangeMilliMeter");    
+      } else {
+        left_dis = left_dis;
+        Serial.print("Out of range");
       }
-      else{
-        default_state();
+      
+      Serial.print(" ");
+    
+      // print sensor two reading
+      Serial.print("2: ");
+      if(measure2.RangeStatus != 4) {
+        right_dis = measure2.RangeMilliMeter;
+        Serial.print(measure2.RangeMilliMeter);
+        Serial.print(" ");
+        Serial.print(right_dis);
+//        Serial.print("mm");
+      } else {
+        right_dis=right_dis;
+        Serial.print("Out of range");
       }
+      Serial.println("");
+//      Serial.println(digitalRead(46));
+//      if(digitalRead(46) == LOW){
+//        walk_fast_test();
+//      }
+//      else{
+//        default_state();
+//      }
 
       // compass();
       // distance_detection();
