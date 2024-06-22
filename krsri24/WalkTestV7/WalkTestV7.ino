@@ -5,8 +5,6 @@
 #include <Adafruit_SSD1306.h>
 #include <NewPing.h>
 #include <Servo.h>
-#include <LiquidCrystal_I2C.h>
-#include <MechaQMC5883.h>
 
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
@@ -14,12 +12,10 @@
 #include <EEPROM.h>
 #include <Adafruit_VL53L0X.h>
 
-MechaQMC5883 qmc;
 
 #define STX '\x02'
 #define ETX '\x03'
 
-#define CMPS12_ADDRESS 0x60  // Address of CMPS12 shifted right one bit for arduino wire library
 #define ANGLE_8  1           // Register to read 8bit angle from
 
 #define MIRROR_SIDE 0
@@ -84,13 +80,10 @@ int pos =90;
 int dummy_x_coor,
     dummy_y_coor,
     dummy_state;
-#define STX '\x02'
-#define ETX '\x03'
 
 int x_axis, y_axis, z_axis;
 int azimuth;
 String buff_serial;
-LiquidCrystal_I2C lcd(0x27,16,2);
 
 
 #define BNO055_SAMPLERATE_DELAY_MS (10)
@@ -132,7 +125,6 @@ void setup(){
 //  delay(2000);
   display.clearDisplay();
   
-//  qmc.init();
   myservo.attach(44);
   servoAngkat.attach(40);//A10
   servoBuka.attach(42);//A8
@@ -140,7 +132,6 @@ void setup(){
  
   // bno_init();
 
-  //
   pinMode(SHT_LOX1, OUTPUT);
   pinMode(SHT_LOX2, OUTPUT);
 
@@ -149,7 +140,7 @@ void setup(){
   digitalWrite(SHT_LOX1, LOW);
   digitalWrite(SHT_LOX2, LOW);
 
-   setID();
+  setID();
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(7,OUTPUT);

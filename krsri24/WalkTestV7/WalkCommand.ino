@@ -11,7 +11,7 @@
 10. turn_right_fast()
 11. turn_right_obstacle()
 12. crabwalk_left()
-13. crabwalk_left_obstacle()
+13. crabwalk_left_obstacle() crabwalkLeftObstacle
 14. crabwalk_right()
 15. crabwalk_right_obstacle()
 16. cam_state()
@@ -37,17 +37,12 @@ void loop(){
   delay(2000);
   servo_movement("angkat", 0);
   delay(2000);
-    Serial.println("go"); 
+  Serial.println("go"); 
   unsigned long timer=millis();
   int start_state;
   speed=800;
 
   while(true){
-      // compass();
-      // distance_detection();
-      // data_display();
-
-
       lox1.rangingTest(&measure1, false); // pass in 'true' to get debug data printout!
       lox2.rangingTest(&measure2, false); // pass in 'true' to get debug data printout!
     
@@ -57,8 +52,7 @@ void loop(){
         left_dis = measure1.RangeMilliMeter;    
         Serial.print(measure1.RangeMilliMeter);
         Serial.print(" ");
-        Serial.print(left_dis);
-//        Serial.print("measure1.RangeMilliMeter");    
+        Serial.print(left_dis); 
       } else {
         left_dis = left_dis;
         Serial.print("Out of range");
@@ -73,7 +67,6 @@ void loop(){
         Serial.print(measure2.RangeMilliMeter);
         Serial.print(" ");
         Serial.print(right_dis);
-//        Serial.print("mm");
       } else {
         right_dis=right_dis;
         Serial.print("Out of range");
@@ -86,11 +79,6 @@ void loop(){
 //      else{
 //        default_state();
 //      }
-
-      // compass();
-      // distance_detection();
-      // data_display();
-    // default_state();
   }
 
   while(true){
@@ -136,14 +124,9 @@ void loop(){
     }
     else{
       unsigned long now=millis();
-//      compass();
       default_state();
       
-//      servo_movement("angkat",2);
-//      ladder_stand(roll);
       servo_movement("putar", 0);
-//      delay(500);
-//      servo_movement("putar", 1);
       if(now - timer>750){
         digitalWrite(7,!digitalRead(7));
         compass();
@@ -186,15 +169,9 @@ void loop(){
 //  servoBuka.write(90);//buka
 //  delay(1000);
   servoBuka.write(160);//tutup
-//  while(1);
     while(1){
       distance_detection();
       data_display();
-//    delay(1000);
-//    servoBuka.write(80);
-//    delay(2000);
-//    servoBuka.write(150);
-//    delay(5000);
   }
 //    LeftFront(8,8,4.5,speed,servo_delay);
 //    LeftMid(8,8,4.5,speed,servo_delay);

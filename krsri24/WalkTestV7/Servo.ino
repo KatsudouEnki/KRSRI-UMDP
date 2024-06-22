@@ -24,20 +24,20 @@ void servo_movement(String name, int state){
    */
   if(name=="buka"){
     if(state==0){
-      servoBuka.write(107);//117
+      servoBuka.write(90);
     }
     else if(state==1){
-      servoBuka.write(70);
+      servoBuka.write(160);
     }
     else if(state==2){
-      servoBuka.write(125);//117
+      servoBuka.write(150);
     }
-    else if(state==3){
-      servoBuka.write(40);
-    }
-    else if(state==4){
-      servoBuka.write(55);
-    }
+//    else if(state==3){
+//      servoBuka.write(40);
+//    }
+//    else if(state==4){
+//      servoBuka.write(55);
+//    }
     else{
       int val=servoBuka.read();
       servoBuka.write(val);

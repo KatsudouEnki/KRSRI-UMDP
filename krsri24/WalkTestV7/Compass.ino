@@ -30,11 +30,11 @@ void compass(){
   display.setCursor(0,0);
   display.print("bearing ");
   display.print(azimuth);
-//  display.display();
+
   display.setCursor(0,15);
   display.print("pitch ");
   display.print(pitch,DEC);
-//  display.display();
+
   display.setCursor(0,30);
   display.print("Roll ");
   display.print(roll,DEC);
@@ -50,13 +50,8 @@ void bno_init(){
     {
         /* There was a problem detecting the BNO055 ... check your connections */
         Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
-//        display.clearDisplay();
-//        display.setTextSize(10);
-//        display.print("X");
-//        display.display();
         while (1);
     }
-//    display.setTextSize(1);
     int eeAddress = 0;
     long bnoID;
     bool foundCalib = false;
@@ -115,28 +110,27 @@ void bno_init(){
     }
     else
     {
-        Serial.println("Please Calibrate Sensor: ");
-        while (!bno.isFullyCalibrated())
-        {
-            bno.getEvent(&event);
+      Serial.println("Please Calibrate Sensor: ");
+      while (!bno.isFullyCalibrated())
+      {
+          bno.getEvent(&event);
 
-            Serial.print("X: ");
-            Serial.print(event.orientation.x, 4);
-            Serial.print("\tY: ");
-            Serial.print(event.orientation.y, 4);
-            Serial.print("\tZ: ");
-            Serial.print(event.orientation.z, 4);
+          Serial.print("X: ");
+          Serial.print(event.orientation.x, 4);
+          Serial.print("\tY: ");
+          Serial.print(event.orientation.y, 4);
+          Serial.print("\tZ: ");
+          Serial.print(event.orientation.z, 4);
 
-            /* Optional: Display calibration status */
-            displayCalStatus();
+          /* Optional: Display calibration status */
+          displayCalStatus();
 
-            /* New line for the next sample */
-            Serial.println("");
+          /* New line for the next sample */
+          Serial.println("");
 
-            /* Wait the specified delay before requesting new data */
-            delay(BNO055_SAMPLERATE_DELAY_MS);
-        }
-
+          /* Wait the specified delay before requesting new data */
+          delay(BNO055_SAMPLERATE_DELAY_MS);
+      }
       Serial.println("\nFully calibrated!");
       Serial.println("--------------------------------");
       Serial.println("Calibration Results: ");
