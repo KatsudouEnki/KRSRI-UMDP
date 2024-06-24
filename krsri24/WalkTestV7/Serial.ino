@@ -55,17 +55,17 @@ void dummy_detection(){
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>17 || dty.toInt()>325 || (gripper_dis<=8 && gripper_dis>0)){
+            if(back_dis>17 || dty.toInt()>350 || (gripper_dis<=8 && gripper_dis>0)){
               servo_movement("angkat", 2);
-              walk_to_victim();
+//              walk_to_victim();
               delay(200);
               servo_movement("buka", 2);
               delay(800);
-              servo_movement("angkat", 3);
+//              servo_movement("angkat", 3);
               delay(250);
               speed=100;
+              servoAngkat.write(180);
               reverse_fast();
-              servo_movement("buka", 2);
               delay(600);
               servo_movement("angkat", 0);
               status_korban=1;

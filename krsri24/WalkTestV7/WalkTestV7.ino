@@ -43,25 +43,10 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 NewPing sonar[SONAR_NUM] = {   // Sensor object array.
   NewPing(34, 34, MAX_DISTANCE),  // Depan
   NewPing(32, 32, MAX_DISTANCE),  // Belakang
-  NewPing(31, 31, MAX_DISTANCE),  // Kiri
-  NewPing(35, 35, MAX_DISTANCE),   // Kanan
+  NewPing(66, 66, MAX_DISTANCE),  // Kiri
+  NewPing(68, 68, MAX_DISTANCE),   // Kanan
   NewPing(37, 37, MAX_DISTANCE)
 };
-
-
-///TOF
-#define LOX1_ADDRESS 0x30 //Address TOF sensor 1
-#define LOX2_ADDRESS 0x31 //Address TOF sensor 2
-// set the pins to shutdown
-#define SHT_LOX1 66 //A12
-#define SHT_LOX2 68 //A14
-// objects for the vl53l0x
-Adafruit_VL53L0X lox1 = Adafruit_VL53L0X();
-Adafruit_VL53L0X lox2 = Adafruit_VL53L0X();
-// this holds the measurement
-VL53L0X_RangingMeasurementData_t measure1;
-VL53L0X_RangingMeasurementData_t measure2;
-
 
 int left_dis,
     right_dis,
@@ -99,7 +84,6 @@ void setup(){
   Dynamixel.setSerial(&Serial3);
   Dynamixel.begin(1000000, 2);
   Serial.println("test");
-  lcd.init();lcd.backlight();
   float test_x= 8,
         test_y= 8,
         test_z= 2,
@@ -126,21 +110,12 @@ void setup(){
   display.clearDisplay();
   
   myservo.attach(44);
-  servoAngkat.attach(40);//A10
-  servoBuka.attach(42);//A8
+  servoAngkat.attach(42);//A10
+  servoBuka.attach(40);//A8
   Wire.begin();  
  
-  // bno_init();
+  bno_init();
 
-  pinMode(SHT_LOX1, OUTPUT);
-  pinMode(SHT_LOX2, OUTPUT);
-
-  Serial.println("Shutdown pins inited...");
-
-  digitalWrite(SHT_LOX1, LOW);
-  digitalWrite(SHT_LOX2, LOW);
-
-  setID();
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(7,OUTPUT);
@@ -269,54 +244,54 @@ void default_state(){
   servo_movement("putar",0);
 }
 
-void cam_state(){
-  LeftFront(8,8,6,speed,servo_delay);
-  LeftMid(8,8,6,speed,servo_delay);
-  LeftBack(8,8,6,speed,servo_delay);
+void boot_state(){
+  speed=100;
+  LeftFront(8,8,4.5,speed,servo_delay);
+  LeftMid(8,8,4.5,speed,servo_delay);
+  LeftBack(8,8,4.5,speed,servo_delay);
 
-  RightFront(8,8,6,speed,servo_delay);
-  RightMid(8,8,6,speed,servo_delay);
-  RightBack(8,8,6,speed,servo_delay);
-  servo_movement("angkat",1);
-  digitalWrite(7, HIGH);
+  RightFront(8,8,4.5,speed,servo_delay);
+  RightMid(8,8,4.5,speed,servo_delay);
+  RightBack(8,8,4.5,speed,servo_delay);
+  speed=800;
 }
 
 void walk_fast(){
   //1
   RightFront(5,10,4.5,speed,servo_delay);
-  LeftMid(5,10,4.5,speed,servo_delay);
+  LeftMid(6,9,4.5,speed,servo_delay);
   RightBack(5,10,4.5,speed,servo_delay);
   delay(5);
 
   LeftFront(10,5,3,speed,servo_delay);
-  RightMid(10,5,3,speed,servo_delay);
+  RightMid(9,6,3,speed,servo_delay);
   LeftBack(10,5,3,speed,servo_delay);
 
   //2
   LeftFront(5,10,3,speed,servo_delay);
-  RightMid(5,10,3,speed,servo_delay);
+  RightMid(6,9,3,speed,servo_delay);
   LeftBack(5,10,3,speed,servo_delay);
 
   RightFront(10,5,4.5,speed/3,servo_delay);
-  LeftMid(10,5,4.5,speed/3,servo_delay);
+  LeftMid(9,6,4.5,speed/3,servo_delay);
   RightBack(10,5,4.5,speed/3,servo_delay);
 
   delay(50);
 
   //3
-  LeftFront(5,10,4.5,speed,servo_delay);
-  RightMid(5,10,4.5,speed,servo_delay);
+  LeftFront(5,10,4.7,speed,servo_delay);
+  RightMid(6,9,4.5,speed,servo_delay);
   LeftBack(5,10,4.5,speed,servo_delay);
 
   delay(5);
 
   RightFront(10,5,3,speed,servo_delay);
-  LeftMid(10,5,3,speed,servo_delay);
+  LeftMid(9,6,3,speed,servo_delay);
   RightBack(10,5,3,speed,servo_delay);
 
   //4
-  LeftFront(10,5,4.5,speed/3,servo_delay);
-  RightMid(10,5,4.5,speed/3,servo_delay);
+  LeftFront(10,5,4.7,speed/3,servo_delay);
+  RightMid(9,6,4.5,speed/3,servo_delay);
   LeftBack(10,5,4.5,speed/3,servo_delay);
 
   delay(50);
@@ -1725,23 +1700,23 @@ void pre_ladder(){
   delay(25);
 }
 void pre_ladder_test(int roll_value){
-  double z_tangga=5.25, divider=2;
+  double z_tangga=5.15, divider=2;
   if(roll_value<=-3 && roll_value>-7){
-    z_tangga=5.5;
+    z_tangga=5.3;
   }else if(roll_value<=-7 && roll_value>-10){
-    z_tangga=5.70;
+    z_tangga=5.50;
   }
   else if(roll_value<=-10 && roll_value>-13){
-    z_tangga=5.85;
+    z_tangga=5.65;
   }
   else if(roll_value<=-13 && roll_value>-16){
-    z_tangga=6.05;
+    z_tangga=5.8;
   }
-  else if(roll_value<=-16 && roll_value>-19){
-    z_tangga=5.55;
-  }
-  else if(roll_value<=-19 && roll_value>-35){
+  else if(roll_value<=-16 && roll_value>-18){
     z_tangga=5.15;
+  }
+  else if(roll_value<=-18 && roll_value>-35){
+    z_tangga=4.75;
   }
   speed = 650;
   LeftFront(4.55,14.3,4.5,speed,servo_delay);
@@ -1752,7 +1727,7 @@ void pre_ladder_test(int roll_value){
   RightBack(8.8,2.8,4.5,speed,servo_delay);
   //delay(50);
   
-  speed = 250;
+  speed = 200;
   LeftFront(2.8,8.8,4.5,speed,servo_delay);
   RightFront(2.8,8.8,4.5,speed,servo_delay);
   LeftMid(10,6,z_tangga,speed/divider,servo_delay);
@@ -1761,7 +1736,7 @@ void pre_ladder_test(int roll_value){
   RightBack(14.3,4.55,4.5,speed,servo_delay);
   delay(350);
   
-  speed = 650;
+  speed = 600;
 //  LeftFront(2.8,8.8,0.1,speed,servo_delay);
   LeftFront(2.8,8.8,2.5,speed,servo_delay);
   RightBack(14.3,4.55,1.5,speed,servo_delay);
@@ -1830,10 +1805,10 @@ void ladder_stand(int roll_value){
   else if(roll_value<=-13 && roll_value>-16){
     z_tangga=6.15;
   }
-  else if(roll_value<=-16 && roll_value>-19){
+  else if(roll_value<=-16 && roll_value>-18){
     z_tangga=5.65;
   }
-  else if(roll_value<=-19 && roll_value>-35){
+  else if(roll_value<=-18 & roll_value>-35){
     z_tangga=5.25;
   }
   delay(25);

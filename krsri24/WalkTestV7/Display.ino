@@ -1,6 +1,5 @@
 void data_display(){
   display.clearDisplay();
-  lcd.clear();
   display.setCursor(50,0);
   display.print("F=");
   display.print(front_dis);

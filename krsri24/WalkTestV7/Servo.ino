@@ -27,10 +27,10 @@ void servo_movement(String name, int state){
       servoBuka.write(90);
     }
     else if(state==1){
-      servoBuka.write(160);
+      servoBuka.write(50);
     }
     else if(state==2){
-      servoBuka.write(150);
+      servoBuka.write(100);
     }
 //    else if(state==3){
 //      servoBuka.write(40);
@@ -50,27 +50,38 @@ void servo_movement(String name, int state){
       Dynamixel.moveSpeed(19,825, 500);
     }
     else if(state==1){
-//      servoAngkat.write(90);
-      Dynamixel.moveSpeed(19,200, 500);
+      servoAngkat.write(170);
+      Dynamixel.moveSpeed(19,200, 300);
     }
-//    else if(state==2){
-//      servoAngkat.write(120);
-//    }
-//    else if(state==3){
-//      servoAngkat.write(95);
-//    }
-//    else if(state==4){
-//      servoAngkat.write(70);
-//    }
-//    else if(state==5){
-//      servoAngkat.write(115);
-//    }
-//    else if(state==6){
-//      servoAngkat.write(90);
-//    }
-//    else if(state==7){
-//      servoAngkat.write(110);
-//    }
+    else if(state==2){
+//      servoAngkat.write(130);
+      Dynamixel.moveSpeed(19,300, 150);
+      delay(100);
+      for(int i=170; i>=130; i++){
+        servoAngkat.write(i);
+        delay(10);
+      }
+    }
+    else if(state==3){
+      servoAngkat.write(170);
+      Dynamixel.moveSpeed(19,200, 300);
+    }
+    else if(state==4){
+      servoAngkat.write(170);
+      Dynamixel.moveSpeed(19,500, 300);
+    }
+    else if(state==5){
+      servoAngkat.write(170);
+      Dynamixel.moveSpeed(19,200, 300);
+    }
+    else if(state==6){
+      servoAngkat.write(170);
+      Dynamixel.moveSpeed(19,200, 300);
+    }
+    else if(state==7){
+      servoAngkat.write(170);
+      Dynamixel.moveSpeed(19,200, 300);
+    }
     else{
       int val=servoAngkat.read();
       servoAngkat.write(val);
