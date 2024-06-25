@@ -27,18 +27,18 @@ void compass(){
   roll    = event.orientation.y;
   pitch   = event.orientation.z;
   Serial.println(azimuth);
-//  display.setCursor(0,0);
-//  display.print("bearing ");
-//  display.print(azimuth);
-//
-//  display.setCursor(0,15);
-//  display.print("pitch ");
-//  display.print(pitch,DEC);
-//
-//  display.setCursor(0,30);
-//  display.print("Roll ");
-//  display.print(roll,DEC);
-//  display.display();
+  display.setCursor(0,0);
+  display.print("bearing ");
+  display.print(azimuth);
+
+  display.setCursor(0,15);
+  display.print("pitch ");
+  display.print(pitch,DEC);
+
+  display.setCursor(0,30);
+  display.print("Roll ");
+  display.print(roll,DEC);
+  display.display();
   
   /* Wait the specified delay before requesting new data */
   delay(BNO055_SAMPLERATE_DELAY_MS);

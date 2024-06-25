@@ -163,7 +163,7 @@ void korban1(){
 void obstacle_puing1(){
 
   if(MIRROR_SIDE == 0){
-    int set_point=20, offset=10;
+    int set_point=60, offset=10;
     int state=0;
     ////reposisioning before entering the obstacle
     while(state==0){
@@ -186,7 +186,7 @@ void obstacle_puing1(){
     //////////walk on the obstacle
     state=0;
     while(state==0){
-      set_point=20;
+      set_point=60;
       offset=20;
       compass();
       // distance_detection();
@@ -211,7 +211,7 @@ void obstacle_puing1(){
     }
   }
   else{
-    int set_point=20, offset=10;
+    int set_point=60, offset=10;
     int state=0;
     ////reposisioning before entering the obstacle
     while(state==0){
@@ -234,7 +234,7 @@ void obstacle_puing1(){
     //////////walk on the obstacle
     state=0;
     while(state==0){
-      set_point=20;
+      set_point=60;
       offset=20;
       compass();
       // distance_detection();
@@ -262,7 +262,7 @@ void obstacle_puing1(){
 
 void obstacle_miring(){
   if(MIRROR_SIDE == 0){
-    int set_point=20, offset=10;
+    int set_point=60, offset=10;
     int state=0;
     while(state==0){
       compass();
@@ -292,7 +292,7 @@ void obstacle_miring(){
     }
   }
   else{
-    int set_point=20, offset=10;
+    int set_point=60, offset=10;
     int state=0;
     while(state==0){
       compass();
@@ -325,7 +325,7 @@ void obstacle_miring(){
 
 void obstacle_batu1(){
   if(MIRROR_SIDE == 0){
-    int set_point=20, offset=10;
+    int set_point=60, offset=10;
     int state=0;
     while(state==0){
       compass();
@@ -355,7 +355,7 @@ void obstacle_batu1(){
     }
   }
   else{
-    int set_point=20, offset=10;
+    int set_point=60, offset=10;
     int state=0;
     while(state==0){
       compass();
@@ -389,7 +389,7 @@ void obstacle_batu1(){
 void safe_zone1(){
   speed=550;
   if(MIRROR_SIDE==0){
-    int set_point=30, offset=10;
+    int set_point=60, offset=10;
     int state=0;
     while(state==0){
       compass();
@@ -442,7 +442,7 @@ void safe_zone1(){
     servo_movement("putar", 0);//mengembalikan lokasi gripper
   }
   else {
-    int set_point=30, offset=10;
+    int set_point=60, offset=10;
     int state=0;
     while(state==0){
       compass();
@@ -599,7 +599,8 @@ void obstacle_kelereng_w_korban(){
         if(back_dis>16 || back_dis==0){
           reverse_fast_obstacle();
         }
-        else if((right_dis<=50 && right_dis>=35) || (left_dis>44 && left_dis<54)){
+        else if(left_dis>44 && left_dis<54){
+//        else if((right_dis<=50 && right_dis>=35) || (left_dis>44 && left_dis<54)){
           state=1;
         }
         else if(left_dis<=44 && left_dis>0){
@@ -617,14 +618,14 @@ void obstacle_kelereng_w_korban(){
     /////////////////////////problem when robot sidewalking because the marble making robot slip and rotates ////solved?
   
     default_state();
-    servo_movement("buka", 3);
-    delay(200);
-    servo_movement("angkat", 5);
+//    servo_movement("buka", 3);
+//    delay(200);
+//    servo_movement("angkat", 5);
     delay(1100);
-    dummy_detection2();
-    servo_movement("angkat", 0);
-    servo_movement("putar", 0);
-    servo_movement("buka", 2);
+//    dummy_detection2();
+//    servo_movement("angkat", 0);
+//    servo_movement("putar", 0);
+//    servo_movement("buka", 2);
   
     state=0;
     speed=500;
@@ -722,7 +723,7 @@ void obstacle_kelereng_w_korban(){
     // servo_movement("buka", 2);
   
     state=0;
-    speed=500;
+    speed=800;//500
     while(state==0){
       set_point=120; offset=10;
       compass();
@@ -1196,7 +1197,7 @@ void obstacle_batu2(){
         
         compass();
         distance_detection();
-        if((left_dis>=33 && (azimuth >set_point-offset && azimuth<set_point+offset) && (front_dis<=15 && front_dis>0))|| counter>=7  || roll < -6){
+        if((left_dis>=33 && (azimuth >set_point-offset && azimuth<set_point+offset) && (front_dis<=15 && front_dis>0))|| counter>=4  || roll < -6){
           state=1;
           default_state();
         }
@@ -1227,7 +1228,7 @@ void obstacle_batu2(){
         
         compass();
         distance_detection();
-        if((right_dis>=33 && (azimuth >set_point-offset && azimuth<set_point+offset) && (front_dis<=17 && front_dis>0))|| counter>=7 || roll < -6){
+        if((right_dis>=33 && (azimuth >set_point-offset && azimuth<set_point+offset) && (front_dis<=17 && front_dis>0))|| counter>=4 || roll < -6){
           state=1;
           default_state();
         }
@@ -1286,7 +1287,7 @@ void obstacle_tangga(){
     servo_movement("angkat",4);
     
     counter = 0;
-    set_point=213, offset=4;
+    set_point=208, offset=4;
     while(state==2){//sdh di tangga
       compass();
       // distance_detection();
@@ -1411,7 +1412,7 @@ void obstacle_tangga(){
     servo_movement("angkat",4);
     
     counter = 0;
-    set_point=213, offset=4;
+    set_point=208, offset=4;
     while(state==2){//sdh di tangga
       compass();
       // distance_detection();

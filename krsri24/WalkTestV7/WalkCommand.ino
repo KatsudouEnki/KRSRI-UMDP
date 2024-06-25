@@ -28,22 +28,19 @@ reverse_fast_obstacle()
 
 void loop(){
   boot_state();
+//  digitalWrite(9, 1);
   while(0){
-//    servo_movement("angkat", 1);
-//    dummy_detection();
-    default_state();
-    distance_detection();
-    data_display();
-//    compass();
-//    for(;;);
+    compass();
   }
 //  preparation();
   display.clearDisplay();
-  default_state();
-  servo_movement("angkat", 0);
   delay(1000);
+  
+  servo_movement("angkat", 0);
+  
   servo_movement("putar", 0);
   delay(1000);
+  default_state();
   unsigned long timer=millis();
   int start_state;
   speed=800;
@@ -51,9 +48,10 @@ void loop(){
   while(true){
 //    Serial.println(start_state);
     
-    if(1){
-//    if(digitalRead(46) == LOW){
-      digitalWrite(7,LOW);
+//    if(1){
+    if(digitalRead(A10) == HIGH){
+      digitalWrite(9, HIGH);
+      digitalWrite(11, LOW);
       Serial.println("start");
       home();
       digitalWrite(7,LOW);
@@ -86,6 +84,15 @@ void loop(){
       
       servo_movement("putar", 0);
       if(now - timer>750){
+        digitalWrite(11, !digitalRead(11));
+        delay(50);
+        digitalWrite(11, !digitalRead(11));
+        delay(50);
+        digitalWrite(11, !digitalRead(11));
+        delay(50);
+        digitalWrite(11, !digitalRead(11));
+        delay(50);
+        
         compass();
         // distance_detection();
       //  data_display();

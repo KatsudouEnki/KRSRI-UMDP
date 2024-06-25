@@ -18,9 +18,9 @@
 #define STX '\x02'
 #define ETX '\x03'
 
-#define ANGLE_8  1           // Register to read 8bit angle from
+#define ANGLE_8  1          // Register to read 8bit angle from
 
-#define MIRROR_SIDE 1
+#define MIRROR_SIDE 0       // 1 if mirrored side, 0 while default side
 
 
 unsigned char high_byte, low_byte, angle8;
@@ -119,6 +119,7 @@ void setup(){
   bno_init();
 
   buff_serial = "";
+  pinMode(A10, INPUT_PULLUP);
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(9,OUTPUT);
   pinMode(11,OUTPUT);
@@ -247,7 +248,7 @@ void default_state(){
 }
 
 void boot_state(){
-  speed=100;
+  speed=50;
   LeftFront(8,8,4.5,speed,servo_delay);
   LeftMid(8,8,4.5,speed,servo_delay);
   LeftBack(8,8,4.5,speed,servo_delay);
