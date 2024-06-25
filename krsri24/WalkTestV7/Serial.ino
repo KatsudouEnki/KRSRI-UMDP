@@ -56,7 +56,7 @@ void dummy_detection(){
 
             distance_detection();
             if(back_dis>17 || dty.toInt()>350 || (gripper_dis<=8 && gripper_dis>0)){
-              servo_movement("angkat", 2);
+              servo_movement("angkat", 1);
 //              walk_to_victim();
               delay(200);
               servo_movement("buka", 2);

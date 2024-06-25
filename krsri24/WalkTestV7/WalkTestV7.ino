@@ -12,13 +12,15 @@
 #include <EEPROM.h>
 #include <Adafruit_VL53L0X.h>
 
+////////////Lampu hijau 9
+////////////lampu kuning 11
 
 #define STX '\x02'
 #define ETX '\x03'
 
 #define ANGLE_8  1           // Register to read 8bit angle from
 
-#define MIRROR_SIDE 0
+#define MIRROR_SIDE 1
 
 
 unsigned char high_byte, low_byte, angle8;
@@ -118,8 +120,8 @@ void setup(){
 
   buff_serial = "";
   pinMode(LED_BUILTIN,OUTPUT);
-  pinMode(7,OUTPUT);
-  pinMode(11,INPUT_PULLUP);
+  pinMode(9,OUTPUT);
+  pinMode(11,OUTPUT);
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){

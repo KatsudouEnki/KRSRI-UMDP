@@ -28,10 +28,14 @@ reverse_fast_obstacle()
 
 void loop(){
   boot_state();
-  while(1){
-    servo_movement("angkat", 1);
-    dummy_detection();
-    for(;;);
+  while(0){
+//    servo_movement("angkat", 1);
+//    dummy_detection();
+    default_state();
+    distance_detection();
+    data_display();
+//    compass();
+//    for(;;);
   }
 //  preparation();
   display.clearDisplay();
@@ -47,22 +51,23 @@ void loop(){
   while(true){
 //    Serial.println(start_state);
     
-    if(digitalRead(46) == LOW){
+    if(1){
+//    if(digitalRead(46) == LOW){
       digitalWrite(7,LOW);
       Serial.println("start");
       home();
       digitalWrite(7,LOW);
       korban1();
-      servo_movement("buka", 1);
+//      servo_movement("buka", 1);
       delay(200);
       // servo_movement("angkat", 2);
-      servo_movement("angkat", 1);
+//      servo_movement("angkat", 1);
       delay(2000);
-      dummy_detection();
+//      dummy_detection();
       speed=800;
-      servo_movement("angkat", 0);
-      servo_movement("putar", 0);
-      servo_movement("buka", 2);
+//      servo_movement("angkat", 0);
+//      servo_movement("putar", 0);
+//      servo_movement("buka", 2);
       obstacle_puing1();
       obstacle_miring();
       obstacle_batu1();
@@ -110,11 +115,19 @@ void loop(){
 
   //testing
   while(true){
+    
+    home();
+    korban1();
+    speed=800;
+    obstacle_puing1();
+    obstacle_miring();
+    obstacle_batu1();
 //    safe_zone1();
 //    obstacle_kelereng_w_korban();
 //    safe_zone2();
 //    transisi_r5_r6();
 //    obstacle_puing2();
+    while(1);
     obstacle_batu2();
     obstacle_tangga();
   }
