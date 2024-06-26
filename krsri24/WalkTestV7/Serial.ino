@@ -57,7 +57,8 @@ void dummy_detection(){
             distance_detection();
             if(back_dis>17 || dty.toInt()>350 || (gripper_dis<=8 && gripper_dis>0)){
               servo_movement("angkat", 1);
-//              walk_to_victim();
+              walk_to_victim();
+              walk_to_victim();
               delay(200);
               servo_movement("buka", 2);
               delay(800);
@@ -77,17 +78,23 @@ void dummy_detection(){
           else if(dtx.toInt()<=-70 && dstate.toInt()==1){
             servo_movement("buka",1);
             pos=pos-1;
+            if(pos<=82){
+              pos=82;
+            }
             myservo.write(pos);
             } 
           else if(dtx.toInt()>=70 && dstate.toInt()==1){
             servo_movement("buka",1);
             pos=pos+1;
+            if(pos>=122){
+              pos=122;
+            }
             myservo.write(pos);
           }
           else{
             pos=pos+1;
-            if(pos>=120){
-              pos=80;
+            if(pos>=122){
+              pos=82;
               rep++;
               if(rep>5){
                 status_korban=1;
@@ -162,17 +169,23 @@ void dummy_detection2(){
           else if(dtx.toInt()<=-90 && dstate.toInt()==1){
             servo_movement("buka",4);
             pos=pos-1;
+            if(pos<=82){
+              pos=82;
+            }
             myservo.write(pos);
             } 
           else if(dtx.toInt()>=50 && dstate.toInt()==1){
             servo_movement("buka",4);
             pos=pos+1;
+            if(pos>=122){
+              pos=122;
+            }
             myservo.write(pos);
           }
           else{
             pos=pos-1;
-            if(pos<=80){
-              while(pos<=120){
+            if(pos<=82){
+              while(pos<=122){
                 pos=pos+10;
                 myservo.write(pos);
                 delay(20);

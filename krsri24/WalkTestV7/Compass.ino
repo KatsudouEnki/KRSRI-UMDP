@@ -57,10 +57,27 @@ void bno_init(){
     bool foundCalib = false;
 
     EEPROM.get(eeAddress, bnoID);
+//    if(digitalRead(10) == HIGH){//////used after adding switch for calibrate compass offset
+//      bnoID=255;
+//    }
 
+//    if(digitalRead(10) == HIGH){
+//      display.clearDisplay();
+//      display.print("Please Release The Button");
+//      display.display();
+//      while(digitalRead(10) == HIGH){
+//        delay(100);
+//      }
+//      delay(10);
+//      display.clearDisplay();
+//      display.print("Entering Compass Offset Calibration Mode");
+//      ///LED///
+//      bnoID=255;
+//    }
+    
     adafruit_bno055_offsets_t calibrationData;
     sensor_t sensor;
-
+    
     /*
     *  Look for the sensor's unique ID at the beginning oF EEPROM.
     *  This isn't foolproof, but it's better than nothing.
@@ -105,6 +122,7 @@ void bno_init(){
 //        while (!bno.isFullyCalibrated())
 //        {
 //            bno.getEvent(&event);
+//            displayCalStatus();
 //            delay(BNO055_SAMPLERATE_DELAY_MS);
 //        }
     }
@@ -152,6 +170,9 @@ void bno_init(){
   
       Serial.println("\n--------------------------------\n");
       delay(500);
+
+
+        while(digitalRead(10)==LOW);
     }
 
 }

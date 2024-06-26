@@ -649,16 +649,16 @@ void turn_left_obstacle(){
 
   delay(5);
 
-  LeftFront(7.25,8.75,3.5,speed,servo_delay);
-  RightMid(8.75,7.25,3.5,speed,servo_delay);
-  LeftBack(7.25,8.75,3.5,speed,servo_delay);
+  LeftFront(7.25,8.75,2.5,speed,servo_delay);
+  RightMid(8.75,7.25,2.5,speed,servo_delay);
+  LeftBack(7.25,8.75,2.5,speed,servo_delay);
 
   delay(10);
 
   //2
-  LeftFront(8.75,7.25,3.5,speed,servo_delay);
-  RightMid(7.25,8.75,3.5,speed,servo_delay);
-  LeftBack(8.75,7.25,3.5,speed,servo_delay);
+  LeftFront(8.75,7.25,2.5,speed,servo_delay);
+  RightMid(7.25,8.75,2.5,speed,servo_delay);
+  LeftBack(8.75,7.25,2.5,speed,servo_delay);
 
   RightFront(8.75,7.25,6.5,speed/3,servo_delay);
   LeftMid(7.25,8.75,6.5,speed/3,servo_delay);
@@ -673,9 +673,9 @@ void turn_left_obstacle(){
 
   delay(5);
 
-  RightFront(8.75,7.25,3.5,speed,servo_delay);
-  LeftMid(7.25,8.75,3.5,speed,servo_delay);
-  RightBack(8.75,7.25,3.5,speed,servo_delay);
+  RightFront(8.75,7.25,2.5,speed,servo_delay);
+  LeftMid(7.25,8.75,2.5,speed,servo_delay);
+  RightBack(8.75,7.25,2.5,speed,servo_delay);
 
   delay(10);
   
@@ -686,9 +686,9 @@ void turn_left_obstacle(){
 
   delay(20);
 
-  RightFront(7.25,8.75,3.5,speed,servo_delay);
-  LeftMid(8.75,7.25,3.5,speed,servo_delay);
-  RightBack(7.25,8.75,3.5,speed,servo_delay);
+  RightFront(7.25,8.75,2.5,speed,servo_delay);
+  LeftMid(8.75,7.25,2.5,speed,servo_delay);
+  RightBack(7.25,8.75,2.5,speed,servo_delay);
 }
 
 void turn_left_obstacle_fast(){
