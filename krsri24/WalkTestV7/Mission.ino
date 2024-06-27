@@ -1563,9 +1563,6 @@ void obstacle_tangga2(){
     else if(azimuth>set_point+offset || azimuth<set_point-180){
       turn_left_obstacle();
     }
-    else if(back_dis>13){
-      reverse_fast_obstacle();
-    }
     else{//330
       distance_detection();
       if(front_dis <= 10){
@@ -1575,5 +1572,9 @@ void obstacle_tangga2(){
         walk_fast_obstacle();
       }
     }
+  }
+
+  while(1){
+    crabwalk_left_ladder();
   }
 }
