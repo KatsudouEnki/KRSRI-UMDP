@@ -27,7 +27,7 @@ void servo_movement(String name, int state){
       servoBuka.write(100);
     }
     else if(state==1){
-      servoBuka.write(50);
+      servoBuka.write(55);
     }
     else if(state==2){
       servoBuka.write(110);
@@ -35,9 +35,9 @@ void servo_movement(String name, int state){
     else if(state==3){
       servoBuka.write(40);
     }
-//    else if(state==4){
-//      servoBuka.write(55);
-//    }
+   else if(state==4){
+     servoBuka.write(70);
+   }
     else{
       int val=servoBuka.read();
       servoBuka.write(val);
@@ -67,20 +67,24 @@ void servo_movement(String name, int state){
       Dynamixel.moveSpeed(19,200, 300);
     }
     else if(state==4){
-      servoAngkat.write(170);
-      Dynamixel.moveSpeed(19,500, 300);
+      servoAngkat.write(80);
+      Dynamixel.moveSpeed(19,400, 300);
     }
     else if(state==5){
-      servoAngkat.write(170);
-      Dynamixel.moveSpeed(19,200, 300);
+      servoAngkat.write(110);
+      Dynamixel.moveSpeed(19,300, 300);
     }
     else if(state==6){
       servoAngkat.write(170);
-      Dynamixel.moveSpeed(19,200, 300);
+      Dynamixel.moveSpeed(19,400, 300);
     }
     else if(state==7){
-      servoAngkat.write(170);
-      Dynamixel.moveSpeed(19,200, 300);
+      servoAngkat.write(110);
+      Dynamixel.moveSpeed(19,400, 150);
+      for(int i =110; i > 70; i--){
+        servoAngkat.write(i);
+        delay(8);
+      }
     }
     else{
       int val=servoAngkat.read();

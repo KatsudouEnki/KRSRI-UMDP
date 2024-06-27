@@ -25,7 +25,7 @@ void preparation(){
 
 void home(){
   if(MIRROR_SIDE == 0){
-    int set_point=335, offset=5;
+    int set_point=335, offset=6;
     int state=0;
     while(state==0){
       compass();
@@ -582,8 +582,9 @@ void obstacle_kelereng(){
 
 void obstacle_kelereng_w_korban(){
   if(MIRROR_SIDE == 0){
-    int set_point=210, offset=6;
+    int set_point=213, offset=6;
     int state=0;
+    int count=0;
     speed=500;
     while(state==0){
       compass();
@@ -603,29 +604,44 @@ void obstacle_kelereng_w_korban(){
       }
       else{//240
         speed=325;
-        // compass();
-        default_state();
-        delay(125);
-        distance_detection();
-        data_display();
-        if(back_dis>16 || back_dis==0){
-          reverse_fast_obstacle();
-        }
-        else if(back_dis<12 && back_dis>0){
-          walk_fast();
-        }
-        //        else if(left_dis>44 && left_dis<54){
-        else if((right_dis<=55 && right_dis>=40) || (left_dis>44 && left_dis<56)){
-          state=1;
-        }
-        else if(left_dis<=44 && left_dis>0){
-          crabwalk_right_obstacle();
-        }
-        else if(left_dis>=56 || left_dis==0){
-          crabwalk_left_obstacle();
+        if(count<4){
+          distance_detection();
+          if(back_dis>16 || back_dis==0){
+            reverse_fast_obstacle();
+          }
+          else if(back_dis<12 && back_dis>0){
+            walk_fast();
+          }
+          else{
+            crabwalk_right_obstacle();
+            count++;
+          }
         }
         else{
-          state=0;
+          // compass();
+          default_state();
+          delay(125);
+          distance_detection();
+          data_display();
+          if(back_dis>16 || back_dis==0){
+            reverse_fast_obstacle();
+          }
+          else if(back_dis<12 && back_dis>0){
+            walk_fast();
+          }
+          //        else if(left_dis>44 && left_dis<54){
+          else if((right_dis<=55 && right_dis>=40) || (left_dis>44 && left_dis<56)){
+            state=1;
+          }
+          else if(left_dis<=44 && left_dis>0){
+            crabwalk_right_obstacle();
+          }
+          else if(left_dis>=56 || left_dis==0){
+            crabwalk_left_obstacle();
+          }
+          else{
+            state=0;
+          }
         }
       }
       delay(10);
@@ -635,7 +651,7 @@ void obstacle_kelereng_w_korban(){
    servo_movement("buka", 3);
    delay(200);
    servo_movement("angkat", 5);
-    delay(1100);
+    delay(1000);
    dummy_detection2();
    servo_movement("angkat", 0);
    servo_movement("putar", 0);
@@ -682,7 +698,7 @@ void obstacle_kelereng_w_korban(){
   }
   else{
     /////////////////Mirror Side
-    int set_point=210, offset=7;
+    int set_point=213, offset=6;
     int state=0;
     speed=600;
     while(state==0){
@@ -776,6 +792,7 @@ void obstacle_kelereng_w_korban(){
       }
     }
   }
+  speed=800;
 }
 
 void safe_zone2(){
@@ -828,7 +845,7 @@ void safe_zone2(){
     }
     servo_movement("putar", 2);
     delay(750);
-    servo_movement("angkat", 3);
+    servo_movement("angkat", 4);
     delay(750);
     servo_movement("buka", 3);
     delay(750);
@@ -872,7 +889,7 @@ void safe_zone2(){
     }
     servo_movement("putar", 4);
     delay(750);
-    servo_movement("angkat", 3);
+    servo_movement("angkat", 4);
     delay(750);
     servo_movement("buka", 3);
     delay(750);
@@ -978,11 +995,11 @@ void transisi_r5_r6(){
   //      if((left_dis<10 && left_dis>0) && ((back_dis<=25 &&back_dis>0) || (front_dis<=15 && front_dis>0))){
         distance_detection();
         data_display();
-        if(back_dis<28 && back_dis>0){
+        if(back_dis<25 && back_dis>0){
           state=1;
         }
         else{
-          reverse_fast();
+          reverse_fast_obstacle();
           status_gerak++;
           if(status_gerak == 2){
             crabwalk_left_obstacle();
@@ -1091,7 +1108,7 @@ void transisi_r5_r6(){
           state=1;
         }
         else{
-          reverse_fast();
+          reverse_fast_obstacle();
   //        status_gerak++;
   //        if(status_gerak>8){
   //          state=1;
@@ -1116,12 +1133,12 @@ void obstacle_puing2(){
       else if(azimuth>set_point+offset || azimuth<set_point-180){
         turn_left_obstacle();
       }
-      else if(back_dis>15){
+      else if(back_dis>12){
         reverse_fast_obstacle();
       }
       else{//330
         distance_detection();
-        if(left_dis <50){
+        if(right_dis >45){
           state=1;
         }
         else{
@@ -1129,7 +1146,9 @@ void obstacle_puing2(){
         }
       }
     }
-      
+      walk_fast_obstacle();
+      walk_fast_obstacle();
+      walk_fast_obstacle();
       // compass();
       distance_detection();
       
@@ -1138,10 +1157,8 @@ void obstacle_puing2(){
       servo_movement("angkat", 0);
       delay(200);
       servo_movement("angkat", 5);
-      servo_movement("angkat", 1);
-      delay(100);
       delay(1000);
-  //      dummy_detection2();
+      dummy_detection3();
       servo_movement("angkat", 0);
       servo_movement("putar", 0);
       servo_movement("buka", 2);
@@ -1195,7 +1212,7 @@ void obstacle_puing2(){
       servo_movement("angkat", 1);
       delay(100);
       delay(1000);
-  //      dummy_detection2();
+      dummy_detection3();
       servo_movement("angkat", 0);
       servo_movement("putar", 0);
       servo_movement("buka", 2);
@@ -1211,6 +1228,7 @@ void obstacle_puing2(){
       }
     }
   }
+  speed=800;
 }
 
 void obstacle_batu2(){
@@ -1529,5 +1547,33 @@ void obstacle_tangga(){
       post_ladder_rev(roll);
     }
       
+  }
+}
+
+void obstacle_tangga2(){
+  int set_point=321, offset=15;
+  int state=0;
+  while(state==0){//130
+    compass();
+    distance_detection();
+
+    if(azimuth<=set_point-offset && azimuth>=set_point-180){
+      turn_right_obstacle();
+    }
+    else if(azimuth>set_point+offset || azimuth<set_point-180){
+      turn_left_obstacle();
+    }
+    else if(back_dis>13){
+      reverse_fast_obstacle();
+    }
+    else{//330
+      distance_detection();
+      if(front_dis <= 10){
+        state=1;
+      }
+      else{
+        walk_fast_obstacle();
+      }
+    }
   }
 }

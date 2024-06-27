@@ -30,36 +30,24 @@ void loop(){
   boot_state();
 //  digitalWrite(9, 1);
   while(0){
-    default_state();
-    distance_detection();
-    data_display();
-//    servo_movement("putar", 0);
-//    delay(1000);
-//    servo_movement("putar",1);
-//    delay(1000);
-//    servo_movement("angkat", 1);
-//    delay(2000);
-//    Dynamixel.moveSpeed(19,400,150);
-////    Serial.println(servoAngkat.read());
-//    for(int x=140; x>=80;x--){
-//      servoAngkat.write(x);
-//      delay(10);
-//    }
-//    delay(5000);
-    
+    obstacle_kelereng_w_korban();
   }
 //  preparation();
   display.clearDisplay();
-  delay(1000);
+  delay(500);
   
   servo_movement("angkat", 0);
   
   servo_movement("putar", 0);
-  delay(1000);
+  delay(500);
   default_state();
   unsigned long timer=millis();
   int start_state;
   speed=800;
+  
+  while(false){
+    crabwalk_right_ladder();
+  }
 
   while(true){
 //    Serial.println(start_state);
@@ -69,7 +57,7 @@ void loop(){
       digitalWrite(9, HIGH);
       digitalWrite(11, LOW);
       Serial.println("start");
-      /* */
+      /* *
       home();
       digitalWrite(7,LOW);
       korban1();
@@ -90,9 +78,9 @@ void loop(){
       safe_zone1();
       obstacle_kelereng_w_korban();
       safe_zone2();
-      // transisi_r5_r6();
-      // obstacle_puing2();
-      // obstacle_batu2();
+      transisi_r5_r6();
+      obstacle_puing2();
+      obstacle_batu2();
       // obstacle_tangga();
       while(true);
     }
@@ -112,8 +100,8 @@ void loop(){
         delay(50);
         
         compass();
-        // distance_detection();
-      //  data_display();
+        distance_detection();
+       data_display();
 
 //        display.clearDisplay();
 //        display.setCursor(50,0);

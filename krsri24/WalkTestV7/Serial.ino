@@ -55,7 +55,7 @@ void dummy_detection(){
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>17 || dty.toInt()>350 || (gripper_dis<=8 && gripper_dis>0)){
+            if(back_dis>17 || dty.toInt()>350){
               servo_movement("angkat", 1);
               walk_to_victim();
               walk_to_victim();
@@ -78,17 +78,17 @@ void dummy_detection(){
           else if(dtx.toInt()<=-70 && dstate.toInt()==1){
             servo_movement("buka",1);
             pos=pos-1;
-            if(pos<=82){
-              pos=82;
-            }
+            // if(pos<=82){
+            //   pos=82;
+            // }
             myservo.write(pos);
             } 
           else if(dtx.toInt()>=70 && dstate.toInt()==1){
             servo_movement("buka",1);
             pos=pos+1;
-            if(pos>=122){
-              pos=122;
-            }
+            // if(pos>=122){
+            //   pos=122;
+            // }
             myservo.write(pos);
           }
           else{
@@ -116,7 +116,7 @@ void dummy_detection2(){
   speed=200;
   int status_korban=0, rep=0;
   while(status_korban==0){
-      if (Serial2.available()) {
+    if (Serial2.available()) {
       if (buff_serial.length() > 16) {
         buff_serial = "";
       }
@@ -140,17 +140,18 @@ void dummy_detection2(){
   
           dtx = get_value(rx_in,',',1);
   
-          if(dtx.toInt()>=-90 && dtx.toInt()<=50 && dstate.toInt()==1){
+          if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
             servo_movement("buka",4);
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>16 || dty.toInt()>350){
+            if(back_dis>19 || dty.toInt()>400){
+              // default_state();
               servo_movement("angkat", 5);
-              walk_to_victim();
+              // walk_to_victim();
               servo_movement("angkat", 7);
-              walk_to_victim();
-              delay(200);
+              // walk_to_victim();
+              // delay(200);
               servo_movement("buka", 2);
               delay(800);
               servo_movement("angkat", 6);
@@ -166,20 +167,124 @@ void dummy_detection2(){
             myservo.write(pos);
             Serial.print("pos = "); Serial.println(pos);
           }
-          else if(dtx.toInt()<=-90 && dstate.toInt()==1){
+          else if(dtx.toInt()<=-70 && dstate.toInt()==1){
             servo_movement("buka",4);
             pos=pos-1;
-            if(pos<=82){
-              pos=82;
-            }
+            // if(pos<72){
+            //   pos=72;
+            // }
             myservo.write(pos);
             } 
-          else if(dtx.toInt()>=50 && dstate.toInt()==1){
+          else if(dtx.toInt()>=70 && dstate.toInt()==1){
             servo_movement("buka",4);
             pos=pos+1;
-            if(pos>=122){
-              pos=122;
+            // if(pos>=122){
+            //   pos=132;
+            // }
+            myservo.write(pos);
+          }
+          else{
+            pos=pos-1;
+            if(pos<=82){
+              while(pos<=122){
+                pos=pos+10;
+                myservo.write(pos);
+                delay(20);
+              }
+              rep++;
+              if(rep>2){
+                reverse_fast_obstacle();
+                delay(100);
+                default_state();
+                servo_movement("angkat", 5);
+              }
+              if(rep>5){
+                status_korban=1;
+              }
             }
+            myservo.write(pos);
+            delay(10);
+          }
+          delay(150);
+          buff_serial = "";
+        }
+      }
+    }
+  }
+}
+
+void dummy_detection3(){
+  speed=200;
+  int status_korban=0, rep=0;
+  while(status_korban==0){
+    if (Serial2.available()) {
+      if (buff_serial.length() > 16) {
+        buff_serial = "";
+      }
+      
+      String rx_in, dtx, dty, dstate;
+      char chrx_in = Serial2.read();
+      buff_serial += String(chrx_in);
+      // check header
+      int pos_head = buff_serial.indexOf(STX);
+      int pos_tail = buff_serial.indexOf(ETX);
+      if ((pos_head > -1) && (pos_tail > -1)) {
+        if (pos_head < pos_tail) {
+          rx_in = buff_serial.substring(pos_head + 1, pos_tail);
+          Serial.println(rx_in);
+
+          dstate = get_value(rx_in,',',0);
+          Serial.print("Status = "); Serial.println(dstate);
+          display.setCursor(10,10);
+          display.print(dstate);
+          display.display();
+  
+          dtx = get_value(rx_in,',',1);
+  
+          if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
+            
+            walk_to_victim_obstacle();
+
+            distance_detection();
+            if(back_dis>18 || dty.toInt()>375){
+              // default_state();
+              servo_movement("angkat", 5);
+              walk_to_victim_obstacle();
+              walk_to_victim_obstacle();
+              servo_movement("buka",4);
+              servo_movement("angkat", 7);
+              
+              // delay(200);
+              servo_movement("buka", 2);
+              delay(800);
+              servo_movement("angkat", 6);
+              delay(250);
+              speed=100;
+              reverse_fast_obstacle();
+              servo_movement("buka", 2);
+              delay(600);
+              servo_movement("angkat", 0);
+              status_korban=1;
+              speed=800;
+            }
+            
+            myservo.write(pos);
+            Serial.print("pos = "); Serial.println(pos);
+          }
+          else if(dtx.toInt()<=-70 && dstate.toInt()==1){
+            servo_movement("buka",4);
+            pos=pos-1;
+            // if(pos<72){
+            //   pos=72;
+            // }
+            myservo.write(pos);
+            } 
+          else if(dtx.toInt()>=70 && dstate.toInt()==1){
+            servo_movement("buka",4);
+            pos=pos+1;
+            // if(pos>=122){
+            //   pos=132;
+            // }
             myservo.write(pos);
           }
           else{
