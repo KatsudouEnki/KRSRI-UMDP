@@ -582,9 +582,9 @@ void obstacle_kelereng(){
 
 void obstacle_kelereng_w_korban(){
   if(MIRROR_SIDE == 0){
-    int set_point=205, offset=7;
+    int set_point=210, offset=6;
     int state=0;
-    speed=600;
+    speed=500;
     while(state==0){
       compass();
       // distance_detection();
@@ -605,22 +605,23 @@ void obstacle_kelereng_w_korban(){
         speed=325;
         // compass();
         default_state();
+        delay(125);
         distance_detection();
         data_display();
-        if(back_dis>18 || back_dis==0){
+        if(back_dis>16 || back_dis==0){
           reverse_fast_obstacle();
         }
-        else if(back_dis<14 && back_dis>0){
+        else if(back_dis<12 && back_dis>0){
           walk_fast();
         }
-//        else if(left_dis>44 && left_dis<54){
-        else if((right_dis<=50 && right_dis>=35) || (left_dis>44 && left_dis<54)){
+        //        else if(left_dis>44 && left_dis<54){
+        else if((right_dis<=55 && right_dis>=40) || (left_dis>44 && left_dis<56)){
           state=1;
         }
         else if(left_dis<=44 && left_dis>0){
           crabwalk_right_obstacle();
         }
-        else if(left_dis>=54 || left_dis==0){
+        else if(left_dis>=56 || left_dis==0){
           crabwalk_left_obstacle();
         }
         else{
@@ -629,7 +630,6 @@ void obstacle_kelereng_w_korban(){
       }
       delay(10);
     }
-    /////////////////////////problem when robot sidewalking because the marble making robot slip and rotates ////solved?
   
     default_state();
 //    servo_movement("buka", 3);
@@ -641,46 +641,47 @@ void obstacle_kelereng_w_korban(){
 //    servo_movement("putar", 0);
 //    servo_movement("buka", 2);
   
-    state=0;
-    speed=500;
-    while(state==0){//using 50 degree when rotate
-      set_point=321; offset=10;
-      compass();
-      // distance_detection();
-      // data_display();
-      if(azimuth<=set_point-50 && azimuth>=set_point-180){
-        turn_right_fast();
-      }
-      else if(azimuth<set_point-offset && azimuth > set_point-50){
-        turn_right_slow();
-      }
-      else if(azimuth>set_point+offset || azimuth<=set_point-310){
-        turn_left_slow();
-      }
-      else if(azimuth<set_point-180 && azimuth>set_point-310){
-        turn_left_fast();
-      }
-      else{//240
-        if(right_dis<16){
-          crabwalk_left_obstacle();
-        }
-        else if(right_dis>21){
-          crabwalk_right_obstacle();
-        }
-        else{
-          walk_fast_obstacle();
-        }
-      }
-  
-      // compass();
-      distance_detection();
-      data_display();
-      if((front_dis<=30 && front_dis>0) && (right_dis>=16 && right_dis<=21)){
-        state=1;
-      }
-    }
+//    state=0;
+//    speed=500;
+//    while(state==0){//using 50 degree when rotate
+//      set_point=321; offset=10;
+//      compass();
+//      // distance_detection();
+//      // data_display();
+//      if(azimuth<=set_point-50 && azimuth>=set_point-180){
+//        turn_right_fast();
+//      }
+//      else if(azimuth<set_point-offset && azimuth > set_point-50){
+//        turn_right_slow();
+//      }
+//      else if(azimuth>set_point+offset || azimuth<=set_point-310){
+//        turn_left_slow();
+//      }
+//      else if(azimuth<set_point-180 && azimuth>set_point-310){
+//        turn_left_fast();
+//      }
+//      else{//240
+//        if(right_dis<16){
+//          crabwalk_left_obstacle();
+//        }
+//        else if(right_dis>21){
+//          crabwalk_right_obstacle();
+//        }
+//        else{
+//          walk_fast_obstacle();
+//        }
+//      }
+//  
+//      // compass();
+//      distance_detection();
+//      data_display();
+//      if((front_dis<=30 && front_dis>0) && (right_dis>=16 && right_dis<=21)){
+//        state=1;
+//      }
+//    }
   }
   else{
+    /////////////////Mirror Side
     int set_point=210, offset=7;
     int state=0;
     speed=600;
@@ -782,6 +783,7 @@ void safe_zone2(){
     int set_point=321, offset=10;
     int state=0;
     speed=500;
+    
     while(state==0){
       compass();
       // distance_detection();
@@ -800,7 +802,13 @@ void safe_zone2(){
       }
       else{//240
         distance_detection();
-        if(front_dis>0 && front_dis<=30){
+        if(right_dis<16){
+          crabwalk_left_obstacle();
+        }
+        else if(right_dis>21){
+          crabwalk_right_obstacle();
+        }
+        else if((front_dis>0 && front_dis<=26) && (left_dis >=40 || left_dis == 0)){
           state=1;
         }
         else{
@@ -1113,7 +1121,7 @@ void obstacle_puing2(){
       }
       else{//330
         distance_detection();
-        if(right_dis >50){
+        if(left_dis <50){
           state=1;
         }
         else{
@@ -1141,7 +1149,7 @@ void obstacle_puing2(){
     state=0;
     while(state==0){
       distance_detection();
-      if(left_dis>15 || left_dis==0){
+      if(left_dis>18 || left_dis==0){
         crabwalk_left_obstacle();
       }
       else{
@@ -1313,7 +1321,7 @@ void obstacle_tangga(){
     servo_movement("angkat",4);
     
     counter = 0;
-    set_point=207, offset=4;
+    set_point=230, offset=4;
     while(state==2){//sdh di tangga
       compass();
       // distance_detection();
