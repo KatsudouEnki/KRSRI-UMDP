@@ -49,7 +49,7 @@ void home(){
         distance_detection();
         data_display();
     
-        if(left_dis>50 || left_dis==0){
+        if(left_dis>53 || left_dis==0){
           state=1;
           default_state();
         }
@@ -82,7 +82,7 @@ void home(){
         distance_detection();
         data_display();
     
-        if(right_dis>50 || right_dis==0){
+        if(right_dis>53 || right_dis==0){
           state=1;
           default_state();
         }
@@ -632,14 +632,14 @@ void obstacle_kelereng_w_korban(){
     }
   
     default_state();
-//    servo_movement("buka", 3);
-//    delay(200);
-//    servo_movement("angkat", 5);
+   servo_movement("buka", 3);
+   delay(200);
+   servo_movement("angkat", 5);
     delay(1100);
-//    dummy_detection2();
-//    servo_movement("angkat", 0);
-//    servo_movement("putar", 0);
-//    servo_movement("buka", 2);
+   dummy_detection2();
+   servo_movement("angkat", 0);
+   servo_movement("putar", 0);
+   servo_movement("buka", 2);
   
 //    state=0;
 //    speed=500;

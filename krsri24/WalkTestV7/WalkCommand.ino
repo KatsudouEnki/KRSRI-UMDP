@@ -69,7 +69,7 @@ void loop(){
       digitalWrite(9, HIGH);
       digitalWrite(11, LOW);
       Serial.println("start");
-      /* *
+      /* */
       home();
       digitalWrite(7,LOW);
       korban1();
@@ -78,7 +78,7 @@ void loop(){
       // servo_movement("angkat", 2);
       servo_movement("angkat", 1);
       delay(2000);
-//      dummy_detection();
+      dummy_detection();
       speed=800;
       servo_movement("angkat", 0);
       servo_movement("putar", 0);
@@ -90,10 +90,10 @@ void loop(){
       safe_zone1();
       obstacle_kelereng_w_korban();
       safe_zone2();
-      transisi_r5_r6();
-      obstacle_puing2();
-      obstacle_batu2();
-      obstacle_tangga();
+      // transisi_r5_r6();
+      // obstacle_puing2();
+      // obstacle_batu2();
+      // obstacle_tangga();
       while(true);
     }
     else{

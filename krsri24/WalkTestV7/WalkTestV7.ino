@@ -1157,6 +1157,88 @@ void crabwalk_left_obstacle(){
   // delay(20);
 }
 
+void crabwalk_left_ladder(){
+  //1
+  RightFront(8,5,6,speed,servo_delay);
+  LeftMid(9.4,9.4,4,speed,servo_delay);
+  RightBack(5,8,6,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(8,5,0.5,speed,servo_delay);
+  RightMid(9.4,9.4,2.5,speed,servo_delay);
+  LeftBack(5,8,0.5,speed,servo_delay);
+  
+  // delay(10);
+
+  // RightFront(9,5,6,speed,servo_delay);
+  // LeftMid(8.7,8.7,6,speed,servo_delay);
+  // RightBack(5,9,6,speed,servo_delay);
+
+  LeftFront(12,5,0.5,speed,servo_delay);
+  RightMid(6.6,6.6,2.5,speed,servo_delay);
+  LeftBack(5,12,0.5,speed,servo_delay);
+
+  RightFront(10,5,6,speed,servo_delay);
+  LeftMid(8,8,4,speed,servo_delay);
+  RightBack(5,10,6,speed,servo_delay);
+
+  // RightFront(11,5,6,speed,servo_delay);
+  // LeftMid(7.3,7.3,6,speed,servo_delay);
+  // RightBack(5,11,6,speed,servo_delay);
+
+  //2
+  // LeftFront(12,5,3,speed,servo_delay);
+  // RightMid(6.6,6.6,3,speed,servo_delay);
+  // LeftBack(5,12,3,speed,servo_delay);
+
+  RightFront(12,5,6,speed,servo_delay);
+  LeftMid(6.6,6.6,4,speed,servo_delay);
+  RightBack(5,12,6,speed,servo_delay);
+
+  // delay(20);
+
+  //3
+  LeftFront(12,5,4,speed,servo_delay);
+  RightMid(6.6,6.6,6,speed,servo_delay);
+  LeftBack(5,12,4,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(12,5,2.5,speed,servo_delay);
+  LeftMid(6.6,6.6,0.5,speed,servo_delay);
+  RightBack(5,12,2.5,speed,servo_delay);
+  
+  // delay(10);
+
+  // LeftFront(11,5,6,speed,servo_delay);
+  // RightMid(7.3,7.3,6,speed,servo_delay);
+  // LeftBack(5,11,6,speed,servo_delay);
+
+  RightFront(8,5,2.5,speed,servo_delay);
+  LeftMid(9.4,9.4,0.5,speed,servo_delay);
+  RightBack(5,8,2.5,speed,servo_delay);
+
+  LeftFront(10,5,4,speed,servo_delay);
+  RightMid(8,8,6,speed,servo_delay);
+  LeftBack(5,10,4,speed,servo_delay);
+
+  // LeftFront(9,5,6,speed,servo_delay);
+  // RightMid(8.7,8.7,6,speed,servo_delay);
+  // LeftBack(5,9,6,speed,servo_delay);
+
+  //4
+  // RightFront(8,5,3,speed,servo_delay);
+  // LeftMid(9.4,9.4,3,speed,servo_delay);
+  // RightBack(5,8,3,speed,servo_delay);
+
+  LeftFront(8,5,4,speed,servo_delay);
+  RightMid(9.4,9.4,6,speed,servo_delay);
+  LeftBack(5,8,4,speed,servo_delay);
+  
+  // delay(20);
+}
+
 // void crabwalk_right(){
 //   //1
 //   RightFront(12,5,4.5,speed,servo_delay);
