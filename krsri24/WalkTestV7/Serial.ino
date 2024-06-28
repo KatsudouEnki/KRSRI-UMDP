@@ -78,17 +78,19 @@ void dummy_detection(){
           else if(dtx.toInt()<=-70 && dstate.toInt()==1){
             servo_movement("buka",1);
             pos=pos-1;
-            // if(pos<=82){
-            //   pos=82;
-            // }
+             if(pos<=82){
+               turn_left_slow();
+               pos = 92;
+             }
             myservo.write(pos);
             } 
           else if(dtx.toInt()>=70 && dstate.toInt()==1){
             servo_movement("buka",1);
             pos=pos+1;
-            // if(pos>=122){
-            //   pos=122;
-            // }
+             if(pos>=122){
+               turn_right_slow();
+               pos=112;
+             }
             myservo.write(pos);
           }
           else{
@@ -141,17 +143,14 @@ void dummy_detection2(){
           dtx = get_value(rx_in,',',1);
   
           if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
-            servo_movement("buka",4);
-            walk_to_victim();
+//            servo_movement("buka",4);
+            walk_to_victim_obstacle();
 
             distance_detection();
-            if(back_dis>19 || dty.toInt()>400){
+            if(back_dis>19 || dty.toInt()>325){
               // default_state();
               servo_movement("angkat", 5);
-              // walk_to_victim();
               servo_movement("angkat", 7);
-              // walk_to_victim();
-              // delay(200);
               servo_movement("buka", 2);
               delay(800);
               servo_movement("angkat", 6);
@@ -253,8 +252,6 @@ void dummy_detection3(){
               walk_to_victim_obstacle();
               servo_movement("buka",4);
               servo_movement("angkat", 7);
-              
-              // delay(200);
               servo_movement("buka", 2);
               delay(800);
               servo_movement("angkat", 6);
@@ -296,12 +293,12 @@ void dummy_detection3(){
                 delay(20);
               }
               rep++;
-              if(rep>2){
-                reverse_fast_obstacle();
-                delay(100);
-                default_state();
-                servo_movement("angkat", 5);
-              }
+//              if(rep>2){
+//                reverse_fast_obstacle();
+//                delay(100);
+//                default_state();
+//                servo_movement("angkat", 5);
+//              }
               if(rep>5){
                 status_korban=1;
               }

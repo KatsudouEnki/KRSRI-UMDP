@@ -71,17 +71,17 @@ void servo_movement(String name, int state){
       Dynamixel.moveSpeed(19,400, 300);
     }
     else if(state==5){
-      servoAngkat.write(110);
-      Dynamixel.moveSpeed(19,300, 300);
+      servoAngkat.write(100);
+      Dynamixel.moveSpeed(19,275, 300);
     }
     else if(state==6){
       servoAngkat.write(170);
       Dynamixel.moveSpeed(19,400, 300);
     }
     else if(state==7){
-      servoAngkat.write(110);
-      Dynamixel.moveSpeed(19,400, 150);
-      for(int i =110; i > 70; i--){
+      servoAngkat.write(100);
+      Dynamixel.moveSpeed(19,350, 150);
+      for(int i =100; i > 60; i--){
         servoAngkat.write(i);
         delay(8);
       }

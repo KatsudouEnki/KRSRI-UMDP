@@ -30,7 +30,19 @@ void loop(){
   boot_state();
 //  digitalWrite(9, 1);
   while(0){
-    obstacle_kelereng_w_korban();
+    for(pos=100; pos<=122;pos++){
+      myservo.write(pos);
+      delay(25);
+    }
+    for(pos=122; pos>=82;pos--){
+      myservo.write(pos); 
+      delay(25);
+    }
+    for(pos=82; pos<=100;pos++){
+      myservo.write(pos);
+      delay(25);
+    }
+//    obstacle_kelereng_w_korban();
   }
 //  preparation();
   display.clearDisplay();
@@ -57,31 +69,31 @@ void loop(){
       digitalWrite(9, HIGH);
       digitalWrite(11, LOW);
       Serial.println("start");
-      /* *
-      home();
-      digitalWrite(7,LOW);
-      korban1();
-      servo_movement("buka", 1);
-      delay(200);
-      // servo_movement("angkat", 2);
-      servo_movement("angkat", 1);
-      delay(2000);
-      dummy_detection();
-      speed=800;
-      servo_movement("angkat", 0);
-      servo_movement("putar", 0);
-      servo_movement("buka", 2);
-      obstacle_puing1();
-      obstacle_miring();
       /* */
-      obstacle_batu1();
-      safe_zone1();
-      obstacle_kelereng_w_korban();
-      safe_zone2();
-      transisi_r5_r6();
-      obstacle_puing2();
-      obstacle_batu2();
-      // obstacle_tangga();
+//      home();
+//      digitalWrite(7,LOW);
+//      korban1();
+//      servo_movement("buka", 1);
+//      delay(200);
+//      // servo_movement("angkat", 2);
+//      servo_movement("angkat", 1);
+//      delay(2000);
+//      dummy_detection();
+//      speed=800;
+//      servo_movement("angkat", 0);
+//      servo_movement("putar", 0);
+//      servo_movement("buka", 2);
+//      obstacle_puing1();
+//      obstacle_miring();
+//      /* */
+//      obstacle_batu1();
+//      safe_zone1();
+//      obstacle_kelereng_w_korban();
+//      safe_zone2();
+//      transisi_r5_r6();
+//      obstacle_puing2();
+//      obstacle_batu2();
+      obstacle_tangga2();
       while(true);
     }
     else{
