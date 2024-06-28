@@ -169,17 +169,19 @@ void dummy_detection2(){
           else if(dtx.toInt()<=-70 && dstate.toInt()==1){
             servo_movement("buka",4);
             pos=pos-1;
-            // if(pos<72){
-            //   pos=72;
-            // }
+             if(pos<82){
+               turn_left_slow();
+               pos = 92;
+             }
             myservo.write(pos);
             } 
           else if(dtx.toInt()>=70 && dstate.toInt()==1){
             servo_movement("buka",4);
             pos=pos+1;
-            // if(pos>=122){
-            //   pos=132;
-            // }
+             if(pos>=122){
+               turn_right_slow();
+               pos=112;
+             }
             myservo.write(pos);
           }
           else{
@@ -245,7 +247,7 @@ void dummy_detection3(){
             walk_to_victim_obstacle();
 
             distance_detection();
-            if(back_dis>18 || dty.toInt()>375){
+            if(back_dis>35 || dty.toInt()>375){
               // default_state();
               servo_movement("angkat", 5);
               walk_to_victim_obstacle();

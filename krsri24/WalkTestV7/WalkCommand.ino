@@ -58,7 +58,7 @@ void loop(){
   speed=800;
   
   while(false){
-    crabwalk_right_ladder();
+    reverse_fast_obstacle();
   }
 
   while(true){
@@ -70,29 +70,29 @@ void loop(){
       digitalWrite(11, LOW);
       Serial.println("start");
       /* */
-//      home();
-//      digitalWrite(7,LOW);
-//      korban1();
-//      servo_movement("buka", 1);
-//      delay(200);
-//      // servo_movement("angkat", 2);
-//      servo_movement("angkat", 1);
-//      delay(2000);
-//      dummy_detection();
-//      speed=800;
-//      servo_movement("angkat", 0);
-//      servo_movement("putar", 0);
-//      servo_movement("buka", 2);
-//      obstacle_puing1();
-//      obstacle_miring();
-//      /* */
-//      obstacle_batu1();
-//      safe_zone1();
-//      obstacle_kelereng_w_korban();
-//      safe_zone2();
-//      transisi_r5_r6();
-//      obstacle_puing2();
-//      obstacle_batu2();
+      home();
+      digitalWrite(7,LOW);
+      korban1();
+      servo_movement("buka", 1);
+      delay(200);
+      // servo_movement("angkat", 2);
+      servo_movement("angkat", 1);
+      delay(2000);
+      dummy_detection();
+      speed=800;
+      servo_movement("angkat", 0);
+      servo_movement("putar", 0);
+      servo_movement("buka", 2);
+      obstacle_puing1();
+      obstacle_miring();
+      /* */
+      obstacle_batu1();
+      safe_zone1();
+      obstacle_kelereng_w_korban();
+      safe_zone2();
+      transisi_r5_r6();
+      obstacle_puing2();
+      obstacle_batu2_ver2();
       obstacle_tangga2();
       while(true);
     }
@@ -113,7 +113,7 @@ void loop(){
         
         compass();
         distance_detection();
-       data_display();
+//       data_display();
 
 //        display.clearDisplay();
 //        display.setCursor(50,0);

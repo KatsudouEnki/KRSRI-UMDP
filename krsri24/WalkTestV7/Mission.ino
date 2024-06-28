@@ -713,7 +713,7 @@ void obstacle_kelereng_w_korban(){
         }
         else{
           // compass();
-          default_state();
+          default_state_obstacle();
           delay(125);
           distance_detection();
           data_display();
@@ -1196,7 +1196,7 @@ void obstacle_puing2(){
         if(back_dis>12 || back_dis == 0){
           reverse_fast_obstacle();
         } 
-        else if(right_dis >45 || right_dis == 0){
+        else if(right_dis > 50 || right_dis == 0){
           state=1;
         }
         else{
@@ -1204,21 +1204,21 @@ void obstacle_puing2(){
         }
       }
     }
-      walk_fast_obstacle();
-      walk_fast_obstacle();
-      // compass();
-      distance_detection();
-      
-      default_state();
-      servo_movement("buka", 3);
-      servo_movement("angkat", 0);
-      delay(200);
-      servo_movement("angkat", 5);
-      delay(1000);
-      dummy_detection3();
-      servo_movement("angkat", 0);
-      servo_movement("putar", 0);
-      servo_movement("buka", 2);
+    walk_fast_obstacle();
+    walk_fast_obstacle();
+    // compass();
+    distance_detection();
+    
+    default_state();
+    servo_movement("buka", 3);
+    servo_movement("angkat", 0);
+    delay(200);
+    servo_movement("angkat", 5);
+    delay(1000);
+    dummy_detection3();
+    servo_movement("angkat", 0);
+    servo_movement("putar", 0);
+    servo_movement("buka", 2);
       
     state=0;
     while(state==0){
@@ -1355,7 +1355,7 @@ void obstacle_batu2(){
 
 void obstacle_batu2_ver2(){
   if(MIRROR_SIDE == 0){
-    int set_point=207, offset=20;
+    int set_point=321, offset=20;
     int state=0, counter=0;
     while(state==0){//130
       compass();
@@ -1371,16 +1371,15 @@ void obstacle_batu2_ver2(){
         
         compass();
         distance_detection();
-        if((left_dis>=33 && (azimuth >set_point-offset && azimuth<set_point+offset) && (front_dis<=15 && front_dis>0))|| counter>=4  || roll < -6){
+        if((back_dis>=33 && (azimuth >set_point-offset && azimuth<set_point+offset) && (left_dis<=15 && left_dis>0))|| pitch >= 15){
           state=1;
           default_state();
         }
-        else if(front_dis>15 || front_dis==0){
-          walk_fast_obstacle();
+        else if(left_dis>15 || left_dis==0){
+          crabwalk_left_obstacle();
         }
-        else if(left_dis<33){
-          crabwalk_right_obstacle();
-          counter++;
+        else if(back_dis<33){
+          walk_fast_obstacle();
         }
       }
     }
@@ -1675,6 +1674,7 @@ void obstacle_tangga(){
 void obstacle_tangga2(){
   int set_point=321, offset=15;
   int state=0;
+  int count=0;  
   while(state==0){//130
     compass();
     distance_detection();
@@ -1695,8 +1695,23 @@ void obstacle_tangga2(){
       }
     }
   }
-
-  while(1){
+  state=0;
+  while(state == 0){
+    
     crabwalk_left_ladder();
+    count++;
+
+    if(count > 15){
+      distance_detection();
+      compass();
+      if((left_dis > 0 && left_dis <= 25) &&(pitch >=-3 && pitch <=8)){
+        state=1;
+      }
+    }
   }
+}
+
+
+void r10(){
+  
 }
