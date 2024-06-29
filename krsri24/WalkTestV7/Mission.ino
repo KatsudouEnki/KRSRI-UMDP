@@ -29,8 +29,6 @@ void home(){
     int state=0;
     while(state==0){
       compass();
-      // distance_detection();
-      // data_display();
       if(azimuth<=set_point-40 && azimuth>=set_point-180){
         turn_right_fast();
       }
@@ -45,7 +43,6 @@ void home(){
       }
       else{
         crabwalk_right_test0();
-        // compass();
         distance_detection();
         data_display();
     
@@ -61,8 +58,6 @@ void home(){
     int state=0;
     while(state==0){
       compass();
-      // distance_detection();
-      // data_display();
       if(azimuth<=set_point-40 || azimuth>=set_point+180){ //80 ++ 300
         turn_right_fast();
       }
@@ -77,8 +72,6 @@ void home(){
       }
       else{
         crabwalk_left();
-//        crabwalk_left_test0();
-        // compass();
         distance_detection();
         data_display();
     
@@ -1181,6 +1174,7 @@ void obstacle_puing2(){
   if(MIRROR_SIDE == 0){
     int set_point=321, offset=15;
     int state=0;
+    int count=0;
     while(state==0){//130
       compass();
       distance_detection();
@@ -1195,6 +1189,11 @@ void obstacle_puing2(){
         distance_detection();
         if(back_dis>12 || back_dis == 0){
           reverse_fast_obstacle();
+          count++;
+          if(count >=4){
+            crabwalk_left_obstacle();
+            count=0;
+          }
         } 
         else if(right_dis > 50 || right_dis == 0){
           state=1;
@@ -1219,7 +1218,8 @@ void obstacle_puing2(){
     servo_movement("angkat", 0);
     servo_movement("putar", 0);
     servo_movement("buka", 2);
-      
+
+    speed=800;
     state=0;
     while(state==0){
       distance_detection();
@@ -1273,7 +1273,8 @@ void obstacle_puing2(){
       servo_movement("angkat", 0);
       servo_movement("putar", 0);
       servo_movement("buka", 2);
-      
+
+    speed=800;
     state=0;
     while(state==0){
       distance_detection();
@@ -1704,14 +1705,105 @@ void obstacle_tangga2(){
     if(count > 15){
       distance_detection();
       compass();
-      if((left_dis > 0 && left_dis <= 25) &&(pitch >=-3 && pitch <=8)){
+      if((left_dis > 0 && left_dis <= 27) &&(pitch >=-5 && pitch <=10)){
         state=1;
       }
     }
   }
+  for(int i=0;i<4;i++){
+    crabwalk_left_ladder();
+  }
+}
+
+void korban5(){
+  int set_point=321, offset=10;
+  int state=0,repeat=0;
+
+  while(state==0){
+    compass();
+    distance_detection();
+
+    if(azimuth<=set_point-offset && azimuth>=set_point-180){
+      turn_right_obstacle();
+    }
+    else if(azimuth>set_point+offset || azimuth<set_point-180){
+      turn_left_obstacle();
+    }
+    else{//330
+      distance_detection();
+      if(front_dis <= 10){
+        state=1;
+      }
+      else{
+        walk_fast_obstacle();
+      }
+    }
+  }
+
+  set_point=250, offset=10;
+  state=0,repeat=0;
+  
+  state=0;
+  while(state==0){
+    compass();
+    if(azimuth>set_point+offset || azimuth<set_point-180){
+      turn_left_obstacle();
+    }
+    else if(azimuth<set_point-offset && azimuth>=set_point-180){
+      turn_right_obstacle();
+    }
+    else{//240
+      state=1;
+    }
+  }
+  for(int i=0; i<2;i++){
+    walk_fast_obstacle();
+  }
+  default_state();
+  servo_movement("buka", 3);
+  servo_movement("angkat", 0);
+  delay(200);
+  servo_movement("angkat", 5);
+  delay(1000);
+  dummy_detection3();
+  servo_movement("angkat", 0);
+  servo_movement("putar", 0);
+  servo_movement("buka", 2);
 }
 
 
 void r10(){
-  
+  int set_point=210, offset=8;
+  int state=0;
+  int count=0;  
+  while(state==0){//130
+    compass();
+    distance_detection();
+
+    if(azimuth<=set_point-offset && azimuth>=set_point-180){
+      turn_right_obstacle();
+    }
+    else if(azimuth>set_point+offset || azimuth<set_point-180){
+      turn_left_obstacle();
+    }
+    else{//330
+      state=1;
+    }
+  }
+
+  speed=500;
+  state=0;
+  while(state == 0){
+    
+    crabwalk_left_obstacle();
+    count++;
+
+    if(count > 15){
+      distance_detection();
+      compass();
+      if((left_dis > 0 && left_dis <= 25)){
+        state=1;
+      }
+    }
+  }
 }

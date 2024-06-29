@@ -1,0 +1,73 @@
+void r10(){
+  if(MIRROR_SIDE == 0){
+    int set_point=210, offset=8;
+    int state=0;
+    int count=0;  
+    while(state==0){//130
+      compass();
+      distance_detection();
+  
+      if(azimuth<=set_point-offset && azimuth>=set_point-180){
+        turn_right_obstacle();
+      }
+      else if(azimuth>set_point+offset || azimuth<set_point-180){
+        turn_left_obstacle();
+      }
+      else{//330
+        state=1;
+      }
+    }
+  
+    speed=500;
+    state=0;
+    while(state == 0){
+      
+      crabwalk_left_obstacle();
+      count++;
+  
+      if(count > 10){
+        distance_detection();
+        compass();
+        if((left_dis > 0 && left_dis <= 25)){
+          state=1;
+        }
+      }
+    }
+  }
+  else{
+    /************** Mirror side **************/
+    int set_point=210, offset=8;
+    int state=0;
+    int count=0;  
+    while(state==0){//130
+      compass();
+      distance_detection();
+  
+      if(azimuth<=set_point-offset && azimuth>=set_point-180){
+        turn_right_obstacle();
+      }
+      else if(azimuth>set_point+offset || azimuth<set_point-180){
+        turn_left_obstacle();
+      }
+      else{//330
+        state=1;
+      }
+    }
+  
+    speed=500;
+    state=0;
+    while(state == 0){
+      
+      crabwalk_right_obstacle();
+      count++;
+  
+      if(count > 10){
+        distance_detection();
+        compass();
+        if((right_dis > 0 && righ_dis <= 25)){
+          state=1;
+        }
+      }
+    }
+  }
+}
