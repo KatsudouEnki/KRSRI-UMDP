@@ -25,10 +25,10 @@ void r10(){
       crabwalk_left_obstacle();
       count++;
   
-      if(count > 10){
+      if(count > 15){
         distance_detection();
         compass();
-        if((left_dis > 0 && left_dis <= 25)){
+        if((left_dis > 0 && left_dis <= 20)){
           state=1;
         }
       }
@@ -36,17 +36,17 @@ void r10(){
   }
   else{
     /************** Mirror side **************/
-    int set_point=210, offset=8;
+    int set_point=110, offset=8;
     int state=0;
     int count=0;  
     while(state==0){//130
       compass();
       distance_detection();
   
-      if(azimuth<=set_point-offset && azimuth>=set_point-180){
+      if(azimuth<=set_point-offset || azimuth>=set_point+180){
         turn_right_obstacle();
       }
-      else if(azimuth>set_point+offset || azimuth<set_point-180){
+      else if(azimuth>set_point+offset && azimuth<set_point+180){
         turn_left_obstacle();
       }
       else{//330
@@ -61,13 +61,14 @@ void r10(){
       crabwalk_right_obstacle();
       count++;
   
-      if(count > 10){
+      if(count > 15){
         distance_detection();
         compass();
-        if((right_dis > 0 && righ_dis <= 25)){
+        if((right_dis > 0 && right_dis <= 20)){
           state=1;
         }
       }
     }
   }
+  
 }

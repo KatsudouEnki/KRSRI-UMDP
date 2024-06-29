@@ -27,7 +27,7 @@ void compass(){
   roll    = event.orientation.y;
   pitch   = event.orientation.z;
   Serial.println(azimuth);
-  /**
+  /**/
   display.setCursor(0,0);
   display.print("bearing ");
   display.print(azimuth);
@@ -287,4 +287,26 @@ void displaySensorOffsets(const adafruit_bno055_offsets_t &calibData)
 
     Serial.print("\nMag Radius: ");
     Serial.print(calibData.mag_radius);
+}
+
+//Fungsi untuk menentukan arah putar
+int HeadingJustification(int h, int start_point, int range, int space, char arah){
+    int f;
+    int offset;
+    range = range-space;
+    if(arah =='p'){
+        start_point =start_point+space;
+    }
+    else{
+        start_point =start_point-space;
+        start_point = (start_point - range)%360;
+    }
+    if(start_point+range >=360) offset=360-start_point;
+    else offset=0;
+    
+    h=(h+offset)%360;
+    start_point=(start_point+offset)%360;
+    
+    if( (h>= start_point) && h <=start_point +range){ return 1; }
+    else{ return 0; }
 }

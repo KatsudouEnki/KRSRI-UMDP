@@ -110,6 +110,7 @@ void obstacle_kelereng_w_korban(){
     /************** Mirror side **************/
     int set_point=213, offset=6;
     int state=0;
+    int count;
     speed=600;
     int state_compass = 0;
     while(state_compass != 1){
