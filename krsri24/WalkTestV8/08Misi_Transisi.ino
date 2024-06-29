@@ -11,11 +11,17 @@ void transisi_r5_r6(){
         crabwalk_right();
         repeat=0;
       }
-      else if(azimuth>set_point+offset || azimuth<set_point-180){
-        turn_left_obstacle();
-      }
-      else if(azimuth<set_point-offset && azimuth>=set_point-180){
+//      else if(azimuth>set_point+offset || azimuth<set_point-180){
+//        turn_left_obstacle();
+//      }
+//      else if(azimuth<set_point-offset && azimuth>=set_point-180){
+//        turn_right_obstacle();
+//      }
+      else if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
+      }
+      else if(HeadingJustification(azimuth, set_point, 180, offset, 'p')){
+        turn_left_obstacle();
       }
       else{//240
         compass();
@@ -38,16 +44,28 @@ void transisi_r5_r6(){
       set_point=313; offset=15;
       compass();
       
-      if(azimuth<=set_point-40 && azimuth>set_point-180){
+//      if(azimuth<=set_point-40 && azimuth>set_point-180){
+//        turn_right_fast();
+//      }
+//      else if(azimuth<set_point-offset && azimuth > set_point-40){
+//        turn_right_slow();
+//      }
+//      else if(azimuth>set_point+offset && azimuth<=set_point+40){
+//        turn_left_slow();
+//      }
+//      else if(azimuth>set_point+40 || azimuth<set_point-180){
+//        turn_left_fast();
+//      }
+      if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_fast();
       }
-      else if(azimuth<set_point-offset && azimuth > set_point-40){
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
         turn_right_slow();
       }
-      else if(azimuth>set_point+offset && azimuth<=set_point+40){
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
         turn_left_slow();
       }
-      else if(azimuth>set_point+40 || azimuth<set_point-180){
+      else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
         turn_left_fast();
       }
       else{

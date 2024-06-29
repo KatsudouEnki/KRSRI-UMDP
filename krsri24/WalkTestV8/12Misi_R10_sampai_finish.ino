@@ -7,10 +7,16 @@ void r10(){
       compass();
       distance_detection();
   
-      if(azimuth<=set_point-offset && azimuth>=set_point-180){
+//      if(azimuth<=set_point-offset && azimuth>=set_point-180){
+//        turn_right_obstacle();
+//      }
+//      else if(azimuth>set_point+offset || azimuth<set_point-180){
+//        turn_left_obstacle();
+//      }
+      if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
-      else if(azimuth>set_point+offset || azimuth<set_point-180){
+      else if(HeadingJustification(azimuth, set_point, 180, offset, 'p')){
         turn_left_obstacle();
       }
       else{//330

@@ -6,17 +6,29 @@ void safe_zone2(){
     
     while(state==0){
       compass();
-      if(azimuth<=set_point-50 && azimuth>=set_point-180){
-        turn_right_obstacle_fast();
+//      if(azimuth<=set_point-50 && azimuth>=set_point-180){
+//        turn_right_obstacle_fast();
+//      }
+//      else if(azimuth<set_point-offset && azimuth > set_point-50){
+//        turn_right_obstacle();
+//      }
+//      else if(azimuth>set_point+offset || azimuth<=set_point-310){
+//        turn_left_obstacle();
+//      }
+//      else if(azimuth<set_point-180 && azimuth>set_point-310){
+//        turn_left_obstacle_fast();
+//      }
+      if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
+        turn_right_fast();
       }
-      else if(azimuth<set_point-offset && azimuth > set_point-50){
-        turn_right_obstacle();
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
+        turn_right_slow();
       }
-      else if(azimuth>set_point+offset || azimuth<=set_point-310){
-        turn_left_obstacle();
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
+        turn_left_slow();
       }
-      else if(azimuth<set_point-180 && azimuth>set_point-310){
-        turn_left_obstacle_fast();
+      else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
+        turn_left_fast();
       }
       else{//240
         distance_detection();

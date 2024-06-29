@@ -8,16 +8,16 @@ void obstacle_puing1(){
     while(state==0){
       compass();
       distance_detection();
-      if(azimuth<set_point-offset && azimuth > set_point-50){//54 && 14
+      if(HeadingJustification(azimuth, set_point, 50, offset, 'n')){//54 && 14
         turn_right_slow();
       }
-      else if(azimuth>set_point+offset && azimuth<=set_point+50){ //74 && 224
+      else if(HeadingJustification(azimuth, set_point, 50, offset, 'p')){//74 && 244
         turn_left_slow();
       }
-      else if(azimuth<set_point-50 || azimuth>set_point+180){ //14 || 224
+      else if(HeadingJustification(azimuth, set_point, 180, 50, 'n')){//14 || 244
         turn_right_fast();
       }
-      else if(azimuth>set_point+50 && azimuth<=set_point+180){ //74 && 224
+      else if(HeadingJustification(azimuth, set_point, 180, 50, 'p')){//74 && 224
         turn_left_fast();
       }
       else if(right_dis>=15 || right_dis == 0){
@@ -29,16 +29,23 @@ void obstacle_puing1(){
     }
   
     //////////walk on the obstacle
-    offset=15;
+    
+    set_point=64; offset=15;
     
     state=0;
     while(state==0){
       compass();
   
-      if(azimuth<set_point-offset || azimuth>=set_point+180){
+//      if(azimuth<set_point-offset || azimuth>=set_point+180){
+//        turn_right_obstacle();
+//      }
+//      else if(azimuth>set_point+offset && azimuth<set_point+180){
+//        turn_left_obstacle();
+//      }
+      if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
-      else if(azimuth>set_point+offset && azimuth<set_point+180){
+      else if(HeadingJustification(azimuth, set_point, 180, offset, 'p')){
         turn_left_obstacle();
       }
       else{

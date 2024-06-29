@@ -18,16 +18,28 @@ void obstacle_kelereng_w_korban(){
         state_compass = 0;
         state=0;
         
-        if(azimuth<set_point-offset && azimuth>=set_point-40){
-          turn_right_obstacle();
-        }
-        else if(azimuth>set_point+offset && azimuth<=set_point+40){
-          turn_left_obstacle();
-        }
-        else if(azimuth<set_point-40 && azimuth>=set_point-180){
+//        if(azimuth<set_point-offset && azimuth>=set_point-40){
+//          turn_right_obstacle();
+//        }
+//        else if(azimuth>set_point+offset && azimuth<=set_point+40){
+//          turn_left_obstacle();
+//        }
+//        else if(azimuth<set_point-40 && azimuth>=set_point-180){
+//          turn_right_obstacle_fast();
+//        }
+//        else if(azimuth>set_point+40 || azimuth<set_point-180){
+//          turn_left_obstacle_fast();
+//        }
+        if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
           turn_right_obstacle_fast();
         }
-        else if(azimuth>set_point+40 || azimuth<set_point-180){
+        else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
+          turn_right_obstacle();
+        }
+        else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
+          turn_left_obstacle();
+        }
+        else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
           turn_left_obstacle_fast();
         }
       }
@@ -42,16 +54,28 @@ void obstacle_kelereng_w_korban(){
     while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (right_dis>=46 && right_dis<=58) && (count>=6))){
       compass();
       distance_detection();
-      if(azimuth<set_point-offset && azimuth>=set_point-40){
-        turn_right_obstacle();
-      }
-      else if(azimuth>set_point+offset && azimuth<=set_point+40){
-        turn_left_obstacle();
-      }
-      else if(azimuth<set_point-40 && azimuth>=set_point-180){
+//      if(azimuth<set_point-offset && azimuth>=set_point-40){
+//        turn_right_obstacle();
+//      }
+//      else if(azimuth>set_point+offset && azimuth<=set_point+40){
+//        turn_left_obstacle();
+//      }
+//      else if(azimuth<set_point-40 && azimuth>=set_point-180){
+//        turn_right_obstacle_fast();
+//      }
+//      else if(azimuth>set_point+40 || azimuth<set_point-180){
+//        turn_left_obstacle_fast();
+//      }
+      if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
       }
-      else if(azimuth>set_point+40 || azimuth<set_point-180){
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
+        turn_right_obstacle();
+      }
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
+        turn_left_obstacle();
+      }
+      else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
         turn_left_obstacle_fast();
       }
       else{//240

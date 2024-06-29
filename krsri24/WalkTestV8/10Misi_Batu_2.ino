@@ -5,10 +5,16 @@ void obstacle_batu2_ver2(){
     while(state==0){//130
       compass();
 
-      if(azimuth<=set_point-offset && azimuth>=set_point-180){
+//      if(azimuth<=set_point-offset && azimuth>=set_point-180){
+//        turn_right_obstacle();
+//      }
+//      else if(azimuth>=set_point+offset || azimuth<set_point-180){
+//        turn_left_obstacle();
+//      }
+      if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
-      else if(azimuth>=set_point+offset || azimuth<set_point-180){
+      else if(HeadingJustification(azimuth, set_point, 180, offset, 'p')){
         turn_left_obstacle();
       }
       else{//330
@@ -28,6 +34,7 @@ void obstacle_batu2_ver2(){
     }
   }
   else{
+    /************** Mirror side **************/
     int set_point=210, offset=20;
     int state=0, counter=0;
     while(state==0){//130

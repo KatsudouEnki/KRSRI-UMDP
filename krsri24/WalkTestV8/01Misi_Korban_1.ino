@@ -6,16 +6,28 @@ void korban1(){
     int state=0;
     while(state==0){
       compass();
-      if(azimuth<=set_point-50 && azimuth>=set_point-180){//285 155
+//      if(azimuth<=set_point-50 && azimuth>=set_point-180){//285 155
+//        turn_right_fast();
+//      }
+//      else if(azimuth<set_point-offset && azimuth > set_point-50){//329 285
+//        turn_right_slow();
+//      }
+//      else if(azimuth>set_point+offset || azimuth<=set_point-310){//341 25
+//        turn_left_slow();
+//      }
+//      else if(azimuth<set_point-180 && azimuth>set_point-310){//285 25
+//        turn_left_fast();
+//      }
+      if(HeadingJustification(azimuth, set_point, 180, 50, 'n')){
         turn_right_fast();
       }
-      else if(azimuth<set_point-offset && azimuth > set_point-50){//329 285
+      else if(HeadingJustification(azimuth, set_point, 50, offset, 'n')){
         turn_right_slow();
       }
-      else if(azimuth>set_point+offset || azimuth<=set_point-310){//341 25
+      else if(HeadingJustification(azimuth, set_point, 50, offset, 'p')){
         turn_left_slow();
       }
-      else if(azimuth<set_point-180 && azimuth>set_point-310){//285 25
+      else if(HeadingJustification(azimuth, set_point, 180, 50, 'p')){
         turn_left_fast();
       }
       else{

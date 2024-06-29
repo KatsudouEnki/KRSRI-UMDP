@@ -300,6 +300,7 @@ int HeadingJustification(int h, int start_point, int range, int space, char arah
     else{
         start_point =start_point-space;
         start_point = (start_point - range)%360;
+        if (start_point<0) start_point=start_point+360;
     }
     if(start_point+range >=360) offset=360-start_point;
     else offset=0;

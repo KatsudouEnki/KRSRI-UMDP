@@ -4,16 +4,28 @@ void home(){
     int state=0;
     while(state==0){
       compass();
-      if(azimuth<=set_point-40 && azimuth>=set_point-180){
+//      if(azimuth<=set_point-40 && azimuth>=set_point-180){
+//        turn_right_fast();
+//      }
+//      else if(azimuth<set_point-offset && azimuth > set_point-40){
+//        turn_right_slow();
+//      }
+//      else if(azimuth>set_point+offset || azimuth<=set_point-320){
+//        turn_left_slow();
+//      }
+//      else if(azimuth<set_point-180 && azimuth>set_point-320){
+//        turn_left_fast();
+//      }
+      if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_fast();
       }
-      else if(azimuth<set_point-offset && azimuth > set_point-40){
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
         turn_right_slow();
       }
-      else if(azimuth>set_point+offset || azimuth<=set_point-320){
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
         turn_left_slow();
       }
-      else if(azimuth<set_point-180 && azimuth>set_point-320){
+      else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
         turn_left_fast();
       }
       else{
