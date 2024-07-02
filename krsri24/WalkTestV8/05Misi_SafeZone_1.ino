@@ -8,18 +8,6 @@ void safe_zone1(){
       compass();
       distance_detection();
       
-//      if(azimuth<set_point-40 || azimuth>=set_point+180){
-//        turn_right_fast();
-//      }
-//      else if(azimuth>=set_point-40 && azimuth<set_point-offset){
-//        turn_right_slow();
-//      }
-//      else if(azimuth>set_point+offset && azimuth<set_point+40){
-//        turn_left_slow();
-//      }
-//      else if(azimuth>=set_point+40 && azimuth<set_point-180){
-//        turn_left_fast();
-//      }
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_fast();
       }
@@ -33,6 +21,7 @@ void safe_zone1(){
         turn_left_fast();
       }
       else{
+        distance_detection();
         if((front_dis<=15 && front_dis>0)){
           reverse_fast();
         }
@@ -76,19 +65,20 @@ void safe_zone1(){
       compass();
       distance_detection();
       
-      if(azimuth<set_point+320 && azimuth>=set_point+180){
+      if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_fast();
       }
-      else if(azimuth>=set_point+320 || azimuth<set_point-offset){
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
         turn_right_slow();
       }
-      else if(azimuth>set_point+offset && azimuth<set_point+40){
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
         turn_left_slow();
       }
-      else if(azimuth>=set_point+40 && azimuth<set_point+180){
+      else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
         turn_left_fast();
       }
       else{
+        distance_detection();
         if((front_dis<=15 && front_dis>0)){
           reverse_fast();
         }
@@ -105,7 +95,7 @@ void safe_zone1(){
       }
       compass();
       distance_detection();
-      if((front_dis<=25 && front_dis>15) && (left_dis>=11 && left_dis<=16)&& (azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((front_dis<=25 && front_dis>20) && (left_dis>=11 && left_dis<=16)&& (azimuth<=set_point+offset && azimuth >=set_point-offset)){
         state=1;
         default_state();
       } 
@@ -116,7 +106,7 @@ void safe_zone1(){
     servo_movement("angkat", 2);//peletakan arm gripper
     delay(500);
     servo_movement("buka", 3);//pelepasan korban
-    delay(750);
+    delay(500);
     servo_movement("angkat", 0);//pengangkatan arm gripper
     delay(250);
     servo_movement("buka", 0);//menutup grip

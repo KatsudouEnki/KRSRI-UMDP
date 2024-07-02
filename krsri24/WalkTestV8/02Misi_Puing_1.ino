@@ -35,13 +35,7 @@ void obstacle_puing1(){
     state=0;
     while(state==0){
       compass();
-  
-//      if(azimuth<set_point-offset || azimuth>=set_point+180){
-//        turn_right_obstacle();
-//      }
-//      else if(azimuth>set_point+offset && azimuth<set_point+180){
-//        turn_left_obstacle();
-//      }
+
       if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
@@ -69,13 +63,19 @@ void obstacle_puing1(){
     while(state==0){
       compass();
       distance_detection();
-      if(azimuth<set_point-offset || azimuth > set_point+180){
+      if(HeadingJustification(azimuth, set_point, 50, offset, 'n')){//54 && 14
         turn_right_slow();
       }
-      else if(azimuth>set_point+offset && azimuth<=set_point+180){
+      else if(HeadingJustification(azimuth, set_point, 50, offset, 'p')){//74 && 244
         turn_left_slow();
       }
-      else if(left_dis>=14 || left_dis == 0){
+      else if(HeadingJustification(azimuth, set_point, 180, 50, 'n')){//14 || 244
+        turn_right_fast();
+      }
+      else if(HeadingJustification(azimuth, set_point, 180, 50, 'p')){//74 && 224
+        turn_left_fast();
+      }
+      else if(left_dis>=15 || left_dis == 0){
         crabwalk_left();
       }
       else{
@@ -90,10 +90,10 @@ void obstacle_puing1(){
     while(state==0){
       compass();
   
-      if(azimuth<set_point-offset || azimuth>=set_point+180){
+      if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
-      else if(azimuth>set_point+offset && azimuth<set_point+180){
+      else if(HeadingJustification(azimuth, set_point, 180, offset, 'p')){
         turn_left_obstacle();
       }
       else{

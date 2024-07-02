@@ -18,18 +18,6 @@ void obstacle_kelereng_w_korban(){
         state_compass = 0;
         state=0;
         
-//        if(azimuth<set_point-offset && azimuth>=set_point-40){
-//          turn_right_obstacle();
-//        }
-//        else if(azimuth>set_point+offset && azimuth<=set_point+40){
-//          turn_left_obstacle();
-//        }
-//        else if(azimuth<set_point-40 && azimuth>=set_point-180){
-//          turn_right_obstacle_fast();
-//        }
-//        else if(azimuth>set_point+40 || azimuth<set_point-180){
-//          turn_left_obstacle_fast();
-//        }
         if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
           turn_right_obstacle_fast();
         }
@@ -54,18 +42,7 @@ void obstacle_kelereng_w_korban(){
     while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (right_dis>=46 && right_dis<=58) && (count>=6))){
       compass();
       distance_detection();
-//      if(azimuth<set_point-offset && azimuth>=set_point-40){
-//        turn_right_obstacle();
-//      }
-//      else if(azimuth>set_point+offset && azimuth<=set_point+40){
-//        turn_left_obstacle();
-//      }
-//      else if(azimuth<set_point-40 && azimuth>=set_point-180){
-//        turn_right_obstacle_fast();
-//      }
-//      else if(azimuth>set_point+40 || azimuth<set_point-180){
-//        turn_left_obstacle_fast();
-//      }
+
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
       }
@@ -128,14 +105,17 @@ void obstacle_kelereng_w_korban(){
     servo_movement("angkat", 0);
     servo_movement("putar", 0);
     servo_movement("buka", 2);
-    
+    speed = 800;
   }
   else{
     /************** Mirror side **************/
+    digitalWrite(11,LOW);
+    digitalWrite(9,LOW);
+
     int set_point=213, offset=6;
     int state=0;
     int count;
-    speed=600;
+    speed=500;
     int state_compass = 0;
     while(state_compass != 1){
       digitalWrite(9,LOW);
@@ -193,7 +173,7 @@ void obstacle_kelereng_w_korban(){
             walk_fast_obstacle();
           }
           else{
-            crabwalk_right_obstacle();
+            crabwalk_left_obstacle();
             count++;
           }
         }
@@ -209,10 +189,10 @@ void obstacle_kelereng_w_korban(){
           else if(back_dis<12 && back_dis>0){
             walk_fast_obstacle();
           }
-          else if(right_dis<46 && right_dis>0){
-            crabwalk_left_obstacle();
+          else if(left_dis<46 && left_dis>0){
+            crabwalk_right_obstacle();
           }
-          else if(right_dis>58 || right_dis == 0){
+          else if(left_dis>58 || left_dis == 0){
             crabwalk_right_obstacle();
           }
         }
@@ -223,14 +203,14 @@ void obstacle_kelereng_w_korban(){
     }
   
     default_state();
-    // servo_movement("buka", 3);
-    // delay(200);
-    // servo_movement("angkat", 5);
+    servo_movement("buka", 3);
+    delay(200);
+    servo_movement("angkat", 5);
     delay(1100);
-    // dummy_detection2();
-    // servo_movement("angkat", 0);
-    // servo_movement("putar", 0);
-    // servo_movement("buka", 2);
+    dummy_detection2();
+    servo_movement("angkat", 0);
+    servo_movement("putar", 0);
+    servo_movement("buka", 2);
   }
   speed=800;
 }

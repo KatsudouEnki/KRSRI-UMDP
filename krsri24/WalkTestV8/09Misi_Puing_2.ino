@@ -6,13 +6,7 @@ void obstacle_puing2(){
     while(state==0){//130
       compass();
       distance_detection();
-
-//      if(azimuth<=set_point-offset && azimuth>=set_point-180){
-//        turn_right_obstacle();
-//      }
-//      else if(azimuth>set_point+offset || azimuth<set_point-180){
-//        turn_left_obstacle();
-//      }
+      
       if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
@@ -68,22 +62,28 @@ void obstacle_puing2(){
     /************** Mirror side **************/
     int set_point=120, offset=15;
     int state=0;
+    int count=0;
     while(state==0){//130
       compass();
       distance_detection();
 
-      if(azimuth<=set_point-offset || azimuth>=set_point+180){
+       if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
-      else if(azimuth>set_point+offset && azimuth<set_point+180){
+      else if(HeadingJustification(azimuth, set_point, 180, offset, 'p')){
         turn_left_obstacle();
-      }
-      else if(back_dis>12){
-        reverse_fast_obstacle();
       }
       else{//330
         distance_detection();
-        if(right_dis < 70 && right_dis < 60){
+        if(back_dis>12 || back_dis == 0){
+          reverse_fast_obstacle();
+          count++;
+          if(count >=4){
+            crabwalk_right_obstacle();
+            count=0;
+          }
+        }
+        else if(left_dis < 50 || left_dis == 0){
           state=1;
         }
         else{
@@ -100,8 +100,6 @@ void obstacle_puing2(){
       servo_movement("angkat", 0);
       delay(200);
       servo_movement("angkat", 5);
-      servo_movement("angkat", 1);
-      delay(100);
       delay(1000);
       dummy_detection3();
       servo_movement("angkat", 0);
@@ -112,8 +110,8 @@ void obstacle_puing2(){
     state=0;
     while(state==0){
       distance_detection();
-      if(right_dis>15 || right_dis==0){
-        crabwalk_right();
+      if(right_dis>18 || right_dis==0){
+        crabwalk_right_obstacle();
       }
       else{
         state=1;

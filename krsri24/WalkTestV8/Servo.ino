@@ -103,10 +103,10 @@ void servo_movement(String name, int state){
       myservo.write(posisi_awal+35);
     }
     else if(state==3){
-      myservo.write(posisi_awal-30);
+      myservo.write(posisi_awal-20);
     }
     else if(state==4){
-      myservo.write(posisi_awal-50);
+      myservo.write(posisi_awal-35);
     }
     else{
       int val=myservo.read();

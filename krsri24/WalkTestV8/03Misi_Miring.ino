@@ -6,18 +6,6 @@ void obstacle_miring(){
     while(state==0){
       compass();
       
-//      if(azimuth<set_point-40 || azimuth>=set_point+180){
-//        turn_right_obstacle();
-//      }
-//      else if(azimuth>=set_point-40 && azimuth<set_point-offset){
-//        turn_right_obstacle();
-//      }
-//      else if(azimuth>set_point+offset && azimuth<set_point+40){
-//        turn_left_obstacle();
-//      }
-//      else if(azimuth>=set_point+40 && azimuth<set_point+180){
-//        turn_left_obstacle();
-//      }
       if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
@@ -43,17 +31,11 @@ void obstacle_miring(){
     while(state==0){
       compass();
       
-      if(azimuth<set_point+320 && azimuth>=set_point+180){
-        turn_right_fast();
+      if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
+        turn_right_obstacle();
       }
-      else if(azimuth>=set_point+320 || azimuth<set_point-offset){
-        turn_right_slow();
-      }
-      else if(azimuth>set_point+offset && azimuth<set_point+offset){
-        turn_left_slow();
-      }
-      else if(azimuth>=set_point+offset && azimuth<set_point+180){
-        turn_left_fast();
+      else if(HeadingJustification(azimuth, set_point, 180, offset, 'p')){
+        turn_left_obstacle();
       }
       else{
         walk_fast();
