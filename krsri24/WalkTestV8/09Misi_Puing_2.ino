@@ -1,6 +1,6 @@
 void obstacle_puing2(){
   if(MIRROR_SIDE == 0){
-    int set_point=321, offset=15;
+    int set_point=sp_puing2_n, offset=15;
     int state=0;
     int count=0;
     while(state==0){//130
@@ -60,7 +60,7 @@ void obstacle_puing2(){
   
   else{
     /************** Mirror side **************/
-    int set_point=120, offset=15;
+    int set_point=sp_puing2_m, offset=15;
     int state=0;
     int count=0;
     while(state==0){//130

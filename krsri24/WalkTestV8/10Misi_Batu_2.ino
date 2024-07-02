@@ -1,6 +1,6 @@
 void obstacle_batu2_ver2(){
   if(MIRROR_SIDE == 0){
-    int set_point=321, offset=20;
+    int set_point=sp_batu2_n, offset=20;
     int state=0;
     while(state==0){//130
       compass();
@@ -28,7 +28,7 @@ void obstacle_batu2_ver2(){
   }
   else{
     /************** Mirror side **************/
-    int set_point=210, offset=20;
+    int set_point=sp_batu2_m, offset=20;
     int state=0;
     while(state==0){//130
       compass();

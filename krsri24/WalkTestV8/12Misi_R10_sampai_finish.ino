@@ -1,6 +1,6 @@
 void r10(){
   if(MIRROR_SIDE == 0){
-    int set_point=210, offset=8;
+    int set_point=sp_r10_n, offset=8;
     int state=0;
     int count=0;  
     while(state==0){//130
@@ -35,7 +35,7 @@ void r10(){
   }
   else{
     /************** Mirror side **************/
-    int set_point=110, offset=8;
+    int set_point=sp_r10_m, offset=8;
     int state=0;
     int count=0;  
     while(state==0){//130

@@ -1,7 +1,7 @@
 void obstacle_puing1(){
   speed=800;
   if(MIRROR_SIDE == 0){
-    int set_point=64, offset=10;
+    int set_point=sp_puing1_n, offset=10;
     
     int state=0;
     ////reposisioning before entering the obstacle
@@ -30,7 +30,7 @@ void obstacle_puing1(){
   
     //////////walk on the obstacle
     
-    set_point=64; offset=15;
+    offset=15;
     
     state=0;
     while(state==0){
@@ -56,7 +56,7 @@ void obstacle_puing1(){
   }
   else{
     /************** Mirror side **************/
-    int set_point=40, offset=10;
+    int set_point=sp_puing1_m, offset=10;
     
     int state=0;
     ////reposisioning before entering the obstacle

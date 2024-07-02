@@ -1,7 +1,7 @@
 void korban1(){
   if(MIRROR_SIDE == 0){
     speed=200;
-    int set_point=335, offset=6;
+    int set_point=sp_korban1_n, offset=6;
     
     int state=0;
     while(state==0){
@@ -32,7 +32,7 @@ void korban1(){
   else{
     /************** Mirror side **************/
     speed=200;
-    int set_point=120, offset=6;
+    int set_point=sp_korban1_m, offset=6;
     
     int state=0;
     while(state==0){

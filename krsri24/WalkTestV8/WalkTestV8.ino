@@ -78,6 +78,36 @@ Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
 
 void(* resetFunc) (void) = 0;
 
+int sp_home_n,
+    sp_home_m,
+    sp_korban1_n,
+    sp_korban1_m,
+    sp_puing1_n,
+    sp_puing1_m,
+    sp_miring_n,
+    sp_miring_m,
+    sp_batu1_n,
+    sp_batu1_m,
+    sp_sz1_n,
+    sp_sz1_m,
+    sp_kelereng_n,
+    sp_kelereng_m,
+    sp_sz2_n,
+    sp_sz2_m,
+    sp_transisi_n_1,
+    sp_transisi_n_2,
+    sp_transisi_m_1,
+    sp_transisi_m_2,
+    sp_puing2_n,
+    sp_puing2_m,
+    sp_batu2_n,
+    sp_batu2_m,
+    sp_tangga_n,
+    sp_tangga_m,
+    sp_r10_n,
+    sp_r10_m;
+
+
 void setup(){
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -123,6 +153,7 @@ void setup(){
   pinMode(LED_BUILTIN,OUTPUT);
   pinMode(9,OUTPUT);
   pinMode(11,OUTPUT);
+  heading_list();
 }
 
 void LeftFront(float x_val, float y_val,float z_val, int speed,int servo_delay){

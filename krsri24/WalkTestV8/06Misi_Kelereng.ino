@@ -3,7 +3,7 @@ void obstacle_kelereng_w_korban(){
     digitalWrite(11,LOW);
     digitalWrite(9,LOW);
 
-    int set_point=213, offset=6;
+    int set_point=sp_kelereng_n, offset=6;
     int state=0;
     int count=0;
     speed=500;
@@ -112,7 +112,7 @@ void obstacle_kelereng_w_korban(){
     digitalWrite(11,LOW);
     digitalWrite(9,LOW);
 
-    int set_point=213, offset=6;
+    int set_point=sp_kelereng_m, offset=6;
     int state=0;
     int count;
     speed=500;
@@ -147,7 +147,7 @@ void obstacle_kelereng_w_korban(){
 
     distance_detection();
     compass();
-    while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (right_dis>=46 && right_dis<=58) && (count>=6))){
+    while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (left_dis>=46 && left_dis<=58) && (count>=6))){
       compass();
       distance_detection();
       if(azimuth<set_point-offset && azimuth>=set_point-40){

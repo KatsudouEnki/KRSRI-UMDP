@@ -1,6 +1,6 @@
 void obstacle_miring(){
   if(MIRROR_SIDE == 0){
-    int set_point=60, offset=10;
+    int set_point=sp_miring_n, offset=10;
     
     int state=0;
     while(state==0){
@@ -25,7 +25,7 @@ void obstacle_miring(){
   }
   else{
     /************** Mirror side **************/
-    int set_point=60, offset=10;
+    int set_point=sp_miring_m, offset=10;
     
     int state=0;
     while(state==0){

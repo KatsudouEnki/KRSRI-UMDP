@@ -1,7 +1,7 @@
 void safe_zone1(){
   speed=550;
   if(MIRROR_SIDE==0){
-    int set_point=55, offset=10;
+    int set_point=sp_sz1_n, offset=10;
     
     int state=0;
     while(state==0){
@@ -58,7 +58,7 @@ void safe_zone1(){
   
   else {
     /************** Mirror side **************/
-    int set_point=55, offset=10;
+    int set_point=sp_sz1_m, offset=10;
     
     int state=0;
     while(state==0){

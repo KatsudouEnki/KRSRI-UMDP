@@ -1,7 +1,7 @@
 void transisi_r5_r6(){
   if(MIRROR_SIDE == 0){
     ///////////////////////////keluar darikelereng dalam kondsi nyerong
-    int set_point=250, offset=10;
+    int set_point=sp_transisi_n_1, offset=10;
     
     int state=0,repeat=0;
     while(state==0){
@@ -35,7 +35,7 @@ void transisi_r5_r6(){
     state=0;
     int status_gerak=0;
     while(state==0){
-      set_point=313; offset=15;
+      set_point=sp_transisi_n_2; offset=15;
       compass();
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_fast();
@@ -70,7 +70,7 @@ void transisi_r5_r6(){
   else{
     /************** Mirror side **************/
     ///////////////////////////keluar darikelereng kondsi nyerong
-    int set_point=180, offset=10;
+    int set_point=sp_transisi_m_1, offset=10;
     
     int state=0,repeat=0;
     while(state==0){
@@ -104,7 +104,7 @@ void transisi_r5_r6(){
     state=0;
     int status_gerak=0;
     while(state==0){//180
-      set_point=120; offset=15;
+      set_point=sp_transisi_m_2; offset=15;
       compass();
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_fast();

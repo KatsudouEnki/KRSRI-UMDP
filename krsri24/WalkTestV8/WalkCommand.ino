@@ -30,34 +30,7 @@ void loop(){
   boot_state();
 //  digitalWrite(9, 1);
   while(0){
-    int set_point=335, offset=6;
-    int state=0;
-    while(state==0){
-      compass();
-      if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
-        turn_right_fast();
-      }
-      else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
-        turn_right_slow();
-      }
-      else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
-        turn_left_slow();
-      }
-      else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
-        turn_left_fast();
-      }
-      else{
-        crabwalk_right_test0();
-        distance_detection();
-        data_display();
-    
-        if(left_dis>53 || left_dis==0){
-          state=1;
-          default_state();
-        }
-      }
-    }
-    while(true);
+    compass();
   }
 //  preparation();
   display.clearDisplay();

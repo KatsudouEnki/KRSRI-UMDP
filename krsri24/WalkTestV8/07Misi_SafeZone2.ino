@@ -1,6 +1,6 @@
 void safe_zone2(){
   if(MIRROR_SIDE == 0){
-    int set_point=321, offset=10;
+    int set_point=sp_sz2_n, offset=10;
     int state=0;
     speed=500;
     
@@ -48,7 +48,7 @@ void safe_zone2(){
   }
   else{
     /************** Mirror side **************/
-    int set_point=120, offset=10;
+    int set_point=sp_sz2_m, offset=10;
     int state=0;
     speed=500;
 
