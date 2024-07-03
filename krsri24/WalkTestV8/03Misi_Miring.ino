@@ -3,9 +3,8 @@ void obstacle_miring(){
     int set_point=sp_miring_n, offset=10;
     
     int state=0;
-    while(state==0){
-      compass();
-      
+    compass();
+    while(state==0){      
       if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
       }
@@ -15,9 +14,8 @@ void obstacle_miring(){
       else{
         walk_fast_obstacle();
       }
-      
       compass();
-      if((roll<=2 && roll>=-2) &&(azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((roll<=2 && roll>=-2) && (galatArahHitung(set_point, azimuth)>=(-1*offset) && galatArahHitung(set_point, azimuth)<=offset)){
         state=1;
         default_state();
       }
@@ -28,8 +26,8 @@ void obstacle_miring(){
     int set_point=sp_miring_m, offset=10;
     
     int state=0;
+    compass();
     while(state==0){
-      compass();
       
       if(HeadingJustification(azimuth, set_point, 180, offset, 'n')){
         turn_right_obstacle();
@@ -42,10 +40,11 @@ void obstacle_miring(){
       }
       
       compass();
-      if((roll<=2 && roll>=-2) &&(azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((roll<=2 && roll>=-2) && (galatArahHitung(set_point, azimuth)>=(-1*offset) && galatArahHitung(set_point, azimuth)<=offset)){
         state=1;
         default_state();
       }
+
     }
   }
 }

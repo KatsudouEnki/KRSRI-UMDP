@@ -311,3 +311,26 @@ int HeadingJustification(int h, int start_point, int range, int space, char arah
     if( (h>= start_point) && h <=start_point +range){ return 1; }
     else{ return 0; }
 }
+
+int galatArahHitung(int arahSet, int arahUkur){
+  /**
+   * menghitung galat arah kompas dan memberikan nilai -179 s/d 180
+   * arahSet = set point arah kompas
+   * arahUkur = arah kompas terukur oleh sensor
+   * jika memberikan nilai 0 berarti arahUkur sama dengan arahSet
+   * jika memberikan nilai 1 s/d 180 berarti melewati set point dengan arah clockwise sebesar nilai yang dikembalikan
+   * jika memberikan nilai -1 s/d -179 berarti melewati set point dengan arah counterclockwise sebesar nilai yang dikembalikan
+   */
+    
+    int galat;
+    galat = arahUkur - arahSet;
+
+    //menghitung modulo 360 deraja
+    galat = galat % 360;//sisa pembagian bahasa C, bukan modulo yang sesuai definisi
+    galat = (galat < 0) ? (galat + 360) : galat;//menjadikan sisa pembagian di atas menjadi modulo yang sesuai definisi
+    
+    if (galat <= 180)
+        return galat;
+    else
+        return (galat - 360);
+}

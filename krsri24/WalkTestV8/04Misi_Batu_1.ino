@@ -4,10 +4,8 @@ void obstacle_batu1(){
   }
   if(MIRROR_SIDE == 0){
     int set_point=sp_batu1_n, offset=10;
-    int state=0;
+    int state=0;compass();
     while(state==0){
-      compass();
-      
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
       }
@@ -23,10 +21,9 @@ void obstacle_batu1(){
       else{
         walk_fast();
       }
-      
       compass();
       distance_detection();
-      if((front_dis<25 &&front_dis>0) && (roll<=2 && roll>=-2) && (azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((front_dis<25 &&front_dis>0) && (roll<=2 && roll>=-2) && (galatArahHitung(set_point, azimuth)>=(-1*offset) && galatArahHitung(set_point, azimuth)<=offset)){
         state=1;
         default_state();
       }
@@ -36,8 +33,8 @@ void obstacle_batu1(){
     /************** Mirror side **************/
     int set_point=sp_batu1_m, offset=10;
     int state=0;
+    compass();
     while(state==0){
-      compass();
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
       }
@@ -56,10 +53,11 @@ void obstacle_batu1(){
       
       compass();
       distance_detection();
-      if((front_dis<25 &&front_dis>0) && (roll<=2 && roll>=-2) && (azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((front_dis<25 &&front_dis>0) && (roll<=2 && roll>=-2) && (galatArahHitung(set_point, azimuth)>=(-1*offset) && galatArahHitung(set_point, azimuth)<=offset)){
         state=1;
         default_state();
       }
+      
     }
   }
 }

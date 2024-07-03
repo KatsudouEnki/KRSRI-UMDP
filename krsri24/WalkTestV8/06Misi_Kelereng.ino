@@ -40,9 +40,9 @@ void obstacle_kelereng_w_korban(){
     distance_detection();
     compass();
     count=0;
-    while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (right_dis>=40 && right_dis<=54) && (count>=6))){
-      compass();
-      distance_detection();
+    while( !( (galatArahHitung(set_point, azimuth)>=(-1*offset) && galatArahHitung(set_point, azimuth)<=offset) && (back_dis>=12 && back_dis<=16) && (right_dis>=40 && right_dis<=54) && (count>=6))){
+      //compass();
+      //distance_detection();
 
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
@@ -59,7 +59,7 @@ void obstacle_kelereng_w_korban(){
       else{//240
         speed=375;
         if(count<6){
-          distance_detection();
+          //distance_detection();
           if(back_dis>16 || back_dis==0){
             reverse_fast_obstacle();
           }
@@ -149,9 +149,9 @@ void obstacle_kelereng_w_korban(){
 
     distance_detection();
     compass();
-    while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (left_dis>=40 && left_dis<=54) && (count>=6))){
-      compass();
-      distance_detection();
+    while( !((galatArahHitung(set_point, azimuth)>=(-1*offset) && galatArahHitung(set_point, azimuth)<=offset) && (back_dis>=12 && back_dis<=16) && (left_dis>=40 && left_dis<=54) && (count>=6))){
+//      compass();
+//      distance_detection();
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
       }

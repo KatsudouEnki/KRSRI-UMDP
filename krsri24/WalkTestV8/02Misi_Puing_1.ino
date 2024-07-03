@@ -48,9 +48,6 @@ void obstacle_puing1(){
         if(roll>=9){//the obstacle after this have roll value of  when default position and gripper on lower side of the obstacle
           state=1;
         }
-        else{
-          state=0;
-        }
       }
     }
   }
@@ -101,9 +98,6 @@ void obstacle_puing1(){
         compass();
         if(roll>=9){//the obstacle after this have roll value of  when default position and gripper on lower side of the obstacle
           state=1;
-        }
-        else{
-          state=0;
         }
       }
     }

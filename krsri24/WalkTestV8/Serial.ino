@@ -113,6 +113,7 @@ void dummy_detection(){
           delay(10);
           //////////////////////////////////////////////////////////////////// pakai sensor jarak atau koordinat Y dari kamera
           buff_serial = "";
+          compass();
         }
       }
     }
@@ -213,6 +214,7 @@ void dummy_detection2(){
           }
           delay(150);
           buff_serial = "";
+          compass();
         }
       }
     }
@@ -315,6 +317,7 @@ void dummy_detection3(){
           }
           delay(10);
           buff_serial = "";
+          compass();
         }
       }
     }

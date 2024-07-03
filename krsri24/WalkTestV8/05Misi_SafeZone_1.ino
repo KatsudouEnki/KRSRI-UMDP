@@ -4,9 +4,9 @@ void safe_zone1(){
     int set_point=sp_sz1_n, offset=10;
     
     int state=0;
+    compass();
+    distance_detection();
     while(state==0){
-      compass();
-      distance_detection();
       
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
@@ -34,14 +34,14 @@ void safe_zone1(){
         else{
           walk_fast_obstacle();
         }
-        
       }
+      
       compass();
       distance_detection();
-      if((front_dis<=25 && front_dis>17) && (right_dis>=11 && right_dis<=16)&& (azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((front_dis<=25 && front_dis>17) && (right_dis>=11 && right_dis<=16) && (galatArahHitung(set_point, azimuth)>=(-1*offset) && galatArahHitung(set_point, azimuth)<=offset)){
         state=1;
         default_state();
-      } 
+      }
     }
     
     servo_movement("putar", 1);//penyesuaian lokasi gripper
@@ -61,9 +61,9 @@ void safe_zone1(){
     int set_point=sp_sz1_m, offset=10;
     
     int state=0;
+    compass();
+    distance_detection();
     while(state==0){
-      compass();
-      distance_detection();
       
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
@@ -91,14 +91,13 @@ void safe_zone1(){
         else{
           walk_fast_obstacle();
         }
-        
       }
       compass();
       distance_detection();
-      if((front_dis<=25 && front_dis>17) && (left_dis>=11 && left_dis<=16)&& (azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((front_dis<=25 && front_dis>17) && (left_dis>=11 && left_dis<=16) && (galatArahHitung(set_point, azimuth)>=(-1*offset) && galatArahHitung(set_point, azimuth)<=offset)){
         state=1;
         default_state();
-      } 
+      }
     }
     
     servo_movement("putar", 3);//penyesuaian lokasi gripper

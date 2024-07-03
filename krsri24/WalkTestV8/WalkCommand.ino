@@ -65,19 +65,19 @@ void loop(){
       servo_movement("angkat", 0);
       servo_movement("putar", 0);
       servo_movement("buka", 2);
-      obstacle_puing1();
+      obstacle_puing1();digitalWrite(11, !digitalRead(11));
       obstacle_miring();
       
-      obstacle_batu1();
+      obstacle_batu1();/* */
       safe_zone1();
       obstacle_kelereng_w_korban();
       safe_zone2();
       transisi_r5_r6();
       obstacle_puing2();
-      obstacle_batu2_ver2();/* */
+      obstacle_batu2_ver2();
       obstacle_tangga2();
       korban5();
-      r10();
+      r10();/* */
       while(true);
     }
     else{
