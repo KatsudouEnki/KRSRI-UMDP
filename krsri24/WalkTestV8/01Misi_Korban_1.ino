@@ -1,4 +1,4 @@
-void korban1(){
+  void korban1(){
   if(MIRROR_SIDE == 0){
     speed=200;
     int set_point=sp_korban1_n, offset=6;

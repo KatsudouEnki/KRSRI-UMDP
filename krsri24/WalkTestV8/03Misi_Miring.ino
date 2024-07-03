@@ -13,11 +13,11 @@ void obstacle_miring(){
         turn_left_obstacle();
       }
       else{
-        walk_fast();
+        walk_fast_obstacle();
       }
       
       compass();
-      if((roll<=3 && roll>=-3) &&(azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((roll<=2 && roll>=-2) &&(azimuth<=set_point+offset && azimuth >=set_point-offset)){
         state=1;
         default_state();
       }
@@ -38,11 +38,11 @@ void obstacle_miring(){
         turn_left_obstacle();
       }
       else{
-        walk_fast();
+        walk_fast_obstacle();
       }
       
       compass();
-      if((roll<=3 && roll>=-3) &&(azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((roll<=2 && roll>=-2) &&(azimuth<=set_point+offset && azimuth >=set_point-offset)){
         state=1;
         default_state();
       }

@@ -44,28 +44,33 @@ void dummy_detection(){
   //        dtx = get_value(rx_in,',',0);
           dstate = get_value(rx_in,',',0);
           Serial.print("Status = "); Serial.println(dstate);
+          
           display.setCursor(10,10);
           display.print(dstate);
           display.display();
   
           dtx = get_value(rx_in,',',1);
-  
+          Serial.print("dtx = "); Serial.println(dtx);
+          dty = get_value(rx_in,',',2);
+
+          Serial.print("dty = "); Serial.println(dty);
           if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
             servo_movement("buka",1);
             walk_to_victim();
 
             distance_detection();
-            if(back_dis>17 || dty.toInt()>350){
+            if(dty.toInt()>=275){
               servo_movement("angkat", 1);
-              walk_to_victim();
-              walk_to_victim();
+//              walk_to_victim();
+//              walk_to_victim();
               delay(200);
-              servo_movement("buka", 2);
+              servo_movement("angkat", 3);
+              
               delay(800);
-//              servo_movement("angkat", 3);
+              servo_movement("buka", 2); 
               delay(250);
               speed=100;
-              servoAngkat.write(180);
+              servoAngkat.write(150);
               reverse_fast();
               delay(600);
               servo_movement("angkat", 0);
@@ -147,7 +152,7 @@ void dummy_detection2(){
             walk_to_victim_obstacle();
 
             distance_detection();
-            if(back_dis>19 || dty.toInt()>325){
+            if(back_dis>19 || dty.toInt()>250){
               // default_state();
               servo_movement("angkat", 5);
               servo_movement("angkat", 7);

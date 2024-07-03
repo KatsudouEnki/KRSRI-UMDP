@@ -63,8 +63,12 @@ void servo_movement(String name, int state){
 //      }
     }
     else if(state==3){
-      servoAngkat.write(80);
-      Dynamixel.moveSpeed(19,200, 300);
+      servoAngkat.write(140);
+      Dynamixel.moveSpeed(19,350, 150);
+      for(int i =140; i > 60; i=i-2){
+        servoAngkat.write(i);
+        delay(8);
+      }
     }
     else if(state==4){
       servoAngkat.write(80);
@@ -97,13 +101,13 @@ void servo_movement(String name, int state){
       myservo.write(posisi_awal);
     }
     else if(state==1){
-      myservo.write(posisi_awal+20);
+      myservo.write(posisi_awal+30);
     }
     else if(state==2){
       myservo.write(posisi_awal+35);
     }
     else if(state==3){
-      myservo.write(posisi_awal-20);
+      myservo.write(posisi_awal-30);
     }
     else if(state==4){
       myservo.write(posisi_awal-35);

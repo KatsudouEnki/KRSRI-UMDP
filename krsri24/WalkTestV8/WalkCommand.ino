@@ -28,10 +28,7 @@ reverse_fast_obstacle()
 
 void loop(){
   boot_state();
-//  digitalWrite(9, 1);
-  while(0){
-    compass();
-  }
+  
 //  preparation();
   display.clearDisplay();
   delay(500);
@@ -45,9 +42,6 @@ void loop(){
   int start_state;
   speed=800;
   
-  while(false){
-    reverse_fast_obstacle();
-  }
 
   while(true){
 //    Serial.println(start_state);
@@ -66,7 +60,7 @@ void loop(){
       // servo_movement("angkat", 2);
       servo_movement("angkat", 1);
       delay(2000);
-      dummy_detection();/* */
+      dummy_detection();
       speed=800;
       servo_movement("angkat", 0);
       servo_movement("putar", 0);
@@ -80,7 +74,7 @@ void loop(){
       safe_zone2();
       transisi_r5_r6();
       obstacle_puing2();
-      obstacle_batu2_ver2();
+      obstacle_batu2_ver2();/* */
       obstacle_tangga2();
       korban5();
       r10();
@@ -102,8 +96,8 @@ void loop(){
         delay(50);
         
         compass();
-        distance_detection();
-//       data_display();
+//        distance_detection();
+//        data_display();
 
 //        display.clearDisplay();
 //        display.setCursor(50,0);

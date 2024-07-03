@@ -39,7 +39,8 @@ void obstacle_kelereng_w_korban(){
 
     distance_detection();
     compass();
-    while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (right_dis>=46 && right_dis<=58) && (count>=6))){
+    count=0;
+    while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (right_dis>=40 && right_dis<=54) && (count>=6))){
       compass();
       distance_detection();
 
@@ -82,10 +83,10 @@ void obstacle_kelereng_w_korban(){
           else if(back_dis<12 && back_dis>0){
             walk_fast_obstacle();
           }
-          else if(right_dis<46 && right_dis>0){
+          else if(right_dis<40 && right_dis>0){
             crabwalk_left_obstacle();
           }
-          else if(right_dis>58 || right_dis == 0){
+          else if(right_dis>54 || right_dis == 0){
             crabwalk_right_obstacle();
           }
         }
@@ -114,8 +115,9 @@ void obstacle_kelereng_w_korban(){
 
     int set_point=sp_kelereng_m, offset=6;
     int state=0;
-    int count;
+    int count=0;
     speed=500;
+    
     int state_compass = 0;
     while(state_compass != 1){
       digitalWrite(9,LOW);
@@ -126,16 +128,16 @@ void obstacle_kelereng_w_korban(){
         state_compass = 0;
         state=0;
         
-        if(azimuth<set_point-offset && azimuth>=set_point-40){
-          turn_right_obstacle();
-        }
-        else if(azimuth>set_point+offset && azimuth<=set_point+40){
-          turn_left_obstacle();
-        }
-        else if(azimuth<set_point-40 && azimuth>=set_point-180){
+        if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
           turn_right_obstacle_fast();
         }
-        else if(azimuth>set_point+40 || azimuth<set_point-180){
+        else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
+          turn_right_obstacle();
+        }
+        else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
+          turn_left_obstacle();
+        }
+        else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
           turn_left_obstacle_fast();
         }
       }
@@ -147,25 +149,26 @@ void obstacle_kelereng_w_korban(){
 
     distance_detection();
     compass();
-    while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (left_dis>=46 && left_dis<=58) && (count>=6))){
+    while( !(( azimuth >=set_point-offset && azimuth <= set_point+offset) && (back_dis>=12 && back_dis<=16) && (left_dis>=40 && left_dis<=54) && (count>=6))){
       compass();
       distance_detection();
-      if(azimuth<set_point-offset && azimuth>=set_point-40){
-        turn_right_obstacle();
-      }
-      else if(azimuth>set_point+offset && azimuth<=set_point+40){
-        turn_left_obstacle();
-      }
-      else if(azimuth<set_point-40 && azimuth>=set_point-180){
+      if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
         turn_right_obstacle_fast();
       }
-      else if(azimuth>set_point+40 || azimuth<set_point-180){
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
+        turn_right_obstacle();
+      }
+      else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
+        turn_left_obstacle();
+      }
+      else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
         turn_left_obstacle_fast();
       }
       else{//240
         speed=375;
         if(count<6){
           distance_detection();
+          data_display();
           if(back_dis>16 || back_dis==0){
             reverse_fast_obstacle();
           }
@@ -189,11 +192,11 @@ void obstacle_kelereng_w_korban(){
           else if(back_dis<12 && back_dis>0){
             walk_fast_obstacle();
           }
-          else if(left_dis<46 && left_dis>0){
+          else if(left_dis<40 && left_dis>0){
             crabwalk_right_obstacle();
           }
-          else if(left_dis>58 || left_dis == 0){
-            crabwalk_right_obstacle();
+          else if(left_dis>54 || left_dis == 0){
+            crabwalk_left_obstacle();
           }
         }
       }

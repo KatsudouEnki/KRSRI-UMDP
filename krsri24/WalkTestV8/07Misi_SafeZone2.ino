@@ -8,16 +8,16 @@ void safe_zone2(){
       compass();
 
       if(HeadingJustification(azimuth, set_point, 180, 50, 'n')){
-        turn_right_fast();
+        turn_right_obstacle_fast();
       }
       else if(HeadingJustification(azimuth, set_point, 50, offset, 'n')){
-        turn_right_slow();
+        turn_right_obstacle();
       }
       else if(HeadingJustification(azimuth, set_point, 50, offset, 'p')){
-        turn_left_slow();
+        turn_left_obstacle();
       }
       else if(HeadingJustification(azimuth, set_point, 180, 50, 'p')){
-        turn_left_fast();
+        turn_left_obstacle_fast();
       }
       else{//240
         distance_detection();
@@ -27,7 +27,7 @@ void safe_zone2(){
         else if(right_dis>21){
           crabwalk_right_obstacle();
         }
-        else if((front_dis>0 && front_dis<=26) && (left_dis >=40 || left_dis == 0)){
+        else if((front_dis>0 && front_dis<=30) && (left_dis >=40 || left_dis == 0)){
           state=1;
         }
         else{
@@ -56,16 +56,16 @@ void safe_zone2(){
       compass();
 
       if(HeadingJustification(azimuth, set_point, 180, 50, 'n')){
-        turn_right_fast();
+        turn_right_obstacle_fast();
       }
       else if(HeadingJustification(azimuth, set_point, 50, offset, 'n')){
-        turn_right_slow();
+        turn_right_obstacle();
       }
       else if(HeadingJustification(azimuth, set_point, 50, offset, 'p')){
-        turn_left_slow();
+        turn_left_obstacle();
       }
       else if(HeadingJustification(azimuth, set_point, 180, 50, 'p')){
-        turn_left_fast();
+        turn_left_obstacle_fast();
       }
       else{//240
         distance_detection();
@@ -75,7 +75,7 @@ void safe_zone2(){
         else if(left_dis>21){
           crabwalk_left_obstacle();
         }
-        else if((front_dis>0 && front_dis<=26) && (right_dis >=40 || left_dis == 0)){
+        else if((front_dis>0 && front_dis<=30) && (right_dis >=40 || left_dis == 0)){
           state=1;
         }
         else{

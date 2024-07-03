@@ -9,21 +9,21 @@ void safe_zone1(){
       distance_detection();
       
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
-        turn_right_fast();
+        turn_right_obstacle_fast();
       }
       else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
-        turn_right_slow();
+        turn_right_obstacle();
       }
       else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
-        turn_left_slow();
+        turn_left_obstacle();
       }
       else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
-        turn_left_fast();
+        turn_left_obstacle_fast();
       }
       else{
         distance_detection();
-        if((front_dis<=15 && front_dis>0)){
-          reverse_fast();
+        if((front_dis<=17 && front_dis>0)){
+          reverse_fast_obstacle();
         }
         else if((right_dis<11 && right_dis>0)){
           crabwalk_left();
@@ -32,13 +32,13 @@ void safe_zone1(){
           crabwalk_right();
         }
         else{
-          walk_fast();
+          walk_fast_obstacle();
         }
         
       }
       compass();
       distance_detection();
-      if((front_dis<=25 && front_dis>20) && (right_dis>=11 && right_dis<=16)&& (azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((front_dis<=25 && front_dis>17) && (right_dis>=11 && right_dis<=16)&& (azimuth<=set_point+offset && azimuth >=set_point-offset)){
         state=1;
         default_state();
       } 
@@ -66,21 +66,21 @@ void safe_zone1(){
       distance_detection();
       
       if(HeadingJustification(azimuth, set_point, 180, 40, 'n')){
-        turn_right_fast();
+        turn_right_obstacle_fast();
       }
       else if(HeadingJustification(azimuth, set_point, 40, offset, 'n')){
-        turn_right_slow();
+        turn_right_obstacle();
       }
       else if(HeadingJustification(azimuth, set_point, 40, offset, 'p')){
-        turn_left_slow();
+        turn_left_obstacle();
       }
       else if(HeadingJustification(azimuth, set_point, 180, 40, 'p')){
-        turn_left_fast();
+        turn_left_obstacle_fast();
       }
       else{
         distance_detection();
-        if((front_dis<=15 && front_dis>0)){
-          reverse_fast();
+        if((front_dis<=17 && front_dis>0)){
+          reverse_fast_obstacle();
         }
         else if((left_dis<11 && left_dis>0)){
           crabwalk_right();
@@ -89,13 +89,13 @@ void safe_zone1(){
           crabwalk_left();
         }
         else{
-          walk_fast();
+          walk_fast_obstacle();
         }
         
       }
       compass();
       distance_detection();
-      if((front_dis<=25 && front_dis>20) && (left_dis>=11 && left_dis<=16)&& (azimuth<=set_point+offset && azimuth >=set_point-offset)){
+      if((front_dis<=25 && front_dis>17) && (left_dis>=11 && left_dis<=16)&& (azimuth<=set_point+offset && azimuth >=set_point-offset)){
         state=1;
         default_state();
       } 

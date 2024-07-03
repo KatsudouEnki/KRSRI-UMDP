@@ -1,6 +1,6 @@
 void home(){
   if(MIRROR_SIDE == 0){
-    int set_point=sp_home_n, offset=6;
+    int set_point=sp_home_n, offset=7;
     int state=0;
     while(state==0){
       compass();
@@ -30,7 +30,7 @@ void home(){
   }
   else{
     /************** Mirror side **************/
-    int set_point=sp_home_m, offset=6;
+    int set_point=sp_home_m, offset=7;
     int state=0;
     while(state==0){
       compass();

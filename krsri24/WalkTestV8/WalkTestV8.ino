@@ -20,7 +20,7 @@
 
 #define ANGLE_8  1          // Register to read 8bit angle from
 
-#define MIRROR_SIDE 0       // 1 if mirrored side, 0 while default side
+#define MIRROR_SIDE 1       // 1 if mirrored side, 0 while default side
 
 
 unsigned char high_byte, low_byte, angle8;
@@ -1533,6 +1533,62 @@ void crabwalk_right_ladder(){
   LeftFront(12,5,6,speed/3,servo_delay);
   RightMid(6.6,6.6,4,speed/3,servo_delay);
   LeftBack(5,12,6,speed/3,servo_delay);
+  
+  // delay(20);
+}
+
+void crabwalk_right_ladder0(){
+  //1
+  LeftFront(8,5,6,speed,servo_delay);
+  RightMid(9.4,9.4,4,speed,servo_delay);
+  LeftBack(5,8,6,speed,servo_delay);
+
+  delay(5);
+
+  RightFront(8,5,0,speed,servo_delay);
+  LeftMid(9.4,9.4,2,speed,servo_delay);
+  RightBack(5,8,0,speed,servo_delay);
+
+  RightFront(12,5,0,speed,servo_delay);
+  LeftMid(6.6,6.6,3.5,speed,servo_delay);
+  RightBack(5,12,0,speed,servo_delay);
+
+  delay(10);
+
+  LeftFront(10,5,6,speed/3,servo_delay);
+  RightMid(8,8,4,speed/3,servo_delay);
+  LeftBack(5,10,6,speed/3,servo_delay);
+
+  //2
+  LeftFront(12,5,6,speed/3,servo_delay);
+  RightMid(6.6,6.6,4,speed/3,servo_delay);
+  LeftBack(5,12,6,speed/3,servo_delay);
+
+  // delay(20);
+
+  //3
+  RightFront(12,5,4,speed,servo_delay);
+  LeftMid(6.6,6.6,6,speed,servo_delay);
+  RightBack(5,12,4,speed,servo_delay);
+
+  delay(5);
+
+  LeftFront(12,5,2,speed,servo_delay);
+  RightMid(6.6,6.6,-0.25,speed,servo_delay);
+  LeftBack(5,12,2,speed,servo_delay);
+
+  LeftFront(8,5,2,speed,servo_delay);
+  RightMid(9.4,9.4,-0.25,speed,servo_delay);
+  LeftBack(5,8,2,speed,servo_delay);
+
+  RightFront(10,5,4,speed/3,servo_delay);
+  LeftMid(8,8,6,speed/3,servo_delay);
+  RightBack(5,10,4,speed/3,servo_delay);
+
+  //4
+  RightFront(8,5,4,speed/3,servo_delay);
+  LeftMid(9.4,9.4,6,speed/3,servo_delay);
+  RightBack(5,8,4,speed/3,servo_delay);
   
   // delay(20);
 }
