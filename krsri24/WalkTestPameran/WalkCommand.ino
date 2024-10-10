@@ -41,8 +41,37 @@ void loop(){
   unsigned long timer=millis();
   int start_state;
   speed=800;
-  
+  delay(500);
+  while(true){//untuk pameran
+    if(digitalRead(A10) == HIGH){
+      for(int i=0;i<5;i++){
+        walk_fast();
+      }
+      delay(1000);
+      
+      for(int i=0;i<5;i++){
+        reverse_fast();
+      }
+      delay(1000);
 
+      for(int i=0;i<5;i++){
+        turn_left_fast();
+      }
+      delay(1000);
+      
+      for(int i=0;i<5;i++){
+        turn_right_fast();
+      }
+      delay(1000);
+
+    }
+    else{
+      
+    }
+  }
+
+
+  
   while(true){
 //    Serial.println(start_state);
     
