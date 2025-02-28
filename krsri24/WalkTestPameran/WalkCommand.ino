@@ -44,29 +44,23 @@ void loop(){
   delay(500);
   while(true){//untuk pameran
     if(digitalRead(A10) == HIGH){
-      for(int i=0;i<5;i++){
-        walk_fast();
-      }
-      delay(1000);
-      
-      for(int i=0;i<5;i++){
-        reverse_fast();
-      }
-      delay(1000);
 
-      for(int i=0;i<5;i++){
-        turn_left_fast();
-      }
-      delay(1000);
-      
-      for(int i=0;i<5;i++){
-        turn_right_fast();
-      }
-      delay(1000);
-
+      servo_movement("buka", 1);
+      delay(200);
+      // servo_movement("angkat", 2);
+      servo_movement("angkat", 1);
+      delay(2000);
+      dummy_detection();
+      speed=800;
+      servo_movement("angkat", 0);
+      servo_movement("putar", 0);
+      servo_movement("buka", 2);
+      delay(2500);
     }
     else{
-      
+      default_state();
+      Serial.println("State Default");
+      delay(500);
     }
   }
 

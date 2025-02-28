@@ -35,7 +35,7 @@ void setup(){
 }
 void loop(){
 //  if(Serial2.available()){
-//    Serial.write(Serial2.read());
+//    Serial.println(Serial2.read());
 //  }
   test();
 
@@ -50,11 +50,11 @@ void test(){
 //    Serial.println("Got data");
 
 //    String rx_in = Serial2.readString();
-String rx_in, dtx;
-char chrx_in = Serial2.read();
-    buff_serial += String(chrx_in);
+  String rx_in, dtx;
+  char chrx_in = Serial2.read();
+  buff_serial += String(chrx_in);
 
-//    Serial.println(buff_serial);
+    Serial.println(buff_serial);
 
     // check header
     int pos_head = buff_serial.indexOf(STX);

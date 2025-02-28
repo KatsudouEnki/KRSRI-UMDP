@@ -59,13 +59,13 @@ void dummy_detection(){
             walk_to_victim();
 
             distance_detection();
-            if(dty.toInt()>=270){
+            if(dty.toInt()>=300){
               servo_movement("angkat", 1);
               
               delay(200);
               servo_movement("angkat", 3);
               walk_to_victim();
-//              walk_to_victim();
+              walk_to_victim();
               delay(800);
               servo_movement("buka", 2); 
               delay(250);
