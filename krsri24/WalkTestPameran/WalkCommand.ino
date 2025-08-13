@@ -1,18 +1,18 @@
 /* COMMANDS LIST
 1.  default_state()
-2.  walk_fast()
-3.  walk_fast_obstacle()
+2.  walk_fast() .
+3.  walk_fast_obstacle() .
 4.  walk_fast_balls()
-5.  reverse_fast()
-6.  turn_left_slow()
-7.  turn_left_fast()
-8.  turn_left_obstacle()
+5.  reverse_fast() .
+6.  turn_left_slow() 
+7.  turn_left_fast() .
+8.  turn_left_obstacle() 
 9.  turn_right_slow()
-10. turn_right_fast()
+10. turn_right_fast() .
 11. turn_right_obstacle()
-12. crabwalk_left()
+12. crabwalk_left() .
 13. crabwalk_left_obstacle() crabwalkLeftObstacle
-14. crabwalk_right()
+14. crabwalk_right() .
 15. crabwalk_right_obstacle()
 16. cam_state()
 17. walk_to_victim()
@@ -23,11 +23,12 @@
 22. ladder_right()
 23. ladder_left()
 24. post_ladder()
-reverse_fast_obstacle()
+reverse_fast_obstacle() .
 */
 
 void loop(){
   boot_state();
+  randomSeed(analogRead(A0));
   
 //  preparation();
   display.clearDisplay();
@@ -36,6 +37,7 @@ void loop(){
   servo_movement("angkat", 0);
   
   servo_movement("putar", 0);
+  default_state();
   delay(500);
   default_state();
   unsigned long timer=millis();
@@ -43,125 +45,70 @@ void loop(){
   speed=800;
   delay(500);
   while(true){//untuk pameran
+    Serial.println(digitalRead(A10));
+//    Dynamixel.moveSpeed(3, 90,speed);
     if(digitalRead(A10) == HIGH){
-
-      servo_movement("buka", 1);
-      delay(200);
-      // servo_movement("angkat", 2);
-      servo_movement("angkat", 1);
-      delay(2000);
-      dummy_detection();
+      int rand_val = random(1,10);
+      default_state();
+      for(int i=0;i<4;i++){
+        switch(rand_val){
+          case 1:
+            walk_fast();
+            break;
+          case 2:
+            reverse_fast();
+            break;
+          case 3:
+            turn_left_fast();
+            break;
+          case 4:
+            turn_right_fast();
+            break;
+          case 5:
+            crabwalk_left();
+            break;
+          case 6:
+            crabwalk_right();
+            break;
+          case 7:
+          case 8:
+            myservo.write(82);
+            delay(100);
+            myservo.write(122);
+            delay(100);
+            myservo.write(102);
+            delay(50);
+            break;
+          case 9:
+            servo_movement("buka",1);
+            servo_movement("angkat", 1);
+            delay(200);
+            servo_movement("angkat", 2);
+            delay(200);
+            servo_movement("buka", 2);
+            delay(350);
+            speed=100;
+            servoAngkat.write(150);
+            delay(400);
+            servo_movement("buka",0);
+            servo_movement("angkat", 0);
+            delay(500);
+            break;
+        }
+        if(rand_val == 9){
+          break;
+        }
+      }
+      delay(100);
       speed=800;
-      servo_movement("angkat", 0);
-      servo_movement("putar", 0);
-      servo_movement("buka", 2);
-      delay(2500);
+      default_state();
+      delay(5000);
     }
     else{
       default_state();
       Serial.println("State Default");
       delay(500);
     }
-  }
-
-
-  
-  while(true){
-//    Serial.println(start_state);
-    
-//    if(1){
-    if(digitalRead(A10) == HIGH){
-      digitalWrite(9, HIGH);
-      digitalWrite(11, LOW);
-      Serial.println("start");
-      /* */
-      home();
-      digitalWrite(7,LOW);
-      korban1();
-      servo_movement("buka", 1);
-      delay(200);
-      // servo_movement("angkat", 2);
-      servo_movement("angkat", 1);
-      delay(2000);
-      dummy_detection();
-      speed=800;
-      servo_movement("angkat", 0);
-      servo_movement("putar", 0);
-      servo_movement("buka", 2);
-      obstacle_puing1();digitalWrite(11, !digitalRead(11));
-      obstacle_miring();
-      digitalWrite(9, !digitalRead(9));
-      obstacle_batu1();/* */
-      safe_zone1();
-      obstacle_kelereng_w_korban();
-      safe_zone2();
-      transisi_r5_r6();
-      obstacle_puing2();
-      obstacle_batu2_ver2();
-      obstacle_tangga2();
-      korban5();
-      r10();/* */
-      while(true);
-    }
-    else{
-      unsigned long now=millis();
-      default_state();
-      
-      servo_movement("putar", 0);
-      if(now - timer>750){
-        digitalWrite(11, !digitalRead(11));
-        delay(50);
-        digitalWrite(11, !digitalRead(11));
-        delay(50);
-        digitalWrite(11, !digitalRead(11));
-        delay(50);
-        digitalWrite(11, !digitalRead(11));
-        delay(50);
-        
-        compass();
-//        distance_detection();
-//        data_display();
-
-//        display.clearDisplay();
-//        display.setCursor(50,0);
-//        display.print("F=");
-//        display.print(front_dis);
-//        display.setCursor(0,32);
-//        display.print("L=");
-//        display.print(left_dis);
-//        display.setCursor(90,32);
-//        display.print("R=");
-//        display.print(right_dis);
-//        display.setCursor(50,50);
-//        display.print("B=");
-//        display.print(back_dis);
-//        display.setCursor(40,32);
-//        display.print("G=");
-//        display.print(gripper_dis);
-//        display.display();
-        delay(100);
-        timer=now;
-      }
-    }
-  }
-
-  //testing
-  while(true){
-    
-    home();
-    korban1();
-    speed=800;
-    obstacle_puing1();
-    obstacle_miring();
-    obstacle_batu1();
-//    safe_zone1();
-//    obstacle_kelereng_w_korban();
-//    safe_zone2();
-//    transisi_r5_r6();
-//    obstacle_puing2();
-    while(1);
-    obstacle_batu2();
-    obstacle_tangga();
   }
   
   digitalWrite(7, LOW);

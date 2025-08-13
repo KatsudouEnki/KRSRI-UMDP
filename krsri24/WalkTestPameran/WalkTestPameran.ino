@@ -123,10 +123,10 @@ void setup(){
         default_x=8,
         default_y=8,
         default_z=4.5;
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-    Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
-  }
+//  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+//    Serial.println(F("SSD1306 allocation failed"));
+//    for(;;); // Don't proceed, loop forever
+//  }
 
   display.setTextSize(1);      // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE); // Draw white text
