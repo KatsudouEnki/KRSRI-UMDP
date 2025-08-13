@@ -146,7 +146,7 @@ void setup(){
   servoBuka.attach(40);//A8
   Wire.begin();  
  
-  bno_init();
+//  bno_init();
 
   buff_serial = "";
   pinMode(A10, INPUT_PULLUP);
