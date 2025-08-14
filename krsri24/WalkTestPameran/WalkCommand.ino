@@ -85,32 +85,32 @@ void loop(){
     
               Serial.print("dty = "); Serial.println(dty);
               if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
-//                servo_movement("buka",1);
-//                walk_to_victim();
-//    
-//                distance_detection();
-//                if(dty.toInt()>=300){
-//                  servo_movement("angkat", 1);
-//                  
-//                  delay(200);
-//                  servo_movement("angkat", 3);
-//                  walk_to_victim();
-//                  walk_to_victim();
-//                  delay(800);
-//                  servo_movement("buka", 2); 
-//                  delay(250);
-//                  speed=100;
-//                  servoAngkat.write(150);
-//                  delay(100);
-//                  servo_movement("buka", 2);
-//                  delay(100);
-//                  reverse_fast();
-//                  delay(100);
-//                  servo_movement("buka", 2);
-//                  delay(600);
-//                  servo_movement("angkat", 0);
-//                  status_korban=1;
-//                }
+                servo_movement("buka",1);
+                walk_to_victim();
+    
+                distance_detection();
+                if(dty.toInt()>=300){
+                  servo_movement("angkat", 1);
+                  
+                  delay(200);
+                  servo_movement("angkat", 3);
+                  walk_to_victim();
+                  walk_to_victim();
+                  delay(800);
+                  servo_movement("buka", 2); 
+                  delay(250);
+                  speed=100;
+                  servoAngkat.write(150);
+                  delay(100);
+                  servo_movement("buka", 2);
+                  delay(100);
+                  reverse_fast();
+                  delay(100);
+                  servo_movement("buka", 2);
+                  delay(600);
+                  servo_movement("angkat", 0);
+                  status_korban=1;
+                } 
                 
                 myservo.write(pos);
                 Serial.print("pos = "); Serial.println(pos);
@@ -151,6 +151,9 @@ void loop(){
               
             }
           }
+        }
+        else{
+          Serial.println("Tidak ada Input dari RASPI");
         }
       }
       delay(1000);
