@@ -57,16 +57,114 @@ void loop(){
       speed=200;
       int status_korban=0, rep=0;
       while(status_korban==0){
-        Serial.println(status_korban);
+//        Serial.println(status_korban);
         if (Serial2.available()) {
 
-          Serial.print(Serial2.read());
-          
-          if (buff_serial.length() > 16) {
-            buff_serial = "";
+          String buff1=Serial2.readStringUntil('\x02');
+          String buff2="";
+          bool data_valid=false;
+
+          if(buff1 != NULL){
+            buff2 = Serial2.readStringUntil('\x03');
+            
+            if(buff2 != NULL){
+//              Serial.print(millis());
+//              Serial.print(" : ");
+//              Serial.println(buff2);
+              data_valid = true;
+            }
+            else {
+              Serial.println("NO DATA B2");
+              data_valid = false;
+            }
+            buff1 = "";
+//            buff2 = "";
+          } else {
+            Serial.println("NO DATA B1");
+            data_valid = false;
           }
-          
-//          String rx_in, dtx, dty, dstate;
+
+          if(data_valid){
+            String rx_in, dtx, dty, dstate; 
+            dstate = get_value(buff2,',',0);
+            dtx = get_value(buff2,',',1);
+            dty = get_value(buff2,',',2);
+            buff2="";
+            data_valid=false;
+            
+            Serial.print("Status = "); Serial.println(dstate);
+            Serial.print("dtx = "); Serial.println(dtx);
+            Serial.print("dty = "); Serial.println(dty);
+            
+            if(dtx.toInt()>=-70 && dtx.toInt()<=70 && dstate.toInt()==1){
+                servo_movement("buka",1);
+                walk_to_victim();
+                Serial.println("Jalan ke Korban");
+    
+                distance_detection();
+                if(dty.toInt()>=335){
+                  Serial.println("Mulai Ambil Korban");
+                  servo_movement("angkat", 1);
+                  
+                  delay(200);
+                  servo_movement("angkat", 3);
+                  walk_to_victim();
+                  walk_to_victim();
+                  delay(800);
+                  servo_movement("buka", 2); 
+                  delay(250);
+                  speed=100;
+                  servoAngkat.write(150);
+                  delay(100);
+                  servo_movement("buka", 2);
+                  delay(100);
+                  reverse_fast();
+                  delay(100);
+                  servo_movement("buka", 2);
+                  delay(600);
+                  servo_movement("angkat", 0);
+                  default_state();
+                  Serial.println("Selesai Ambil Korban");
+                  while(Serial2.available()){
+                    Serial2.read();
+                  }
+                  status_korban=1;
+                }
+                myservo.write(pos);
+                Serial.print("pos = "); Serial.println(pos);
+              }
+              else if(dtx.toInt()<=-70 && dstate.toInt()==1){
+                servo_movement("buka",1);
+                pos=pos-1;
+                 if(pos<=82){
+                   turn_left_slow();
+                   pos = 92;
+                 }
+                myservo.write(pos);
+              } 
+              else if(dtx.toInt()>=70 && dstate.toInt()==1){
+                servo_movement("buka",1);
+                pos=pos+1;
+                 if(pos>=122){
+                   turn_right_slow();
+                   pos=112;
+                 }
+                myservo.write(pos);
+              }
+              else{
+                pos=pos+1;
+                if(pos>=122){
+                  pos=82;
+                  rep++;
+                  if(rep>5){
+                    status_korban=1;
+                  }
+                }
+                Serial.println(myservo.read());
+                myservo.write(pos);
+              }
+              delay(10);
+            }
 //          char chrx_in = Serial2.read();
 //          buff_serial += String(chrx_in);
 //          // check header
@@ -158,7 +256,7 @@ void loop(){
 //          }
         }
         else{
-          Serial.println("Tidak ada Input dari RASPI");
+//          Serial.println("Tidak ada Input dari RASPI");
         }
       }
       delay(1000);

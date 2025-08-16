@@ -4,7 +4,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <NewPing.h>
-#include <Servo.h>
+#include <Servo.h>  
 
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
@@ -112,6 +112,7 @@ void setup(){
   // put your setup code here, to run once:
   Serial.begin(115200);
   Serial2.begin(19200);
+  Serial2.setTimeout(3000);
   
   Dynamixel.setSerial(&Serial3);
   Dynamixel.begin(1000000, 2);
